@@ -1302,6 +1302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504ddf3b394e0a748830b2238e5a13dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 0}
+  isPaused: 0
 --- !u!4 &500284662
 Transform:
   m_ObjectHideFlags: 0
@@ -52662,6 +52664,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1896620744}
     m_Modifications:
+    - target: {fileID: 217066545272836644, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844704270189968715, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4340054961460727088, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_Constraints
       value: 0
@@ -52717,6 +52727,10 @@ PrefabInstance:
     - target: {fileID: 4897928467854683093, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897928467854683093, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4897928467854683093, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_IsActive

@@ -146,6 +146,7 @@ public class CityBossAI : MonoBehaviour
         }
 
         PlayerPrefs.Save();
+        LevelManager.instance.ResetRun();
         Destroy(gameObject);
     }
 
