@@ -369,18 +369,17 @@ public class LevelManager : MonoBehaviour
             switch (currentArea)
             {
                 case AreaType.City:
-                    cityRoomPool[currentRoomIndex + 1] = randomRoomValue;
+                    LoadSceneByTrigger(randomRoomValue);
                     break;
                 case AreaType.Swamp:
-                    swampRoomPool[currentRoomIndex + 1] = randomRoomValue;
+                    LoadSceneByTrigger(randomRoomValue);
                     break;
                 default:
-                    desertRoomPool[currentRoomIndex + 1] = randomRoomValue;
+                    LoadSceneByTrigger(randomRoomValue);
                     break;
             }
         }
-
-        LoadNextRoom(); //move to next room, if secret room was added it will be the scene you go to
+        if(randomRoomValue == null) { LoadNextRoom(); } //move to next room, if secret room was added it will be the scene you go to
     }
 
     public void SetArea(AreaType area)

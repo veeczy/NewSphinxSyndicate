@@ -6,8 +6,8 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance;
 
-    private GameObject pauseMenuUI;
-    private bool isPaused = false;
+    public GameObject pauseMenuUI;
+    public bool isPaused = false;
 
     private string lastGameplayScene;
 
@@ -39,7 +39,7 @@ public class PauseManager : MonoBehaviour
             lastGameplayScene = scene.name;
         }
 
-        pauseMenuUI = FindInactiveObjectByName("PausedCanvas");
+        pauseMenuUI = GameObject.Find("PausedCanvas");
 
         if (pauseMenuUI != null)
         {

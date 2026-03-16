@@ -71380,7 +71380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1913225928956996752, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9036624114286174314, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
       propertyPath: m_LocalPosition.x
@@ -77372,6 +77372,10 @@ PrefabInstance:
     - target: {fileID: 5204935514750397017, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
       propertyPath: m_Name
       value: PausedCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204935514750397017, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6122320874338895693, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
       propertyPath: m_AnchoredPosition.x

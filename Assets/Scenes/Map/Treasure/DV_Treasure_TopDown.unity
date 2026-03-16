@@ -52302,7 +52302,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: isEntry
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1028541545441344432, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: m_Enabled
@@ -53581,7 +53581,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042692835}
-  - component: {fileID: 2042692834}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -53589,22 +53588,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2042692834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042692833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35ea5839876db149a78ec3a625f6164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  onTrigger: 1
-  isSecretDoor: 0
-  isEntry: 0
-  sceneName: 
 --- !u!4 &2042692835
 Transform:
   m_ObjectHideFlags: 0
