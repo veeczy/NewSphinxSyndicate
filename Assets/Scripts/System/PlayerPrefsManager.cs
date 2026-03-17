@@ -17,6 +17,8 @@ public class PlayerPrefsManager : MonoBehaviour
     //variable for gamma
     public float gamma;
 
+    public string debugSceneChange; //fill this is you want to debug a specific scene
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,7 +30,8 @@ public class PlayerPrefsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("gamma", 0.5f);
 
-        SceneManager.LoadScene("MainMenu");
+        if(debugSceneChange == null) { debugSceneChange = "MainMenu"; }
+        SceneManager.LoadScene(debugSceneChange);
 
     }
 

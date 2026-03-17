@@ -16,7 +16,6 @@ public class Slots : MonoBehaviour
     public bool canMove = true;
     public bool playAgain = true;
     public bool gameActive = false;
-
     public bool playerNear = false;
 
     [Header("Slots Symbols")]
@@ -24,12 +23,6 @@ public class Slots : MonoBehaviour
     public int[] slotValues; //array for the value of each symbol on the slot machine
 
     public Sprite[] creditSprites; //sprites for credits
-
-    public int[] feed1; //the feed for column 1
-    public int[] feed2; //the feed for column 2
-    public int[] feed3; //the feed for column 3
-    public int[] feed4; //the feed for column 4
-    public int[] feed5; //the feed for column 5
 
     [Header("Slot UI - Base")]
     public GameObject slotScreen; //background screen
@@ -87,6 +80,19 @@ public class Slots : MonoBehaviour
     [Header("Slots Minigame Data")]
     public string[] dialogueLines = new string[] { "", "JACKPOT!"}; //dialogue the minigame can say
     public int dialogueIndex = 0; //number to call what dialogue is said
+
+    //collumns feed
+    public GameObject[] collumn1 = new GameObject[3];
+    public GameObject[] collumn2 = new GameObject[3];
+    public GameObject[] collumn3 = new GameObject[3];
+    public GameObject[] collumn4 = new GameObject[3];
+    public GameObject[] collumn5 = new GameObject[3];
+
+    public int[] feed1; //the feed for collumn 1
+    public int[] feed2; //the feed for collumn 2
+    public int[] feed3; //the feed for collumn 3
+
+    //CREDITS
     public int credits; //credits whole number
     public string creditsString;
     public int ones;
@@ -98,7 +104,8 @@ public class Slots : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        InitializeGameObjects(); //check to see if everything is linked in inspector, if not find the named objects and link them
+        InitializeFeed(); //set the gameobjects to be the rows in the arrays
     }
 
     // Update is called once per frame
@@ -106,6 +113,8 @@ public class Slots : MonoBehaviour
     {
         PlayerPrefs.SetInt("credits", credits);
         LoadCreditsUI();
+
+        if(Input.GetButtonDown("Cancel")) { CloseGame(); }
 
         if (playerNear && Input.GetButtonDown("Interact"))
         {
@@ -120,7 +129,7 @@ public class Slots : MonoBehaviour
             ShowUI(slotScreen); //shows all ui related to slots
             dialogueIndex = 0;
 
-            if (!playAgain) { HideUI(slotScreen); } //hides all ui related to blackjack
+            if (!playAgain) { CloseGame(); } //hides all ui related to blackjack
         }
         if (!isTalking) { canMove = true; } // return movement if not talking to minigame npc
 
@@ -130,6 +139,7 @@ public class Slots : MonoBehaviour
         }
     }
 
+    //**SYSTEM FUNCTIONS** 
     public void ShowUI(GameObject UI)
     {
         UI.SetActive(true);
@@ -138,6 +148,104 @@ public class Slots : MonoBehaviour
     public void HideUI(GameObject UI)
     {
         UI.SetActive(false);
+    }
+
+    private GameObject FindInactiveObjectByName(string name)
+    {
+        GameObject[] objects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        foreach (GameObject obj in objects)
+        {
+            if (obj.name == name && obj.scene.isLoaded)
+                return obj;
+        }
+
+        return null;
+    }
+
+    public void InitializeGameObjects() //if anything is not linked in inspector, it will now be found
+    {
+        //SLOT UI BASE
+        if (slotScreen == null) { slotScreen = FindInactiveObjectByName("SlotsScreen"); }
+        if (dialogueUI == null) { dialogueUI = FindInactiveObjectByName("DialogueBG-Slots"); }
+        if (dialogueText == null)
+        {
+            GameObject placeholder = FindInactiveObjectByName("DialogueBG-Slot-Text");
+            dialogueText = placeholder.GetComponent<TextMeshProUGUI>();
+        }
+        if (lever == null) { lever = FindInactiveObjectByName("SlotsBG-Lever"); }
+
+        //SLOT UI - CREDITS
+        if (creditsPanel == null) { creditsPanel = FindInactiveObjectByName("CreditsBG"); }
+        if (creditsNumber1 == null) { creditsNumber1 = FindInactiveObjectByName("Credits-Number1"); }
+        if (creditsNumber2 == null) { creditsNumber2 = FindInactiveObjectByName("Credits-Number2"); }
+        if (creditsNumber3 == null) { creditsNumber3 = FindInactiveObjectByName("Credits-Number3"); }
+        if (creditsNumber4 == null) { creditsNumber4 = FindInactiveObjectByName("Credits-Number4"); }
+
+        //SLOT UI - ROW 1
+        if (r1c1 == null) { r1c1 = FindInactiveObjectByName("r1c1"); }
+        if (r1c2 == null) { r1c2 = FindInactiveObjectByName("r1c2"); }
+        if (r1c3 == null) { r1c3 = FindInactiveObjectByName("r1c3"); }
+        if (r1c4 == null) { r1c4 = FindInactiveObjectByName("r1c4"); }
+        if (r1c5 == null) { r1c1 = FindInactiveObjectByName("r1c1"); }
+
+        //SLOT UI - ROW 2
+        if (r2c1 == null) { r2c1 = FindInactiveObjectByName("r2c1"); }
+        if (r2c2 == null) { r2c2 = FindInactiveObjectByName("r2c2"); }
+        if (r2c3 == null) { r2c3 = FindInactiveObjectByName("r2c3"); }
+        if (r2c4 == null) { r2c4 = FindInactiveObjectByName("r2c4"); }
+        if (r2c5 == null) { r2c1 = FindInactiveObjectByName("r2c1"); }
+
+        //SLOT UI - ROW 3
+        if (r3c1 == null) { r3c1 = FindInactiveObjectByName("r3c1"); }
+        if (r3c2 == null) { r3c2 = FindInactiveObjectByName("r3c2"); }
+        if (r3c3 == null) { r3c3 = FindInactiveObjectByName("r3c3"); }
+        if (r3c4 == null) { r3c4 = FindInactiveObjectByName("r3c4"); }
+        if (r3c5 == null) { r3c1 = FindInactiveObjectByName("r3c1"); }
+
+        //SLOT UI - COMBO LINES
+        if (straightAcrossTop == null) { straightAcrossTop = FindInactiveObjectByName("StraightAcross-1"); }
+        if (straightAcrossMiddle == null) { straightAcrossMiddle = FindInactiveObjectByName("StraightAcross-2"); }
+        if (straightAcrossBottom == null) { straightAcrossBottom = FindInactiveObjectByName("StraightAcross-3"); }
+
+        if (straightDown1 == null) { straightDown1 = FindInactiveObjectByName("StraightDown-1"); }
+        if (straightDown2 == null) { straightDown2 = FindInactiveObjectByName("StraightDown-2"); }
+        if (straightDown3 == null) { straightDown3 = FindInactiveObjectByName("StraightDown-3"); }
+        if (straightDown4 == null) { straightDown4 = FindInactiveObjectByName("StraightDown-4"); }
+        if (straightDown5 == null) { straightDown5 = FindInactiveObjectByName("StraightDown-5"); }
+
+        if (acrossLeftUp == null) { acrossLeftUp = FindInactiveObjectByName("Across-Left-Up"); }
+        if (acrossLeftDown == null) { acrossLeftDown = FindInactiveObjectByName("Across-Left-Down"); }
+        if (acrossRightUp == null) { acrossRightUp = FindInactiveObjectByName("Across-Right-Up"); }
+        if (acrossRightDown == null) { acrossRightDown = FindInactiveObjectByName("Across-Right-Down"); }
+    }
+
+    public void InitializeFeed()
+    {
+        //collumn 1
+        collumn1[0] = r1c1;
+        collumn1[1] = r2c1;
+        collumn1[2] = r3c1;
+
+        //collumn 2
+        collumn2[0] = r1c2;
+        collumn2[1] = r2c2;
+        collumn2[2] = r3c2;
+
+        //collumn 3
+        collumn3[0] = r1c3;
+        collumn3[1] = r2c3;
+        collumn3[2] = r3c3;
+
+        //collumn 4
+        collumn4[0] = r1c4;
+        collumn4[1] = r2c4;
+        collumn4[2] = r3c4;
+
+        //collumn 5
+        collumn5[0] = r1c5;
+        collumn5[1] = r2c5;
+        collumn5[2] = r3c5;
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -154,6 +262,16 @@ public class Slots : MonoBehaviour
             playerNear = false;
         Debug.Log("OnCollisionExit2D");
         Debug.Log(other.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+    }
+    //**END SYSTEM FUNCTIONS**
+
+    public void CloseGame() //hide all screens related to slots and save data
+    {
+        HideUI(slotScreen); //hide UI related
+        gameActive = false;
+        playAgain = false;
+        isTalking = false;
+        canMove = true;
     }
 
     public void LoadCreditsUI()
@@ -281,9 +399,14 @@ public class Slots : MonoBehaviour
     {
         gameActive = true;
     }
-    
+
     public void LoadFeed(int[] feed)
     {
         //this is for code for filling the slots itself
+    }
+
+    public void ResetFeed()
+    {
+        //code for resetting the feed
     }
 }

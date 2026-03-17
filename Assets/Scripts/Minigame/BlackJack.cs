@@ -91,8 +91,13 @@ public class BlackJack : MonoBehaviour
             isTalking = true;
         }
 
+        if (Input.GetButtonDown("Cancel"))
+        {
+            EndGame();
+        }
+
         //if talking to the Black Jack NPC
-        if(isTalking && !gameActive)
+        if (isTalking && !gameActive)
         {
             playAgain = true;
             canMove = false; // you don't want player to be able to move around while Gambling so need to freeze movement
@@ -419,7 +424,13 @@ public class BlackJack : MonoBehaviour
     {
         HideUI(blackJackScreen);
         HideUI(dialogueUI);
+        ResetGame();
+        HideAllCards();
+        HideUI(button3);
+        HideUI(button4);
         isTalking = false;
+        playAgain = false;
+        gameActive = false;
     }
 
     public bool returnMovement()

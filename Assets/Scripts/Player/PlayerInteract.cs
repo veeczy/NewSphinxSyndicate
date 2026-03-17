@@ -30,7 +30,7 @@ public class PlayerInteraction : MonoBehaviour
         if (isDialogueActive && talkingToNPC != null)
         {
             float distance = Vector2.Distance(transform.position, talkingToNPC.transform.position);
-            if (distance > interactRange * 4f) //Range at which dialogue ends
+            if (distance > interactRange * 1.5f) //Range at which dialogue ends
 
             {
                 EndDialogue();
