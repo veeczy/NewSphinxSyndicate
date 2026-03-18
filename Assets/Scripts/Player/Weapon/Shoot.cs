@@ -13,6 +13,7 @@ public class Shoot : MonoBehaviour
     public bool toggleFlash = false;
     public Light muzzleFlash;
     public bool isShooting = false;
+    public bool inGame = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,7 +23,9 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Shoot") && !isShooting)
+        inGame =! (playerObj.GetComponent<PlayerMovement>().canMove); //if you can move, youre not in a game so inGame will be false : if you cant move, youre in a game and inGame will be true
+
+        if (Input.GetButton("Shoot") && !isShooting && !inGame) //ADDED so that you can't shoot if youre in a game
         {
             StartCoroutine("shoot");
         }

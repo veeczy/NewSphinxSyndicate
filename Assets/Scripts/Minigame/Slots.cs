@@ -61,9 +61,14 @@ public class Slots : MonoBehaviour
     public GameObject r3c5;
 
     [Header("Slot UI - Combo Lines")]
-    public GameObject straightAcrossTop;
-    public GameObject straightAcrossMiddle;
-    public GameObject straightAcrossBottom;
+    public GameObject straightAcrossTopLeft;
+    public GameObject straightAcrossTopRight;
+
+    public GameObject straightAcrossMiddleLeft;
+    public GameObject straightAcrossMiddleRight;
+
+    public GameObject straightAcrossBottomLeft;
+    public GameObject straightAcrossBottomRight;
 
     public GameObject straightDown1;
     public GameObject straightDown2;
@@ -80,17 +85,37 @@ public class Slots : MonoBehaviour
     [Header("Slots Minigame Data")]
     public string[] dialogueLines = new string[] { "", "JACKPOT!"}; //dialogue the minigame can say
     public int dialogueIndex = 0; //number to call what dialogue is said
+    public int ranRoll;
 
-    //collumns feed
+    public bool rollTimer; //is timer running
+    public bool timerEnded; //if timer has ended
+    public float rollTimerEnd = 0.5f; //what it takes to end
+    public float rollTimerDuration; //how far into timer it is
+
+    public bool roll1 = false;
+    public bool roll2 = false;
+    public bool roll3 = false;
+    public bool roll4 = false;
+    public bool roll5 = false;
+
+    public bool rolling = false;
+    public bool isScored = false;
+
+    public int multiplier = 1;
+
+    //Collumns Feed **THESE HOLD THE GAMEOBJECTS**
     public GameObject[] collumn1 = new GameObject[3];
     public GameObject[] collumn2 = new GameObject[3];
     public GameObject[] collumn3 = new GameObject[3];
     public GameObject[] collumn4 = new GameObject[3];
     public GameObject[] collumn5 = new GameObject[3];
 
-    public int[] feed1; //the feed for collumn 1
-    public int[] feed2; //the feed for collumn 2
-    public int[] feed3; //the feed for collumn 3
+    //Collumns Feed **THESE HOLD THE INDEX OF THE SPRITES**
+    public int[] feed1 = new int[3]; //the feed for collumn 1
+    public int[] feed2 = new int[3]; //the feed for collumn 2
+    public int[] feed3 = new int[3]; //the feed for collumn 3
+    public int[] feed4 = new int[3]; //the feed for collumn 4
+    public int[] feed5 = new int[3]; //the feed for collumn 5
 
     //CREDITS
     public int credits; //credits whole number
@@ -106,6 +131,13 @@ public class Slots : MonoBehaviour
     {
         InitializeGameObjects(); //check to see if everything is linked in inspector, if not find the named objects and link them
         InitializeFeed(); //set the gameobjects to be the rows in the arrays
+        LoadFeed(feed1);
+        LoadFeed(feed2);
+        LoadFeed(feed3);
+        LoadFeed(feed4);
+        LoadFeed(feed5);
+
+        credits = PlayerPrefs.GetInt("credits");
     }
 
     // Update is called once per frame
@@ -113,6 +145,7 @@ public class Slots : MonoBehaviour
     {
         PlayerPrefs.SetInt("credits", credits);
         LoadCreditsUI();
+        UpdateFeedSprites();
 
         if(Input.GetButtonDown("Cancel")) { CloseGame(); }
 
@@ -129,14 +162,88 @@ public class Slots : MonoBehaviour
             ShowUI(slotScreen); //shows all ui related to slots
             dialogueIndex = 0;
 
-            if (!playAgain) { CloseGame(); } //hides all ui related to blackjack
+            if (!playAgain) { CloseGame(); } //hides all ui related to slots
         }
         if (!isTalking) { canMove = true; } // return movement if not talking to minigame npc
 
         if(gameActive)
         {
             //this is where stuff that happens inside the game goes
+            if(rolling)
+            {
+                if (!roll1)
+                {
+                    if (!timerEnded) { RollTimerStart(); }
+                    if (rollTimer)
+                    {
+                        LoadFeed(feed1);
+                    }
+                    if (!rollTimer) { roll1 = true; timerEnded = true; }
+                }
+
+                if (!roll2)
+                {
+                    if (!timerEnded) { RollTimerStart(); }
+                    if (rollTimer)
+                    {
+                        LoadFeed(feed2);
+                    }
+                    if (!rollTimer) { roll2 = true; timerEnded = true; }
+                }
+
+                if (!roll3)
+                {
+                    if (!timerEnded) { RollTimerStart(); }
+                    if (rollTimer)
+                    {
+                        LoadFeed(feed3);
+                    }
+                    if (!rollTimer) { roll3 = true; timerEnded = true; }
+                }
+
+                if (!roll4)
+                {
+                    if (!timerEnded) { RollTimerStart(); }
+                    if (rollTimer)
+                    {
+                        LoadFeed(feed4);
+                    }
+                    if (!rollTimer) { roll4 = true; timerEnded = true; }
+                }
+
+                if (!roll5)
+                {
+                    if (!timerEnded) { RollTimerStart(); }
+                    if (rollTimer)
+                    {
+                        LoadFeed(feed5);
+                    }
+                    if (!rollTimer) { roll5 = true; timerEnded = true; }
+                }
+
+                if (roll1 && roll2 && roll3 && roll4 && roll5) { rolling = false; }
+            }
+            
+            if(!rolling)
+            {
+                timerEnded = false;
+                if(!isScored ) //start to measure scorelines
+                {
+                    ScoreLines();
+                }
+                if (isScored) { gameActive = false; }
+            }
+
         }
+
+        if(!gameActive) { roll1 = false; roll2 = false; roll3 = false; roll4 = false; roll5 = false; isScored = false; }
+
+        if (rollTimer)
+        {
+            rollTimerDuration += Time.deltaTime;
+            if (rollTimerDuration >= rollTimerEnd) { rollTimer = false; }
+        }
+        
     }
 
     //**SYSTEM FUNCTIONS** 
@@ -204,9 +311,14 @@ public class Slots : MonoBehaviour
         if (r3c5 == null) { r3c1 = FindInactiveObjectByName("r3c1"); }
 
         //SLOT UI - COMBO LINES
-        if (straightAcrossTop == null) { straightAcrossTop = FindInactiveObjectByName("StraightAcross-1"); }
-        if (straightAcrossMiddle == null) { straightAcrossMiddle = FindInactiveObjectByName("StraightAcross-2"); }
-        if (straightAcrossBottom == null) { straightAcrossBottom = FindInactiveObjectByName("StraightAcross-3"); }
+        if (straightAcrossTopLeft == null) { straightAcrossTopLeft = FindInactiveObjectByName("StraightAcross-1-Left"); }
+        if (straightAcrossTopRight == null) { straightAcrossTopRight = FindInactiveObjectByName("StraightAcross-1-Right"); }
+
+        if (straightAcrossMiddleLeft == null) { straightAcrossMiddleLeft = FindInactiveObjectByName("StraightAcross-2-Left"); }
+        if (straightAcrossMiddleRight == null) { straightAcrossMiddleRight = FindInactiveObjectByName("StraightAcross-2-Right"); }
+
+        if (straightAcrossBottomLeft == null) { straightAcrossBottomLeft = FindInactiveObjectByName("StraightAcross-3-Left"); }
+        if (straightAcrossBottomRight == null) { straightAcrossBottomRight = FindInactiveObjectByName("StraightAcross-3-Right"); }
 
         if (straightDown1 == null) { straightDown1 = FindInactiveObjectByName("StraightDown-1"); }
         if (straightDown2 == null) { straightDown2 = FindInactiveObjectByName("StraightDown-2"); }
@@ -274,6 +386,7 @@ public class Slots : MonoBehaviour
         canMove = true;
     }
 
+    //**CREDITS FUNCTIONS**
     public void LoadCreditsUI()
     {
         UpdateCreditsSprites(); //update the sprites for UI before showing and revealing them
@@ -394,19 +507,225 @@ public class Slots : MonoBehaviour
         if (character == 57) { return 9; }
         else { return 0; }
     }
+    //**END CREDITS FUNCTIONS**
 
-    public void PullLever()
+    public void PullLever() //function called when player hits lever
     {
-        gameActive = true;
+        if(gameActive == false) //if game not currently active, then it is now active
+        {
+            HideScoreLines();
+            credits = credits - multiplier; //cost to play
+            gameActive = true;
+            rolling = true;
+            Debug.Log("Lever Pulled & GameActive was False.");
+        } 
+        
+
+        Debug.Log("Lever Pulled.");
+        //else if true can maybe play a sound that shows you cant spin again yet
     }
 
-    public void LoadFeed(int[] feed)
+    public void UpdateFeedSprites() //whatever value is saved in feed is an index used to update the sprite
     {
-        //this is for code for filling the slots itself
+        //feed 1
+        collumn1[0].GetComponent<Image>().sprite = slotSymbols[feed1[0]];
+        collumn1[1].GetComponent<Image>().sprite = slotSymbols[feed1[1]];
+        collumn1[2].GetComponent<Image>().sprite = slotSymbols[feed1[2]];
+
+        //feed 2
+        collumn2[0].GetComponent<Image>().sprite = slotSymbols[feed2[0]];
+        collumn2[1].GetComponent<Image>().sprite = slotSymbols[feed2[1]];
+        collumn2[2].GetComponent<Image>().sprite = slotSymbols[feed2[2]];
+
+        //feed 3
+        collumn3[0].GetComponent<Image>().sprite = slotSymbols[feed3[0]];
+        collumn3[1].GetComponent<Image>().sprite = slotSymbols[feed3[1]];
+        collumn3[2].GetComponent<Image>().sprite = slotSymbols[feed3[2]];
+
+        //feed 4
+        collumn4[0].GetComponent<Image>().sprite = slotSymbols[feed4[0]];
+        collumn4[1].GetComponent<Image>().sprite = slotSymbols[feed4[1]];
+        collumn4[2].GetComponent<Image>().sprite = slotSymbols[feed4[2]];
+
+        //feed 5
+        collumn5[0].GetComponent<Image>().sprite = slotSymbols[feed5[0]];
+        collumn5[1].GetComponent<Image>().sprite = slotSymbols[feed5[1]];
+        collumn5[2].GetComponent<Image>().sprite = slotSymbols[feed5[2]];
+    }
+    public void RandomRoll()
+    {
+        ranRoll = Random.Range(0, 11);
     }
 
-    public void ResetFeed()
+    public void RollTimerStart()
     {
-        //code for resetting the feed
+        rollTimerDuration = 0;
+        //rollTimerEnd = Random.Range(0, .3f);
+        rollTimer = true;
+        timerEnded = true;
+    }
+
+    public void LoadFeed(int[] feed) 
+    {
+        // INDEX - SYMBOL NAME - POINT VALUE
+        // 0 - apple - 10 points
+        // 1 - apple GOLD - 50 points
+        // 2 - banana - 10 points
+        // 3 - blueberry - 10 points
+        // 4 - cherry - 10 points
+        // 5 - grapes - 10 points
+        // 6 - lemon - 10 points
+        // 7 - lime - 20 points
+        // 8 - melon - 20 points
+        // 9 - orange - 10 points
+        // 10 - pear - 10 points
+        // 11 - strawberry - 25 points
+
+        // WHERE IS IT SAVED:
+        // feed[i] - inspector - slotValues[i]
+
+        //all feed should be index 0-11
+        
+        for (int i = 0; i < feed.Length; i++)
+        {
+            RandomRoll();
+            feed[i] = ranRoll;
+        }
+    }
+
+    public void ScoreLines()
+    {
+        //**STRAIGHT ACROSS**//
+        if ((feed1[0] == feed2[0]) && (feed2[0] == feed3[0])) //Straight Across Top Left
+        {
+            ShowUI(straightAcrossTopLeft);
+            credits = credits + (multiplier * slotValues[feed1[0]]);
+        }
+        if ((feed3[0] == feed4[0]) && (feed4[0] == feed5[0])) //Straight Across Top Right
+        {
+            ShowUI(straightAcrossTopRight);
+            credits = credits + (multiplier * slotValues[feed3[0]]);
+        }
+
+
+        if ((feed1[1] == feed2[1]) && (feed2[1] == feed3[1])) //Straight Across Middle Left
+        {
+            ShowUI(straightAcrossMiddleLeft);
+            credits = credits + (multiplier * slotValues[feed1[1]]);
+        }
+        if ((feed3[1] == feed4[1]) && (feed4[1] == feed5[1])) //Straight Across Middle Right
+        {
+            ShowUI(straightAcrossMiddleRight);
+            credits = credits + (multiplier * slotValues[feed3[1]]);
+        }
+
+
+        if ((feed1[2] == feed2[2]) && (feed2[2] == feed3[2])) //Straight Across Bottom Left
+        {
+            ShowUI(straightAcrossBottomLeft);
+            credits = credits + (multiplier * slotValues[feed1[2]]);
+        }
+        if ((feed3[2] == feed4[2]) && (feed4[2] == feed5[2])) //Straight Across Bottom Right
+        {
+            ShowUI(straightAcrossBottomRight);
+            credits = credits + (multiplier * slotValues[feed3[2]]);
+        }
+
+
+        //**STRAIGHT DOWN**//
+        if ((feed1[0] == feed1[1]) && (feed1[1] == feed1[2])) //Straight Down Collumn 1
+        {
+            ShowUI(straightDown1);
+            credits = credits + (multiplier * slotValues[feed1[0]]);
+        }
+        if ((feed2[0] == feed2[1]) && (feed2[1] == feed2[2])) //Straight Down Collumn 2
+        {
+            ShowUI(straightDown2);
+            credits = credits + (multiplier * slotValues[feed2[0]]);
+        }
+        if ((feed3[0] == feed3[1]) && (feed3[1] == feed3[2])) //Straight Down Collumn 3
+        {
+            ShowUI(straightDown3);
+            credits = credits + (multiplier * slotValues[feed3[0]]);
+        }
+        if ((feed4[0] == feed4[1]) && (feed4[1] == feed4[2])) //Straight Down Collumn 4
+        {
+            ShowUI(straightDown4);
+            credits = credits + (multiplier * slotValues[feed4[0]]);
+        }
+        if ((feed5[0] == feed5[1]) && (feed5[1] == feed5[2])) //Straight Down Collumn 5
+        {
+            ShowUI(straightDown5);
+            credits = credits + (multiplier * slotValues[feed5[0]]);
+        }
+
+
+        //**ACROSS LEFT**//
+        if ((feed1[2] == feed2[1]) && (feed2[1] == feed3[0])) //Across Left Up
+        {
+            ShowUI(acrossLeftUp);
+            credits = credits + (multiplier * slotValues[feed1[2]]);
+        }
+        if ((feed1[0] == feed2[1]) && (feed2[1] == feed3[2])) //Across Left Down
+        {
+            ShowUI(acrossLeftDown);
+            credits = credits + (multiplier * slotValues[feed1[0]]);
+        }
+
+        //**ACROSS RIGHT**//
+        if ((feed3[0] == feed4[1]) && (feed4[1] == feed5[2])) //Across Right Down
+        {
+            ShowUI(acrossRightDown);
+            credits = credits + (multiplier * slotValues[feed3[0]]);
+        }
+        if ((feed3[2] == feed4[1]) && (feed4[1] == feed5[0])) //Across Right Up
+        {
+            ShowUI(acrossRightUp);
+            credits = credits + (multiplier * slotValues[feed3[2]]);
+        }
+
+
+        isScored = true;
+    }
+
+    public void BetX1()
+    {
+        multiplier = 1;
+    }
+    public void BetX10()
+    {
+        if (credits >= 10) { multiplier = 10; }
+        else { multiplier = 1; }
+    }
+    public void BetX100()
+    {
+        if (credits >= 100) { multiplier = 100; } 
+        else { multiplier = 1; }
+    }
+    public void BetMax()
+    {
+        if(credits > 0) { multiplier = credits; }
+        else { multiplier = 1; }
+    }
+
+    public void HideScoreLines()
+    {
+        HideUI(straightAcrossTopLeft);
+        HideUI(straightAcrossTopRight);
+        HideUI(straightAcrossMiddleLeft);
+        HideUI(straightAcrossMiddleRight);
+        HideUI(straightAcrossBottomLeft);
+        HideUI(straightAcrossBottomRight);
+
+        HideUI(straightDown1);
+        HideUI(straightDown2);
+        HideUI(straightDown3);
+        HideUI(straightDown4);
+        HideUI(straightDown5);
+
+        HideUI(acrossLeftUp);
+        HideUI(acrossLeftDown);
+        HideUI(acrossRightUp);
+        HideUI(acrossRightDown);
     }
 }

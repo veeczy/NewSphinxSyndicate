@@ -30,7 +30,7 @@ public class PlayerPrefsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("gamma", 0.5f);
 
-        if(debugSceneChange == null) { debugSceneChange = "MainMenu"; }
+        if(debugSceneChange == "") { debugSceneChange = "MainMenu"; }
         SceneManager.LoadScene(debugSceneChange);
 
     }
