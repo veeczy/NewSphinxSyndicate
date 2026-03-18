@@ -38,6 +38,11 @@ public class Slots : MonoBehaviour
     public GameObject creditsNumber3;
     public GameObject creditsNumber4;
 
+    [Header("Slot UI - JackPot")]
+    public GameObject jackpotPanel;
+    public TMP_Text jackPotText;
+
+
     //*SLOTS ITSELF* in rows and columns, 3X5 = 15 spaces//
     [Header("Slot UI - Row 1")]
     public GameObject r1c1; 
@@ -102,6 +107,25 @@ public class Slots : MonoBehaviour
     public bool isScored = false;
 
     public int multiplier = 1;
+    public int jackpot;
+
+    private bool straightTopLeft = false;
+    private bool straightTopRight = false;
+    private bool straightMiddleLeft = false;
+    private bool straightMiddleRight = false;
+    private bool straightBottomLeft = false;
+    private bool straightBottomRight = false;
+
+    private bool straightDownCol1 = false;
+    private bool straightDownCol2 = false;
+    private bool straightDownCol3 = false;
+    private bool straightDownCol4 = false;
+    private bool straightDownCol5 = false;
+
+    private bool diagonalLeftUp = false;
+    private bool diagonalRightUp = false;
+    private bool diagonalLeftDown = false;
+    private bool diagonalRightDown = false;
 
     //Collumns Feed **THESE HOLD THE GAMEOBJECTS**
     public GameObject[] collumn1 = new GameObject[3];
@@ -138,12 +162,16 @@ public class Slots : MonoBehaviour
         LoadFeed(feed5);
 
         credits = PlayerPrefs.GetInt("credits");
+        jackpot = PlayerPrefs.GetInt("jackpot");
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerPrefs.SetInt("credits", credits);
+        PlayerPrefs.SetInt("jackpot", jackpot);
+        jackPotText.text = jackpot.ToString();
+
         LoadCreditsUI();
         UpdateFeedSprites();
 
@@ -289,6 +317,14 @@ public class Slots : MonoBehaviour
         if (creditsNumber3 == null) { creditsNumber3 = FindInactiveObjectByName("Credits-Number3"); }
         if (creditsNumber4 == null) { creditsNumber4 = FindInactiveObjectByName("Credits-Number4"); }
 
+        //SLOT UI - JACKPOT
+        if (jackpotPanel == null) { creditsPanel = FindInactiveObjectByName("JackpotBG"); }
+        if (jackPotText == null)
+        {
+            GameObject placeholder = FindInactiveObjectByName("Jackpot-Text");
+            jackPotText = placeholder.GetComponent<TextMeshProUGUI>();
+        }
+
         //SLOT UI - ROW 1
         if (r1c1 == null) { r1c1 = FindInactiveObjectByName("r1c1"); }
         if (r1c2 == null) { r1c2 = FindInactiveObjectByName("r1c2"); }
@@ -391,16 +427,22 @@ public class Slots : MonoBehaviour
     {
         UpdateCreditsSprites(); //update the sprites for UI before showing and revealing them
 
-        if (credits >= 0) { ShowUI(creditsNumber1); }//if credits is in ones space
+        if (credits <= -100) { ShowUI(creditsNumber4); ShowUI(creditsNumber3); } //if credits in hundred or over but negative
 
-        if (credits > 9) { ShowUI(creditsNumber2); } //if credits is in tens space show second digit
-        if (credits < 10) { HideUI(creditsNumber2); } //if it is below that then hide it
+        if (credits <= -10 && credits > -100) { ShowUI(creditsNumber3); ShowUI(creditsNumber2); HideUI(creditsNumber4); } //if credits in tens space but negative
 
-        if (credits > 99) { ShowUI(creditsNumber3); }  //if credits is in hundreds space show third digit
-        if (credits < 100) { HideUI(creditsNumber3); } //if it is below that then hide it
+        if (credits < 0 && credits > -10) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); HideUI(creditsNumber3); } //if credits is in ones space but negative
 
-        if (credits > 999) { ShowUI(creditsNumber4); } //if credits is in thousands space
-        if (credits < 1000) { HideUI(creditsNumber4); } //if it is below that then hide it
+        if (credits >= 0 && credits < 10) { ShowUI(creditsNumber1); }//if credits is in ones space
+
+        if (credits >= 10 && credits < 100) { ShowUI(creditsNumber2); } //if credits is in tens space show second digit
+        if (credits < 10 && credits > 0) { HideUI(creditsNumber2); } //if it is below that then hide it
+
+        if (credits >= 100) { ShowUI(creditsNumber3); }  //if credits is in hundreds space show third digit
+        if (credits < 100 && credits > 10) { HideUI(creditsNumber3); } //if it is below that then hide it
+
+        if (credits >= 1000) { ShowUI(creditsNumber4); } //if credits is in thousands space
+        if (credits < 1000 && credits > 100) { HideUI(creditsNumber4); } //if it is below that then hide it
     }
 
     public void UpdateCreditsSprites()
@@ -408,7 +450,28 @@ public class Slots : MonoBehaviour
         credits = PlayerPrefs.GetInt("credits");
         UpdateCreditsDigits();
 
-        if (credits < 9)
+        if (credits <= -100) //if credits in hundred or over but negative
+        {
+            creditsNumber4.GetComponent<Image>().sprite = creditSprites[10];
+            creditsNumber3.GetComponent<Image>().sprite = creditSprites[tens];
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[hundreds];
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[thousands];
+        }
+
+        if (credits <= -10 && credits > -100) //if credits in tens space but negative
+        {
+            creditsNumber3.GetComponent<Image>().sprite = creditSprites[10];
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[tens];
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[hundreds];
+        }
+
+        if (credits < 0 && credits >= -9) //if credits is in ones space but negative
+        {
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[10];
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[tens];
+        }
+
+        if (credits < 10 && credits >= 0) 
         {
             creditsNumber1.GetComponent<Image>().sprite = creditSprites[ones]; //update credit number sprite
         }
@@ -440,6 +503,7 @@ public class Slots : MonoBehaviour
     {
         creditsString = credits.ToString(); //convert to string
 
+        //**IF POSITIVE**//
         if(creditsString.Length == 4) //thousands
         {
             ones = creditsString[0];
@@ -466,7 +530,7 @@ public class Slots : MonoBehaviour
             hundreds = creditsString[2];
             hundreds = CharToInt(hundreds);
 
-            thousands = 0;
+            //thousands = 0;
         }
 
         if (creditsString.Length == 2) //tens
@@ -477,7 +541,7 @@ public class Slots : MonoBehaviour
             tens = creditsString[1];
             tens = CharToInt(tens);
 
-            hundreds = 0;
+            //hundreds = 0;
             thousands = 0;
         }
 
@@ -486,11 +550,10 @@ public class Slots : MonoBehaviour
             ones = creditsString[0];
             ones = CharToInt(ones);
 
-            tens = 0;
+            //tens = 0;
             hundreds = 0;
             thousands = 0;
         }
-
     }
 
     public int CharToInt(int character)
@@ -505,6 +568,7 @@ public class Slots : MonoBehaviour
         if (character == 55) { return 7; }
         if (character == 56) { return 8; }
         if (character == 57) { return 9; }
+        if (character == 2212) { return 10; }
         else { return 0; }
     }
     //**END CREDITS FUNCTIONS**
@@ -514,6 +578,13 @@ public class Slots : MonoBehaviour
         if(gameActive == false) //if game not currently active, then it is now active
         {
             HideScoreLines();
+            HideDialogue();
+
+            //ensure you cant bet more than you have
+            if (credits < 100 && multiplier >= 100) { multiplier = 1; }
+            if (credits < 10 && multiplier >= 10) { multiplier = 1; }
+            if (credits < 1 && multiplier >= 1) { multiplier = 1; }
+
             credits = credits - multiplier; //cost to play
             gameActive = true;
             rolling = true;
@@ -595,40 +666,68 @@ public class Slots : MonoBehaviour
 
     public void ScoreLines()
     {
+        //**JACKPOT**//
+        if(straightTopLeft && straightTopRight && straightMiddleLeft && straightMiddleRight && straightBottomLeft && straightBottomRight && straightDownCol1 && straightDownCol2 && straightDownCol3 && straightDownCol4 && straightDownCol5 && diagonalLeftUp && diagonalLeftDown && diagonalRightUp && diagonalRightDown)
+        {
+            dialogueIndex = 1;
+            StartDialogue();
+            credits = credits + (multiplier * jackpot);
+            jackpot = 500; //reset jackpot
+        }
+
+        //**IF NO WIN**
+        if (!straightTopLeft && !straightTopRight && !straightMiddleLeft && !straightMiddleRight && !straightBottomLeft && !straightBottomRight && !straightDownCol1 && !straightDownCol2 && !straightDownCol3 && !straightDownCol4 && !straightDownCol5 && !diagonalLeftUp && !diagonalLeftDown && !diagonalRightUp && !diagonalRightDown)
+        {
+            jackpot = jackpot + multiplier; //add whatever you wagered to existing jackpot
+        }
+
+
         //**STRAIGHT ACROSS**//
         if ((feed1[0] == feed2[0]) && (feed2[0] == feed3[0])) //Straight Across Top Left
         {
             ShowUI(straightAcrossTopLeft);
-            credits = credits + (multiplier * slotValues[feed1[0]]);
+            credits = credits + (multiplier * slotValues[feed1[0]]) + multiplier;
+            straightTopLeft = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed3[0] == feed4[0]) && (feed4[0] == feed5[0])) //Straight Across Top Right
         {
             ShowUI(straightAcrossTopRight);
-            credits = credits + (multiplier * slotValues[feed3[0]]);
+            credits = credits + (multiplier * slotValues[feed3[0]]) + multiplier;
+            straightTopRight = true;
+            jackpot = 500; //reset jackpot
         }
 
 
         if ((feed1[1] == feed2[1]) && (feed2[1] == feed3[1])) //Straight Across Middle Left
         {
             ShowUI(straightAcrossMiddleLeft);
-            credits = credits + (multiplier * slotValues[feed1[1]]);
+            credits = credits + (multiplier * slotValues[feed1[1]]) + multiplier;
+            straightMiddleLeft = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed3[1] == feed4[1]) && (feed4[1] == feed5[1])) //Straight Across Middle Right
         {
             ShowUI(straightAcrossMiddleRight);
-            credits = credits + (multiplier * slotValues[feed3[1]]);
+            credits = credits + (multiplier * slotValues[feed3[1]]) + multiplier;
+            straightMiddleRight = true;
+            jackpot = 500; //reset jackpot
         }
 
 
         if ((feed1[2] == feed2[2]) && (feed2[2] == feed3[2])) //Straight Across Bottom Left
         {
             ShowUI(straightAcrossBottomLeft);
-            credits = credits + (multiplier * slotValues[feed1[2]]);
+            credits = credits + (multiplier * slotValues[feed1[2]]) + multiplier;
+            straightBottomLeft = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed3[2] == feed4[2]) && (feed4[2] == feed5[2])) //Straight Across Bottom Right
         {
             ShowUI(straightAcrossBottomRight);
-            credits = credits + (multiplier * slotValues[feed3[2]]);
+            credits = credits + (multiplier * slotValues[feed3[2]]) + multiplier;
+            straightBottomRight = true;
+            jackpot = 500; //reset jackpot
         }
 
 
@@ -636,27 +735,37 @@ public class Slots : MonoBehaviour
         if ((feed1[0] == feed1[1]) && (feed1[1] == feed1[2])) //Straight Down Collumn 1
         {
             ShowUI(straightDown1);
-            credits = credits + (multiplier * slotValues[feed1[0]]);
+            credits = credits + (multiplier * slotValues[feed1[0]]) + multiplier;
+            straightDownCol1 = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed2[0] == feed2[1]) && (feed2[1] == feed2[2])) //Straight Down Collumn 2
         {
             ShowUI(straightDown2);
-            credits = credits + (multiplier * slotValues[feed2[0]]);
+            credits = credits + (multiplier * slotValues[feed2[0]]) + multiplier;
+            straightDownCol2 = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed3[0] == feed3[1]) && (feed3[1] == feed3[2])) //Straight Down Collumn 3
         {
             ShowUI(straightDown3);
-            credits = credits + (multiplier * slotValues[feed3[0]]);
+            credits = credits + (multiplier * slotValues[feed3[0]]) + multiplier;
+            straightDownCol3 = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed4[0] == feed4[1]) && (feed4[1] == feed4[2])) //Straight Down Collumn 4
         {
             ShowUI(straightDown4);
-            credits = credits + (multiplier * slotValues[feed4[0]]);
+            credits = credits + (multiplier * slotValues[feed4[0]]) + multiplier;
+            straightDownCol4 = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed5[0] == feed5[1]) && (feed5[1] == feed5[2])) //Straight Down Collumn 5
         {
             ShowUI(straightDown5);
-            credits = credits + (multiplier * slotValues[feed5[0]]);
+            credits = credits + (multiplier * slotValues[feed5[0]]) + multiplier;
+            straightDownCol5 = true;
+            jackpot = 500; //reset jackpot
         }
 
 
@@ -664,27 +773,34 @@ public class Slots : MonoBehaviour
         if ((feed1[2] == feed2[1]) && (feed2[1] == feed3[0])) //Across Left Up
         {
             ShowUI(acrossLeftUp);
-            credits = credits + (multiplier * slotValues[feed1[2]]);
+            credits = credits + (multiplier * slotValues[feed1[2]]) + multiplier;
+            diagonalLeftUp = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed1[0] == feed2[1]) && (feed2[1] == feed3[2])) //Across Left Down
         {
             ShowUI(acrossLeftDown);
-            credits = credits + (multiplier * slotValues[feed1[0]]);
+            credits = credits + (multiplier * slotValues[feed1[0]]) + multiplier;
+            diagonalLeftDown = true;
+            jackpot = 500; //reset jackpot
         }
 
         //**ACROSS RIGHT**//
         if ((feed3[0] == feed4[1]) && (feed4[1] == feed5[2])) //Across Right Down
         {
             ShowUI(acrossRightDown);
-            credits = credits + (multiplier * slotValues[feed3[0]]);
+            credits = credits + (multiplier * slotValues[feed3[0]]) + multiplier;
+            diagonalRightDown = true;
+            jackpot = 500; //reset jackpot
         }
         if ((feed3[2] == feed4[1]) && (feed4[1] == feed5[0])) //Across Right Up
         {
             ShowUI(acrossRightUp);
-            credits = credits + (multiplier * slotValues[feed3[2]]);
+            credits = credits + (multiplier * slotValues[feed3[2]]) + multiplier;
+            diagonalRightUp = true;
+            jackpot = 500; //reset jackpot
         }
-
-
+        
         isScored = true;
     }
 
@@ -708,6 +824,17 @@ public class Slots : MonoBehaviour
         else { multiplier = 1; }
     }
 
+    public void StartDialogue()
+    {
+        dialogueText.text = dialogueLines[dialogueIndex];
+        ShowUI(dialogueUI);
+    }
+
+    public void HideDialogue()
+    {
+        HideUI(dialogueUI);
+        dialogueIndex = 0;
+    }
     public void HideScoreLines()
     {
         HideUI(straightAcrossTopLeft);
@@ -727,5 +854,23 @@ public class Slots : MonoBehaviour
         HideUI(acrossLeftDown);
         HideUI(acrossRightUp);
         HideUI(acrossRightDown);
-    }
+        
+        straightTopLeft = false;
+        straightTopRight = false;
+        straightMiddleLeft = false;
+        straightMiddleRight = false;
+        straightBottomLeft = false;
+        straightBottomRight = false;
+
+        straightDownCol1 = false;
+        straightDownCol2 = false;
+        straightDownCol3 = false;
+        straightDownCol4 = false;
+        straightDownCol5 = false;
+
+        diagonalLeftUp = false;
+        diagonalRightUp = false;
+        diagonalLeftDown = false;
+        diagonalRightDown = false;
+}
 }
