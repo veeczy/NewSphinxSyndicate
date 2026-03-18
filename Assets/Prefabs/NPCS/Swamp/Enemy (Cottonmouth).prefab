@@ -193,9 +193,9 @@ GameObject:
   - component: {fileID: 7963556926694010066}
   - component: {fileID: 7337036014632083452}
   - component: {fileID: 272872610638600358}
-  - component: {fileID: 7256329160698646776}
   - component: {fileID: 4954207709143173311}
   - component: {fileID: 5725810489691202763}
+  - component: {fileID: 7491600879137380104}
   m_Layer: 3
   m_Name: Enemy (Cottonmouth)
   m_TagString: Untagged
@@ -350,27 +350,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7256329160698646776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445585701349679366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acdb098cb7cafc647832766c5ceab395, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HornedToadAI
-  moveSpeed: 3
-  damage: 1
-  health: 3
-  maxHealth: 3
-  healthBar: {fileID: 8404868438541809339}
-  hurtSound: {fileID: 8300000, guid: 5324a74509f658c41a7408dcc7430be0, type: 3}
-  hurtVolume: 0.2
-  attackRange: 2
-  attackCooldown: 1.5
 --- !u!82 &4954207709143173311
 AudioSource:
   m_ObjectHideFlags: 0
@@ -490,3 +469,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7491600879137380104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445585701349679366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97bf42890d901a4d9f85183994b358e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SnakeAI
+  moveSpeed: 3
+  damage: 1
+  health: 3
+  maxHealth: 3
+  healthBar: {fileID: 0}
+  aggroRange: 6
+  hurtSound: {fileID: 8300000, guid: 49257f3324e1c6c4799c67240d69f261, type: 3}
+  hurtVolume: 1
+  grabRange: 1
+  damageInterval: 3
