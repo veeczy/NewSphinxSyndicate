@@ -304,10 +304,10 @@ MonoBehaviour:
   damage: 1
   health: 3
   maxHealth: 3
-  healthBar: {fileID: 0}
-  hurtSound: {fileID: 0}
+  healthBar: {fileID: 4454903052632278147, guid: 16c92d5df1266914aa4554decab65a31, type: 3}
+  aggroRange: 10
+  hurtSound: {fileID: 8300000, guid: 6d8876d6d6d96f94bb69ddd2731e1969, type: 3}
   hurtVolume: 1
-  detectionRadius: 8
   shootRange: 20
   meleeRange: 1.5
   projectilePrefab: {fileID: 2464918242123611638, guid: 4393fd63653d4b948b473d5f91560a77, type: 3}

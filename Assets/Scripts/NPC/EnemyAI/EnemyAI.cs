@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     protected SpriteRenderer sr;
 
     [Header("Aggro")]
-    public float aggroRange = 6f; // player must enter this range before enemy activates
+    public float aggroRange = 10f; // player must enter this range before enemy activates
     protected bool hasAggro = false;
 
     [Header("Audio")]

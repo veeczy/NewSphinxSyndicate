@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6686648826065617578}
   - component: {fileID: 791801861070145421}
   - component: {fileID: 8368708858695189922}
-  - component: {fileID: 9075435045850571787}
   - component: {fileID: 4847439199236690331}
   - component: {fileID: 4229669231011715872}
+  - component: {fileID: -1667964827850418597}
   m_Layer: 3
   m_Name: Enemy (TaxiDriver)
   m_TagString: Untagged
@@ -169,27 +169,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
---- !u!114 &9075435045850571787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124723325283740367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acdb098cb7cafc647832766c5ceab395, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HornedToadAI
-  moveSpeed: 3
-  damage: 1
-  health: 3
-  maxHealth: 3
-  healthBar: {fileID: 2335183492001739977}
-  hurtSound: {fileID: 8300000, guid: ce9955b16ae43a544ad1da71b7858377, type: 3}
-  hurtVolume: 0.2
-  attackRange: 2
-  attackCooldown: 1.5
 --- !u!82 &4847439199236690331
 AudioSource:
   m_ObjectHideFlags: 0
@@ -309,6 +288,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1667964827850418597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124723325283740367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13307267b9818a54c9520a1ed0c98231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarAI
+  moveSpeed: 3
+  damage: 3
+  health: 3
+  maxHealth: 3
+  healthBar: {fileID: 4454903052632278147, guid: 16c92d5df1266914aa4554decab65a31, type: 3}
+  aggroRange: 10
+  hurtSound: {fileID: 8300000, guid: ce9955b16ae43a544ad1da71b7858377, type: 3}
+  hurtVolume: 1
+  attackRange: 4
+  chargeTime: 1
+  dashSpeed: 12
+  stunTime: 5
+  dashHitRange: 1
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 65
 --- !u!1 &1164401577087744201
 GameObject:
   m_ObjectHideFlags: 0

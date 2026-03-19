@@ -301,10 +301,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HornedToadAI
   moveSpeed: 3
-  damage: 3
+  damage: 2
   health: 3
   maxHealth: 3
   healthBar: {fileID: 508868923073616268}
+  aggroRange: 10
   hurtSound: {fileID: 8300000, guid: 1f1568ae620295a468996b224ba7acee, type: 3}
   hurtVolume: 1
   attackRange: 2
