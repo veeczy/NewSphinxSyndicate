@@ -27,13 +27,14 @@ public class BlackJack : MonoBehaviour
     //11 = Ace, after is J, K, Q (not value in game, just noting the value in their order in the sprites index)
     public int[] remainingCards; //duplicate array that will have cards removed as they are used
 
-    [Header("Black Jack UI")]
+    [Header("Black Jack UI - Base")]
     public GameObject blackJackScreen;
     //dialogue
     public GameObject dialogueUI;
     public TMP_Text dialogueText;
 
     //spaces for player's cards
+    [Header("Black Jack UI - Player's Cards")]
     public GameObject playerCardSpace1; 
     public GameObject playerCardSpace2;
     public GameObject playerCardSpace3;
@@ -43,7 +44,7 @@ public class BlackJack : MonoBehaviour
     public GameObject playerCardSpace7;
     public GameObject playerCardSpace8;
 
-    //spaces for dealer's cards
+    [Header("Black Jack UI - Dealer's Cards")]
     public GameObject dealerHideCard;
     public GameObject dealerCardSpace1;
     public GameObject dealerCardSpace2;
@@ -54,14 +55,27 @@ public class BlackJack : MonoBehaviour
     public GameObject dealerCardSpace7;
     public GameObject dealerCardSpace8;
 
-    //buttons to start game / play again
+    [Header("Black Jack UI - Buttons")]
     public GameObject button1; //button that says yes 
     public GameObject button2; //button that says no
     public GameObject button3; //button for Hit
     public GameObject button4; //button for stand
 
+    public GameObject betGroup;
+    public GameObject button5; //button for betx1
+    public GameObject button6; //button for betx10
+    public GameObject button7; //button for betx100
+    public GameObject button8; //button for betxMAX
+
+    [Header("Black Jack UI - Credits")]
+    public GameObject creditsPanel;
+    public GameObject creditsNumber1;
+    public GameObject creditsNumber2;
+    public GameObject creditsNumber3;
+    public GameObject creditsNumber4;
+
     [Header("Black Jack Data")]
-    public string[] dialogueLines = new string[] {"", "Do you want to play?", "You Win!", "You Lose!", "Do you want to play again?", "Tie!"}; //dialogue the dealer can say
+    public string[] dialogueLines = new string[] {"", "Do you want to play? (Cost 1 Credit to Start.)", "You Win!", "You Lose!", "Do you want to play again?", "Tie!"}; //dialogue the dealer can say
     public int dialogueIndex = 0; //number to call what dialogue is said
     public int cardsDealt = 0; //numvber to track how many cards have been dealt
 
@@ -76,17 +90,34 @@ public class BlackJack : MonoBehaviour
     public bool bust = false; //met if player hand has sum that is over 21
     public bool onWinLose = false;
 
+    [Header("Black Jack Data - Credits")]
+    public int credits;
+    public int multiplier = 1;
+
+    public Sprite[] creditSprites; //sprites for credits
+    public string creditsString;
+
+    public int ones;
+    public int tens;
+    public int hundreds;
+    public int thousands;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // initialize
-        remainingCards = Cards;
+        InitializeGameObjects(); //collect all things to inspector if they aren't there yet
+        remainingCards = Cards; //reset data for card deck
+        credits = PlayerPrefs.GetInt("credits"); //grab credits from player prefs
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerNear && Input.GetButtonDown("Interact"))
+        PlayerPrefs.SetInt("credits", credits); //update credits when needed
+        LoadCreditsUI();
+
+        if (playerNear && Input.GetButtonDown("Interact"))
         {
             isTalking = true;
         }
@@ -141,6 +172,7 @@ public class BlackJack : MonoBehaviour
             {
                 //lose the game
                 HideUI(dealerHideCard);
+                credits = credits - multiplier; //cost to play
                 LoseGame();
             }
 
@@ -161,6 +193,7 @@ public class BlackJack : MonoBehaviour
         }
     }
 
+    //**SYSTEM FUNCTIONS**//
     public void ShowUI(GameObject UI)
     {
         UI.SetActive(true);
@@ -171,15 +204,291 @@ public class BlackJack : MonoBehaviour
         UI.SetActive(false);
     }
 
+    private GameObject FindInactiveObjectByName(string name)
+    {
+        GameObject[] objects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        foreach (GameObject obj in objects)
+        {
+            if (obj.name == name && obj.scene.isLoaded)
+                return obj;
+        }
+
+        return null;
+    }
+
+    public void InitializeGameObjects() //if anything is not linked in inspector, it will now be found
+    {
+        //BlackJack UI - BASE
+        if (blackJackScreen == null) { blackJackScreen = FindInactiveObjectByName("BlackJackScreen"); }
+        if (dialogueUI == null) { dialogueUI = FindInactiveObjectByName("DialogueBoxPanel-BJ"); }
+        if (dialogueText == null)
+        {
+            GameObject placeholder = FindInactiveObjectByName("Dialogue-BlackJack");
+            dialogueText = placeholder.GetComponent<TextMeshProUGUI>();
+        }
+
+        //BlackJack UI - CREDITS
+        if (creditsPanel == null) { creditsPanel = FindInactiveObjectByName("CreditsBG"); }
+        if (creditsNumber1 == null) { creditsNumber1 = FindInactiveObjectByName("Credits-Number1"); }
+        if (creditsNumber2 == null) { creditsNumber2 = FindInactiveObjectByName("Credits-Number2"); }
+        if (creditsNumber3 == null) { creditsNumber3 = FindInactiveObjectByName("Credits-Number3"); }
+        if (creditsNumber4 == null) { creditsNumber4 = FindInactiveObjectByName("Credits-Number4"); }
+
+        //BlackJack UI - Dealer's Cards
+        if (dealerCardSpace1 == null) { dealerCardSpace1 = FindInactiveObjectByName("dc-1"); }
+        if (dealerCardSpace2 == null) { dealerCardSpace2 = FindInactiveObjectByName("dc-2"); }
+        if (dealerCardSpace3 == null) { dealerCardSpace3 = FindInactiveObjectByName("dc-3"); }
+        if (dealerCardSpace4 == null) { dealerCardSpace4 = FindInactiveObjectByName("dc-4"); }
+        if (dealerCardSpace5 == null) { dealerCardSpace5 = FindInactiveObjectByName("dc-5"); }
+        if (dealerCardSpace6 == null) { dealerCardSpace6 = FindInactiveObjectByName("dc-6"); }
+        if (dealerCardSpace7 == null) { dealerCardSpace7 = FindInactiveObjectByName("dc-7"); }
+        if (dealerCardSpace8 == null) { dealerCardSpace8 = FindInactiveObjectByName("dc-8"); }
+
+        if (dealerHideCard == null) { dealerHideCard = FindInactiveObjectByName("Dealer Hide Card"); }
+
+        //BlackJack UI - Player's Cards
+        if (playerCardSpace1 == null) { playerCardSpace1 = FindInactiveObjectByName("pc-1"); }
+        if (playerCardSpace2 == null) { playerCardSpace2 = FindInactiveObjectByName("pc-2"); }
+        if (playerCardSpace3 == null) { playerCardSpace3 = FindInactiveObjectByName("pc-3"); }
+        if (playerCardSpace4 == null) { playerCardSpace4 = FindInactiveObjectByName("pc-4"); }
+        if (playerCardSpace5 == null) { playerCardSpace5 = FindInactiveObjectByName("pc-5"); }
+        if (playerCardSpace6 == null) { playerCardSpace6 = FindInactiveObjectByName("pc-6"); }
+        if (playerCardSpace7 == null) { playerCardSpace7 = FindInactiveObjectByName("pc-7"); }
+        if (playerCardSpace8 == null) { playerCardSpace8 = FindInactiveObjectByName("pc-8"); }
+
+        //BlackJack UI - Buttons
+        if (button1 == null) { button1 = FindInactiveObjectByName("Button1"); }
+        if (button2 == null) { button2 = FindInactiveObjectByName("Button2"); }
+        if (button3 == null) { button3 = FindInactiveObjectByName("Button3"); }
+        if (button4 == null) { button4 = FindInactiveObjectByName("Button4"); }
+
+        //BlackJack UI - Betting Buttons
+        if (betGroup == null) { betGroup = FindInactiveObjectByName("BET"); }
+        if (button5 == null) { button5 = FindInactiveObjectByName("SlotsBG-Bet1"); }
+        if (button6 == null) { button6 = FindInactiveObjectByName("SlotsBG-Bet10"); }
+        if (button7 == null) { button7 = FindInactiveObjectByName("SlotsBG-Bet100"); }
+        if (button8 == null) { button8 = FindInactiveObjectByName("SlotsBG-BetAll"); }
+    }
+
+    public bool ReturnMovement()
+    {
+        return canMove;
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+            playerNear = true;
+        Debug.Log("OnCollisionEnter2D");
+        Debug.Log(other.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+            playerNear = false;
+        Debug.Log("OnCollisionExit2D");
+        Debug.Log(other.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+    }
+
+    //**CREDITS FUNCTIONS**
+    public void LoadCreditsUI()
+    {
+        UpdateCreditsSprites(); //update the sprites for UI before showing and revealing them
+
+        if (credits <= -100) { ShowUI(creditsNumber4); ShowUI(creditsNumber3); } //if credits in hundred or over but negative
+
+        if (credits <= -10 && credits > -100) { ShowUI(creditsNumber3); ShowUI(creditsNumber2); HideUI(creditsNumber4); HideUI(creditsNumber4); } //if credits in tens space but negative
+
+        if (credits < 0 && credits > -10) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); HideUI(creditsNumber3); HideUI(creditsNumber4); } //if credits is in ones space but negative
+
+        if (credits >= 0 && credits < 10) { ShowUI(creditsNumber1); }//if credits is in ones space
+
+        if (credits >= 10 && credits < 100) { ShowUI(creditsNumber2); } //if credits is in tens space show second digit
+        if (credits < 10 && credits > 0) { HideUI(creditsNumber2); } //if it is below that then hide it
+
+        if (credits >= 100) { ShowUI(creditsNumber3); }  //if credits is in hundreds space show third digit
+        if (credits < 100 && credits > 10) { HideUI(creditsNumber3); } //if it is below that then hide it
+
+        if (credits >= 1000) { ShowUI(creditsNumber4); } //if credits is in thousands space
+        if (credits < 1000 && credits > 100) { HideUI(creditsNumber4); } //if it is below that then hide it
+    }
+
+    public void UpdateCreditsSprites()
+    {
+        credits = PlayerPrefs.GetInt("credits");
+        UpdateCreditsDigits();
+
+        if (credits <= -100) //if credits in hundred or over but negative
+        {
+            creditsNumber4.GetComponent<Image>().sprite = creditSprites[10];
+            creditsNumber3.GetComponent<Image>().sprite = creditSprites[tens];
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[hundreds];
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[thousands];
+        }
+
+        if (credits <= -10 && credits > -100) //if credits in tens space but negative
+        {
+            creditsNumber3.GetComponent<Image>().sprite = creditSprites[10];
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[tens];
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[hundreds];
+        }
+
+        if (credits < 0 && credits >= -9) //if credits is in ones space but negative
+        {
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[10];
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[tens];
+        }
+
+        if (credits < 10 && credits >= 0)
+        {
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[ones]; //update credit number sprite
+        }
+
+        if (credits > 9 && credits < 100)
+        {
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[ones]; //update credit number sprite
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[tens]; //update credit number sprite
+        }
+
+        if (credits > 99 && credits < 1000)
+        {
+            creditsNumber3.GetComponent<Image>().sprite = creditSprites[ones]; //update credit number sprite
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[tens]; //update credit number sprite
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[hundreds]; //update credit number sprite
+        }
+
+        if (credits > 999)
+        {
+            creditsNumber4.GetComponent<Image>().sprite = creditSprites[ones]; //update credit number sprite
+            creditsNumber3.GetComponent<Image>().sprite = creditSprites[tens]; //update credit number sprite
+            creditsNumber2.GetComponent<Image>().sprite = creditSprites[hundreds]; //update credit number sprite
+            creditsNumber1.GetComponent<Image>().sprite = creditSprites[thousands]; //update credit number sprite
+        }
+
+    }
+
+    public void UpdateCreditsDigits()
+    {
+        creditsString = credits.ToString(); //convert to string
+
+        //**IF POSITIVE**//
+        if (creditsString.Length == 4) //thousands
+        {
+            ones = creditsString[0];
+            ones = CharToInt(ones);
+
+            tens = creditsString[1];
+            tens = CharToInt(tens);
+
+            hundreds = creditsString[2];
+            hundreds = CharToInt(hundreds);
+
+            thousands = creditsString[3];
+            thousands = CharToInt(thousands);
+        }
+
+        if (creditsString.Length == 3) //hundreds
+        {
+            ones = creditsString[0];
+            ones = CharToInt(ones);
+
+            tens = creditsString[1];
+            tens = CharToInt(tens);
+
+            hundreds = creditsString[2];
+            hundreds = CharToInt(hundreds);
+
+            //thousands = 0;
+        }
+
+        if (creditsString.Length == 2) //tens
+        {
+            ones = creditsString[0];
+            ones = CharToInt(ones);
+
+            tens = creditsString[1];
+            tens = CharToInt(tens);
+
+            //hundreds = 0;
+            thousands = 0;
+        }
+
+        if (creditsString.Length == 1) //ones
+        {
+            ones = creditsString[0];
+            ones = CharToInt(ones);
+
+            //tens = 0;
+            hundreds = 0;
+            thousands = 0;
+        }
+    }
+
+    public int CharToInt(int character)
+    {
+        if (character == 48) { return 0; }
+        if (character == 49) { return 1; }
+        if (character == 50) { return 2; }
+        if (character == 51) { return 3; }
+        if (character == 52) { return 4; }
+        if (character == 53) { return 5; }
+        if (character == 54) { return 6; }
+        if (character == 55) { return 7; }
+        if (character == 56) { return 8; }
+        if (character == 57) { return 9; }
+        if (character == 2212) { return 10; }
+        else { return 0; }
+    }
+    //**END CREDITS FUNCTIONS**
+
+    public void BetX1()
+    {
+        multiplier = 1;
+    }
+
+    public void BetX10()
+    {
+        if (credits >= 10) { multiplier = 10; }
+        else { multiplier = 1; }
+    }
+
+    public void BetX100()
+    {
+        if (credits >= 100) { multiplier = 100; }
+        else { multiplier = 1; }
+    }
+
+    public void BetMax()
+    {
+        if (credits > 0) { multiplier = credits; }
+        else { multiplier = 1; }
+    }
+
+    //**END SYSTEM FUNCTIONS**//
+
+
+    //**GAME MECHANICS**
     public void StartGame()
     {
         //this is where gameplay is set up
         gameActive = true;
         onWinLose = false;
+
+        //ensure you cant bet more than you have
+        if (credits < 100 && multiplier >= 100) { multiplier = 1; }
+        if (credits < 10 && multiplier >= 10) { multiplier = 1; }
+        if (credits < 1 && multiplier >= 1) { multiplier = 1; }
+
+        //credits = credits - multiplier; //cost to play
+
         HideUI(button1); //hide button that sais yes
         HideUI(button2); //hide button that says no
         ResetGame(); //reset all game data to ensure clean start
         HideUI(dialogueUI); //hide dialogue box
+        ShowUI(betGroup); //show buttons for betting now that dialogue hidden
+        ShowUI(creditsPanel);
         remainingCards = Cards; //reset card deck
 
         Deal(0); //initial deal player card 1
@@ -204,7 +513,7 @@ public class BlackJack : MonoBehaviour
 
     public void Deal(int i)
     {
-        randomDraw();
+        RandomDraw();
         if (remainingCards[randomCard] != 0)
         {
             randomCardValue = remainingCards[randomCard]; //save value of card
@@ -215,7 +524,7 @@ public class BlackJack : MonoBehaviour
         else Deal(i);
     }
 
-    public void randomDraw()
+    public void RandomDraw()
     {
         randomCard = Random.Range(0, remainingCards.Length);
     }
@@ -331,9 +640,12 @@ public class BlackJack : MonoBehaviour
 
     public void Stand()
     {
+        credits = credits - multiplier; //cost to play
+
         //end playing
         HideUI(button3);
         HideUI(button4);
+        
 
         DealerTurn();
         if ((playerHandValue < 21 && dealerHandValue < playerHandValue) || (playerHandValue == 21 && dealerHandValue != 21) || (dealerHandValue > 21)) //if player is less than 21, dealer is less than 21, but dealer has less than player win ; if player gets to 21 and dealer did not win
@@ -353,6 +665,8 @@ public class BlackJack : MonoBehaviour
         }
 
     }
+
+    //**CLEANUP**
     public void HideAllCards()
     {
         //hide player cards
@@ -381,31 +695,49 @@ public class BlackJack : MonoBehaviour
     {
         dialogueText.text = dialogueLines[dialogueIndex];
     }
+    public void HideDialogue()
+    {
+        HideUI(dialogueUI);
+        dialogueIndex = 0;
+    }
 
+    //**END GAME STATES**//
     public void WinGame()
     {
         //win the game
         HideUI(dealerHideCard);
         dialogueIndex = 2;
+        HideUI(betGroup);
+        HideUI(creditsPanel);
         StartDialogue();
         ShowUI(dialogueUI);
         onWinLose = true;
+
+        credits = credits + (2 * multiplier); //cost to play game given back and rewarded bet
     }
 
     public void LoseGame()
     {
         dialogueIndex = 3;
         StartDialogue();
+        HideUI(betGroup);
+        HideUI(creditsPanel);
         ShowUI(dialogueUI);
         onWinLose = true;
+
+        //credits loss stays as is after loss, no reward 
     }
 
     public void DrawGame()
     {
         dialogueIndex = 4;
         StartDialogue();
+        HideUI(betGroup);
+        HideUI(creditsPanel);
         ShowUI(dialogueUI);
         onWinLose = true;
+
+        credits = credits + multiplier; //get back the cost to play game, but no reward over
     }
 
     public void ResetGame()
@@ -424,6 +756,8 @@ public class BlackJack : MonoBehaviour
     {
         HideUI(blackJackScreen);
         HideUI(dialogueUI);
+        HideUI(creditsPanel);
+        HideUI(betGroup);
         ResetGame();
         HideAllCards();
         HideUI(button3);
@@ -433,24 +767,5 @@ public class BlackJack : MonoBehaviour
         gameActive = false;
     }
 
-    public bool returnMovement()
-    {
-        return canMove;
-    }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag("Player"))
-            playerNear = true;
-        Debug.Log("OnCollisionEnter2D");
-        Debug.Log(other.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-            playerNear = false;
-        Debug.Log("OnCollisionExit2D");
-        Debug.Log(other.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-    }
 }

@@ -86,6 +86,12 @@ public class Slots : MonoBehaviour
     public GameObject acrossRightUp;
     public GameObject acrossRightDown;
 
+    [Header("Slot UI - Bet Buttons")]
+    public GameObject betGroup;
+    public GameObject button1; //button for betx1
+    public GameObject button2; //button for betx10
+    public GameObject button3; //button for betx100
+    public GameObject button4; //button for betxMAX
 
     [Header("Slots Minigame Data")]
     public string[] dialogueLines = new string[] { "", "JACKPOT!"}; //dialogue the minigame can say
@@ -97,11 +103,12 @@ public class Slots : MonoBehaviour
     public float rollTimerEnd = 0.5f; //what it takes to end
     public float rollTimerDuration; //how far into timer it is
 
-    public bool roll1 = false;
-    public bool roll2 = false;
-    public bool roll3 = false;
-    public bool roll4 = false;
-    public bool roll5 = false;
+    [Header("Slots Minigame Data - Rolling")]
+    private bool roll1 = false;
+    private bool roll2 = false;
+    private bool roll3 = false;
+    private bool roll4 = false;
+    private bool roll5 = false;
 
     public bool rolling = false;
     public bool isScored = false;
@@ -128,6 +135,7 @@ public class Slots : MonoBehaviour
     private bool diagonalRightDown = false;
 
     //Collumns Feed **THESE HOLD THE GAMEOBJECTS**
+    [Header("Slots Minigame Data - Collumns Feed")]
     public GameObject[] collumn1 = new GameObject[3];
     public GameObject[] collumn2 = new GameObject[3];
     public GameObject[] collumn3 = new GameObject[3];
@@ -142,6 +150,7 @@ public class Slots : MonoBehaviour
     public int[] feed5 = new int[3]; //the feed for collumn 5
 
     //CREDITS
+    [Header("Slots Minigame Data - Credits")]
     public int credits; //credits whole number
     public string creditsString;
     public int ones;
@@ -366,6 +375,13 @@ public class Slots : MonoBehaviour
         if (acrossLeftDown == null) { acrossLeftDown = FindInactiveObjectByName("Across-Left-Down"); }
         if (acrossRightUp == null) { acrossRightUp = FindInactiveObjectByName("Across-Right-Up"); }
         if (acrossRightDown == null) { acrossRightDown = FindInactiveObjectByName("Across-Right-Down"); }
+
+        //BlackJack UI - Betting Buttons
+        if (betGroup == null) { betGroup = FindInactiveObjectByName("BET"); }
+        if (button1 == null) { button1 = FindInactiveObjectByName("SlotsBG-Bet1"); }
+        if (button2 == null) { button2 = FindInactiveObjectByName("SlotsBG-Bet10"); }
+        if (button3 == null) { button3 = FindInactiveObjectByName("SlotsBG-Bet100"); }
+        if (button4 == null) { button4 = FindInactiveObjectByName("SlotsBG-BetAll"); }
     }
 
     public void InitializeFeed()
