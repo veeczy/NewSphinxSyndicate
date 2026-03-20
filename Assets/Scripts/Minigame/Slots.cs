@@ -443,22 +443,19 @@ public class Slots : MonoBehaviour
     {
         UpdateCreditsSprites(); //update the sprites for UI before showing and revealing them
 
-        if (credits <= -100) { ShowUI(creditsNumber4); ShowUI(creditsNumber3); } //if credits in hundred or over but negative
+        if (credits <= -100) { ShowUI(creditsNumber4); ShowUI(creditsNumber3); ShowUI(creditsNumber2); ShowUI(creditsNumber1); } //if credits in hundred or over but negative
 
-        if (credits <= -10 && credits > -100) { ShowUI(creditsNumber3); ShowUI(creditsNumber2); HideUI(creditsNumber4); } //if credits in tens space but negative
+        if (credits <= -10 && credits > -100) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); ShowUI(creditsNumber3); HideUI(creditsNumber4); } //if credits in tens space but negative
 
-        if (credits < 0 && credits > -10) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); HideUI(creditsNumber3); } //if credits is in ones space but negative
+        if (credits < 0 && credits > -10) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); HideUI(creditsNumber3); HideUI(creditsNumber4); } //if credits is in ones space but negative
 
-        if (credits >= 0 && credits < 10) { ShowUI(creditsNumber1); }//if credits is in ones space
+        if (credits >= 0 && credits < 10) { ShowUI(creditsNumber1); HideUI(creditsNumber2); HideUI(creditsNumber3); HideUI(creditsNumber4); }//if credits is in ones space
 
-        if (credits >= 10 && credits < 100) { ShowUI(creditsNumber2); } //if credits is in tens space show second digit
-        if (credits < 10 && credits > 0) { HideUI(creditsNumber2); } //if it is below that then hide it
+        if (credits >= 10 && credits < 100) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); HideUI(creditsNumber3); HideUI(creditsNumber4); } //if credits is in tens space show second digit
 
-        if (credits >= 100) { ShowUI(creditsNumber3); }  //if credits is in hundreds space show third digit
-        if (credits < 100 && credits > 10) { HideUI(creditsNumber3); } //if it is below that then hide it
+        if (credits >= 100) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); ShowUI(creditsNumber3); HideUI(creditsNumber4); }  //if credits is in hundreds space show third digit
 
-        if (credits >= 1000) { ShowUI(creditsNumber4); } //if credits is in thousands space
-        if (credits < 1000 && credits > 100) { HideUI(creditsNumber4); } //if it is below that then hide it
+        if (credits >= 1000) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); ShowUI(creditsNumber3); ShowUI(creditsNumber4); } //if credits is in thousands space
     }
 
     public void UpdateCreditsSprites()

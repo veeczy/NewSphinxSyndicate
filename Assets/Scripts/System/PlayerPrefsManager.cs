@@ -35,8 +35,8 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.SetInt("bossCounter", 0); //reset amount of bosses beaten to 0
 
         //MINIGAME DATA
-        PlayerPrefs.SetInt("credits", 0);
-        PlayerPrefs.SetInt("jackpot", 500);
+        PlayerPrefs.SetInt("credits", credits);
+        PlayerPrefs.SetInt("jackpot", jackpot);
         PlayerPrefs.SetFloat("gamma", 0.5f);
 
         //SETTINGS DATA
