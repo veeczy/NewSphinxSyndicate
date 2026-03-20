@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEngine.U2D;
 
 public class BlackJack : MonoBehaviour
 {
@@ -18,8 +19,8 @@ public class BlackJack : MonoBehaviour
     public bool canMove = true;
     public bool playAgain = true;
     public bool gameActive = false;
-
     public bool playerNear = false;
+    public bool resetCards = false;
 
     [Header("Black Jack Cards")]
     public Sprite[] cardSprites; //array of card sprites
@@ -44,6 +45,9 @@ public class BlackJack : MonoBehaviour
     public GameObject playerCardSpace7;
     public GameObject playerCardSpace8;
 
+    public GameObject playerCardSumPanel;
+    public TMP_Text playerCardSum;
+
     [Header("Black Jack UI - Dealer's Cards")]
     public GameObject dealerHideCard;
     public GameObject dealerCardSpace1;
@@ -54,6 +58,9 @@ public class BlackJack : MonoBehaviour
     public GameObject dealerCardSpace6;
     public GameObject dealerCardSpace7;
     public GameObject dealerCardSpace8;
+
+    public GameObject dealerCardSumPanel;
+    public TMP_Text dealerCardSum;
 
     [Header("Black Jack UI - Buttons")]
     public GameObject button1; //button that says yes 
@@ -78,6 +85,7 @@ public class BlackJack : MonoBehaviour
     public string[] dialogueLines = new string[] {"", "Do you want to play? (Cost 1 Credit to Start.)", "You Win!", "You Lose!", "Do you want to play again?", "Tie!"}; //dialogue the dealer can say
     public int dialogueIndex = 0; //number to call what dialogue is said
     public int cardsDealt = 0; //numvber to track how many cards have been dealt
+    private int cardsCounted = 0;
 
     public int randomCard; //number randomly generated to pick index
     public int randomCardValue; // randomly generated card's value
@@ -93,6 +101,8 @@ public class BlackJack : MonoBehaviour
     [Header("Black Jack Data - Credits")]
     public int credits;
     public int multiplier = 1;
+    public bool takeMoney = false;
+    public int perfectScore = 0;
 
     public Sprite[] creditSprites; //sprites for credits
     public string creditsString;
@@ -107,7 +117,7 @@ public class BlackJack : MonoBehaviour
     {
         // initialize
         InitializeGameObjects(); //collect all things to inspector if they aren't there yet
-        remainingCards = Cards; //reset data for card deck
+        ResetCardDeck(); //reset data for card deck
         credits = PlayerPrefs.GetInt("credits"); //grab credits from player prefs
     }
 
@@ -127,14 +137,24 @@ public class BlackJack : MonoBehaviour
             EndGame();
         }
 
+        resetCards = CountCardsRemaining();
+        if (resetCards) { ResetCardDeck(); }
+
+        playerCardSum.text = playerHandValue.ToString();
+
         //if talking to the Black Jack NPC
         if (isTalking && !gameActive)
         {
             playAgain = true;
             canMove = false; // you don't want player to be able to move around while Gambling so need to freeze movement
+
             ShowUI(blackJackScreen); //shows all ui related to blackjack
             ShowUI(button1);
             ShowUI(button2);
+
+            HideUI(dealerCardSumPanel);
+            HideUI(playerCardSumPanel);
+
             dialogueIndex = 1;
             StartDialogue();
             ShowUI(dialogueUI);
@@ -172,7 +192,6 @@ public class BlackJack : MonoBehaviour
             {
                 //lose the game
                 HideUI(dealerHideCard);
-                credits = credits - multiplier; //cost to play
                 LoseGame();
             }
 
@@ -246,6 +265,12 @@ public class BlackJack : MonoBehaviour
         if (dealerCardSpace8 == null) { dealerCardSpace8 = FindInactiveObjectByName("dc-8"); }
 
         if (dealerHideCard == null) { dealerHideCard = FindInactiveObjectByName("Dealer Hide Card"); }
+        if (dealerCardSumPanel == null) { dealerCardSumPanel = FindInactiveObjectByName("dc-SumPanel"); }
+        if (dealerCardSum == null)
+        {
+            GameObject placeholder = FindInactiveObjectByName("dc-Sum");
+            dealerCardSum = placeholder.GetComponent<TextMeshProUGUI>();
+        }
 
         //BlackJack UI - Player's Cards
         if (playerCardSpace1 == null) { playerCardSpace1 = FindInactiveObjectByName("pc-1"); }
@@ -256,6 +281,13 @@ public class BlackJack : MonoBehaviour
         if (playerCardSpace6 == null) { playerCardSpace6 = FindInactiveObjectByName("pc-6"); }
         if (playerCardSpace7 == null) { playerCardSpace7 = FindInactiveObjectByName("pc-7"); }
         if (playerCardSpace8 == null) { playerCardSpace8 = FindInactiveObjectByName("pc-8"); }
+
+        if (playerCardSumPanel == null) { playerCardSumPanel = FindInactiveObjectByName("pc-SumPanel"); }
+        if (playerCardSum == null)
+        {
+            GameObject placeholder = FindInactiveObjectByName("pc-Sum");
+            playerCardSum = placeholder.GetComponent<TextMeshProUGUI>();
+        }
 
         //BlackJack UI - Buttons
         if (button1 == null) { button1 = FindInactiveObjectByName("Button1"); }
@@ -297,22 +329,19 @@ public class BlackJack : MonoBehaviour
     {
         UpdateCreditsSprites(); //update the sprites for UI before showing and revealing them
 
-        if (credits <= -100) { ShowUI(creditsNumber4); ShowUI(creditsNumber3); } //if credits in hundred or over but negative
+        if (credits <= -100) { ShowUI(creditsNumber4); ShowUI(creditsNumber3); ShowUI(creditsNumber2); ShowUI(creditsNumber1); } //if credits in hundred or over but negative
 
-        if (credits <= -10 && credits > -100) { ShowUI(creditsNumber3); ShowUI(creditsNumber2); HideUI(creditsNumber4); HideUI(creditsNumber4); } //if credits in tens space but negative
+        if (credits <= -10 && credits > -100) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); ShowUI(creditsNumber3); HideUI(creditsNumber4); } //if credits in tens space but negative
 
         if (credits < 0 && credits > -10) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); HideUI(creditsNumber3); HideUI(creditsNumber4); } //if credits is in ones space but negative
 
-        if (credits >= 0 && credits < 10) { ShowUI(creditsNumber1); }//if credits is in ones space
+        if (credits >= 0 && credits < 10) { ShowUI(creditsNumber1); HideUI(creditsNumber2); HideUI(creditsNumber3); HideUI(creditsNumber4); }//if credits is in ones space
 
-        if (credits >= 10 && credits < 100) { ShowUI(creditsNumber2); } //if credits is in tens space show second digit
-        if (credits < 10 && credits > 0) { HideUI(creditsNumber2); } //if it is below that then hide it
+        if (credits >= 10 && credits < 100) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); HideUI(creditsNumber3); HideUI(creditsNumber4); } //if credits is in tens space show second digit
 
-        if (credits >= 100) { ShowUI(creditsNumber3); }  //if credits is in hundreds space show third digit
-        if (credits < 100 && credits > 10) { HideUI(creditsNumber3); } //if it is below that then hide it
+        if (credits >= 100) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); ShowUI(creditsNumber3); HideUI(creditsNumber4); }  //if credits is in hundreds space show third digit
 
-        if (credits >= 1000) { ShowUI(creditsNumber4); } //if credits is in thousands space
-        if (credits < 1000 && credits > 100) { HideUI(creditsNumber4); } //if it is below that then hide it
+        if (credits >= 1000) { ShowUI(creditsNumber1); ShowUI(creditsNumber2); ShowUI(creditsNumber3); ShowUI(creditsNumber4); } //if credits is in thousands space
     }
 
     public void UpdateCreditsSprites()
@@ -466,6 +495,30 @@ public class BlackJack : MonoBehaviour
         else { multiplier = 1; }
     }
 
+    public void ResetCardDeck()
+    {
+        for (int i = 0; i < Cards.Length; i++)
+        {
+            remainingCards[i] = Cards[i];
+        }
+        resetCards = false;
+    }
+
+    public bool CountCardsRemaining()
+    {
+        for (int i = 0; i < Cards.Length; i++)
+        {
+            if (Cards[i] != 0) { cardsCounted++; }
+        }
+
+        if(cardsCounted < 16)
+        {
+            cardsCounted = 0;
+            return true; //if there is less than 16 cards in deck, reset deck
+        }
+        else { cardsCounted = 0; return false; }
+    }
+
     //**END SYSTEM FUNCTIONS**//
 
 
@@ -475,13 +528,17 @@ public class BlackJack : MonoBehaviour
         //this is where gameplay is set up
         gameActive = true;
         onWinLose = false;
+        takeMoney = false;
+        perfectScore = 0;
+
+        dealerCardSum.text = "?"; //reset hiding dealer sum
 
         //ensure you cant bet more than you have
         if (credits < 100 && multiplier >= 100) { multiplier = 1; }
         if (credits < 10 && multiplier >= 10) { multiplier = 1; }
         if (credits < 1 && multiplier >= 1) { multiplier = 1; }
 
-        //credits = credits - multiplier; //cost to play
+        
 
         HideUI(button1); //hide button that sais yes
         HideUI(button2); //hide button that says no
@@ -489,7 +546,9 @@ public class BlackJack : MonoBehaviour
         HideUI(dialogueUI); //hide dialogue box
         ShowUI(betGroup); //show buttons for betting now that dialogue hidden
         ShowUI(creditsPanel);
-        remainingCards = Cards; //reset card deck
+
+        ShowUI(dealerCardSumPanel);
+        ShowUI(playerCardSumPanel);
 
         Deal(0); //initial deal player card 1
         playerCardSpace1.GetComponent<Image>().sprite = cardSprites[randomCard]; //update card sprite
@@ -509,6 +568,7 @@ public class BlackJack : MonoBehaviour
         ShowUI(dealerCardSpace2);
 
         cardsDealt = 2;
+        if (cardsDealt  == 2) { credits = credits - multiplier; }
     }
 
     public void Deal(int i)
@@ -526,7 +586,7 @@ public class BlackJack : MonoBehaviour
 
     public void RandomDraw()
     {
-        randomCard = Random.Range(0, remainingCards.Length);
+        randomCard = Random.Range(0, 51); //index has to be less than 52 because array is 52 so array[52] = error
     }
 
     public void Hit()
@@ -537,6 +597,7 @@ public class BlackJack : MonoBehaviour
             playerCardSpace3.GetComponent<Image>().sprite = cardSprites[randomCard];
             ShowUI(playerCardSpace3);
             cardsDealt++;
+            takeMoney = false;
             return;
         }
         if(cardsDealt == 3)
@@ -545,6 +606,7 @@ public class BlackJack : MonoBehaviour
             playerCardSpace4.GetComponent<Image>().sprite = cardSprites[randomCard];
             ShowUI(playerCardSpace4);
             cardsDealt++;
+            takeMoney = false;
             return;
         }
         if (cardsDealt == 4)
@@ -553,6 +615,7 @@ public class BlackJack : MonoBehaviour
             playerCardSpace5.GetComponent<Image>().sprite = cardSprites[randomCard];
             ShowUI(playerCardSpace5);
             cardsDealt++;
+            takeMoney = false;
             return;
         }
         if (cardsDealt == 5)
@@ -561,6 +624,7 @@ public class BlackJack : MonoBehaviour
             playerCardSpace6.GetComponent<Image>().sprite = cardSprites[randomCard];
             ShowUI(playerCardSpace6);
             cardsDealt++;
+            takeMoney = false;
             return;
         }
         if (cardsDealt == 6)
@@ -569,6 +633,7 @@ public class BlackJack : MonoBehaviour
             playerCardSpace7.GetComponent<Image>().sprite = cardSprites[randomCard];
             ShowUI(playerCardSpace7);
             cardsDealt++;
+            takeMoney = false;
             return;
         }
         if (cardsDealt == 7)
@@ -577,6 +642,7 @@ public class BlackJack : MonoBehaviour
             playerCardSpace8.GetComponent<Image>().sprite = cardSprites[randomCard];
             ShowUI(playerCardSpace8);
             cardsDealt++;
+            takeMoney = false;
             return;
         }
     }
@@ -634,14 +700,13 @@ public class BlackJack : MonoBehaviour
         {
             ShowDealerCards();
             dealerHandValue = dealerHand.Sum(); //calculate sum of dealer hand
+            dealerCardSum.text = dealerHandValue.ToString();
         }
 
     }
 
     public void Stand()
     {
-        credits = credits - multiplier; //cost to play
-
         //end playing
         HideUI(button3);
         HideUI(button4);
@@ -651,17 +716,20 @@ public class BlackJack : MonoBehaviour
         if ((playerHandValue < 21 && dealerHandValue < playerHandValue) || (playerHandValue == 21 && dealerHandValue != 21) || (dealerHandValue > 21)) //if player is less than 21, dealer is less than 21, but dealer has less than player win ; if player gets to 21 and dealer did not win
         {
             //win the game
-            WinGame();
+            //takeMoney = false;
+            if (!onWinLose) { WinGame(); }
         }
         if (((playerHandValue < dealerHandValue) && dealerHandValue < 21) || (dealerHandValue == 21 && playerHandValue != 21)) //if player has less than dealer, and dealer has less than 21 fail ; if dealer got to 21 and player did not fail
         {
             //lose the game
-            LoseGame();
+            //takeMoney = false;
+            if (!onWinLose) { LoseGame(); }
         }
         if ((dealerHandValue == playerHandValue)) //if both dealer and player end with same amount, draw
         {
             //tie
-            DrawGame();
+            //takeMoney = false;
+            if (!onWinLose) { DrawGame(); }
         }
 
     }
@@ -713,7 +781,12 @@ public class BlackJack : MonoBehaviour
         ShowUI(dialogueUI);
         onWinLose = true;
 
-        credits = credits + (2 * multiplier); //cost to play game given back and rewarded bet
+        dealerCardSum.text = dealerHandValue.ToString();
+        //HideUI(dealerCardSumPanel);
+        //HideUI(playerCardSumPanel);
+
+        if (playerHand.Sum() == 21) { perfectScore = multiplier; } //if you got 21 you win double what you bet
+        if(!takeMoney) { credits = credits + perfectScore + multiplier + multiplier; takeMoney = true; } //cost to play game given back and rewarded bet
     }
 
     public void LoseGame()
@@ -725,6 +798,11 @@ public class BlackJack : MonoBehaviour
         ShowUI(dialogueUI);
         onWinLose = true;
 
+        dealerCardSum.text = dealerHandValue.ToString();
+        //HideUI(dealerCardSumPanel);
+        //HideUI(playerCardSumPanel);
+
+        if (!takeMoney) { credits = credits - multiplier; takeMoney = true; }
         //credits loss stays as is after loss, no reward 
     }
 
@@ -737,31 +815,47 @@ public class BlackJack : MonoBehaviour
         ShowUI(dialogueUI);
         onWinLose = true;
 
-        credits = credits + multiplier; //get back the cost to play game, but no reward over
+        dealerCardSum.text = dealerHandValue.ToString();
+        //HideUI(dealerCardSumPanel);
+        //HideUI(playerCardSumPanel);
+
+        if (!takeMoney) { credits = credits + multiplier; takeMoney = true; } //get back what you wagered
     }
 
     public void ResetGame()
     {
         cardsDealt = 0;
         dialogueIndex = 0;
-        remainingCards = Cards; //reset deck
+        ResetCardDeck(); //reset deck
         playerHand.Clear(); //reset player hand
         dealerHand.Clear(); //reset dealer hand
         playerHandValue = 0;
         dealerHandValue = 0;
         bust = false;
+        takeMoney = false;
+        onWinLose = false;
+        perfectScore = 0;
     }
 
     public void EndGame()
     {
+        if (!onWinLose) { DrawGame(); } //if you left on a win/lose screen you are done, if not then cue draw
         HideUI(blackJackScreen);
         HideUI(dialogueUI);
+
         HideUI(creditsPanel);
         HideUI(betGroup);
+
         ResetGame();
         HideAllCards();
+
         HideUI(button3);
         HideUI(button4);
+
+        HideUI(dealerCardSumPanel);
+        dealerCardSum.text = "?"; //reset hiding dealer sum
+        HideUI(playerCardSumPanel);
+
         isTalking = false;
         playAgain = false;
         gameActive = false;

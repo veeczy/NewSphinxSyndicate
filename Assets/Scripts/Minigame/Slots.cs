@@ -639,6 +639,7 @@ public class Slots : MonoBehaviour
         collumn5[1].GetComponent<Image>().sprite = slotSymbols[feed5[1]];
         collumn5[2].GetComponent<Image>().sprite = slotSymbols[feed5[2]];
     }
+
     public void RandomRoll()
     {
         ranRoll = Random.Range(0, 11);
