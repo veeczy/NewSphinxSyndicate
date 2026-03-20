@@ -68,7 +68,7 @@ public class CityBossAI : MonoBehaviour
     [Header("DEBUG")]
     public KeyCode debugDamageKey = KeyCode.Alpha8;
     public int debugDamageAmount = 50;
-    private bool isMelee = false;
+    public bool isMelee = false;
     public bool isContacting = false;
 
     void Start()
@@ -101,21 +101,32 @@ public class CityBossAI : MonoBehaviour
         bossSprite.flipX = direction.x < 0;
         if(!smiteAttacking)//FREEZE BOSS WHEN SMITING
         {
-            if(!meleeMode)
+            if(!meleeMode && !meleeCooldown)
             {
                 StartCoroutine("closeAttack");
             }
-            else if(meleeMode && !isMelee)
-                StartCoroutine("meleeAttack");//HANDLE MELEE DAMAGE
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);//MOVE TOWARD PLAYER
+            else if(meleeMode)
+            {
+                float distance = Vector2.Distance(transform.position, player.position);
+        if (distance <= meleeRange && isContacting && !isMelee)
+        {
+            PlayerHealth ph = player.GetComponent<PlayerHealth>();
+            if (ph != null)
+                    {
+                        ph.TakeDamage(damage);
+                        StartCoroutine("meleeAttack");//HANDLE MELEE DAMAGE
+                    }
+        }
+                rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);//MOVE TOWARD PLAYER
+            }      
             if(!dogAttacking && !dogReleased && spawnDog && !dogCooldown)
             {
                 StartCoroutine("dogAttack");//BEGIN DOG ATTACK
-                if(allowSmite && !smiteCooldown)
+            }
+            if(allowSmite && !smiteCooldown)
                 {
                     StartCoroutine("smiteAttack");//BEGIN SMITE ATTACK
                 }
-            }
         }
 //START HANDLE BOSS PHASES
         if (health <= phase2Health && phase < 2)
@@ -146,18 +157,19 @@ public class CityBossAI : MonoBehaviour
         }
 
         PlayerPrefs.Save();
-        LevelManager.instance.ResetRun();
         Destroy(gameObject);
     }
 
     IEnumerator smiteAttack()
     {
         smiteAttacking = true;
+        bossAnimator.SetBool("isAttacking", true);
         smiteTarget = player.position;
         yield return new WaitForSeconds(smiteDelay);
         GameObject smiteZone = Instantiate(smitePrefab, smiteTarget, transform.rotation);//SPAWNS TRIGGER THAT DETECTS PLAYER AND DOES LARGE DAMAGE IF PLAYER IS WITHIN TRIGGER AFTER TIMER
         smiteCounter++;
         smiteAttacking = false;
+        bossAnimator.SetBool("isAttacking", false);
         if(smiteCounter >= smiteCountMax)
         {
             smiteCooldown = true;
@@ -180,25 +192,17 @@ public class CityBossAI : MonoBehaviour
 private IEnumerator meleeAttack()
     {
         isMelee = true;
-        for(int i = 0; i < burstCount; i++)
-        {
-            float distance = Vector2.Distance(transform.position, player.position);
-        if (distance <= meleeRange && isContacting)
-        {
-            PlayerHealth ph = player.GetComponent<PlayerHealth>();
-            if (ph != null)
-                ph.TakeDamage(damage);
-                yield return new WaitForSeconds(burstDelay);
-        }
-        }  
+        bossAnimator.SetBool("isWalking", false);
         yield return new WaitForSeconds(meleeDelay);
         isMelee = false;
     }
     IEnumerator closeAttack()
     {
         meleeMode = true;
+        bossAnimator.SetBool("isWalking", true);
         yield return new WaitForSeconds(attackTime);
         meleeMode = false;
+        bossAnimator.SetBool("isWalking", false);
         meleeCooldown = true;
         yield return new WaitForSeconds(meleeCooldownTime + Random.Range(-2.5f, 2.5f));
         meleeCooldown = false;

@@ -29,6 +29,7 @@ public class SwampBossAI : MonoBehaviour
     public bool isContacting;
     public Transform[] waterJumpPos;//Where the boss can jump into the water
     public Transform[] landJumpPos;//Where the boss can jump back onto land
+    public Vector2 jumpPos;
 
     [Header("Phase 2")]
     public bool phase2 = false;
@@ -70,6 +71,7 @@ public class SwampBossAI : MonoBehaviour
         health = maxHealth;
         healthUI.maxValue = maxHealth;
         healthUI.value = maxHealth;
+        jumpPos = waterJumpPos[0].position;
     }
 
     void FixedUpdate()
@@ -91,7 +93,7 @@ public class SwampBossAI : MonoBehaviour
         }
 
         distance = Vector2.Distance(transform.position, player.position);
-        direction = (player.position - transform.position);
+        direction = (player.position - transform.position).normalized;
         bossSprite.flipX = direction.x < 0;
 
         if(!meleeMode && isGrounded && !meleeCooldown)//(!meleeMode && isGrounded && !meleeCooldown && isContacting && !isDamaging && !isMelee)
@@ -126,6 +128,10 @@ public class SwampBossAI : MonoBehaviour
             projectileVelocity *= 2f;
             moveSpeed *= 2f;
         }
+        if(!isGrounded)
+        {
+            rb.MovePosition(jumpPos + direction * moveSpeed * Time.deltaTime);
+        }
     }
 
     void HandleBossDefeated()
@@ -146,6 +152,7 @@ public class SwampBossAI : MonoBehaviour
    private IEnumerator meleeAttack()
     {
         isMelee = true;
+        bossAnimator.SetBool("isAttacking", true);
         for(int i = 0; i < 3; i++)
         {
             float distance = Vector2.Distance(transform.position, player.position);
@@ -159,12 +166,15 @@ public class SwampBossAI : MonoBehaviour
         }  
         yield return new WaitForSeconds(meleeDelay);
         isMelee = false;
+        bossAnimator.SetBool("isAttacking", false);
     }
     IEnumerator closeAttack()
     {
         meleeMode = true;
+        bossAnimator.SetBool("isWalking", true);
         yield return new WaitForSeconds(attackTime);
         meleeMode = false;
+        bossAnimator.SetBool("isWalking", false);
         meleeCooldown = true;
         yield return new WaitForSeconds(meleeCooldownTime + Random.Range(-2.5f, 2.5f));
         meleeCooldown = false;
@@ -187,13 +197,13 @@ public class SwampBossAI : MonoBehaviour
         if(onLand)
         {
             int waterIndex = Random.Range(0, waterJumpPos.Length);
-            transform.position = waterJumpPos[waterIndex].position;//Relocate Boss to random preset position in the water
+            jumpPos = waterJumpPos[waterIndex].position;//Relocate Boss to random preset position on water
             onLand = false;
         }
         else
         {
             int landIndex = Random.Range(0, landJumpPos.Length);
-            transform.position = landJumpPos[landIndex].position;//Relocate Boss to random preset position on land
+            jumpPos = landJumpPos[landIndex].position;//Relocate Boss to random preset position on land
             onLand = true;
         }
         yield return new WaitForSeconds(jumpTimer);
