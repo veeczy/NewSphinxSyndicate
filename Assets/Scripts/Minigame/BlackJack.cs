@@ -627,7 +627,7 @@ public class BlackJack : MonoBehaviour
 
     public void DealButton()
     {
-        if(betAmount < credits) { StartGame(); }
+        if(betAmount <= credits) { StartGame(); }
     }
 
     public void GameScreen() //this is where game screen ui is set up

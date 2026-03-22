@@ -147,6 +147,7 @@ public class SwampBossAI : MonoBehaviour
         }
 
         PlayerPrefs.Save();
+        LevelManager.instance.ResetRun();
         Destroy(gameObject);
     }
    private IEnumerator meleeAttack()

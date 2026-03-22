@@ -47,7 +47,8 @@ public class WantedBoardSceneSelect : MonoBehaviour
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.Desert;
         //SceneManager.LoadScene(returnScene);
-        LevelManager.instance.ReturnToTown();
+        //LevelManager.instance.ReturnToTown();
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void PickCity()
@@ -55,7 +56,8 @@ public class WantedBoardSceneSelect : MonoBehaviour
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.City;
         //SceneManager.LoadScene(returnScene);
-        LevelManager.instance.ReturnToTown();
+        //LevelManager.instance.ReturnToTown();
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void PickSwamp()
@@ -63,7 +65,8 @@ public class WantedBoardSceneSelect : MonoBehaviour
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.Swamp;
         //SceneManager.LoadScene(returnScene);
-        LevelManager.instance.ReturnToTown();
+        //LevelManager.instance.ReturnToTown();
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void AllClear()
