@@ -148,35 +148,35 @@ MonoBehaviour:
   rb: {fileID: 7883565597260841302}
   bossAnimator: {fileID: 1712012514519731847}
   healthUI: {fileID: 0}
-  health: 0
+  health: 150
   maxHealth: 150
   minDistance: 0
-  attackRange: 0
+  attackRange: 10
   smiteTarget: {x: 0, y: 0}
   meleeCooldown: 0
   contactDamage: 1
-  allowSmite: 1
-  spawnDog: 1
+  allowSmite: 0
+  spawnDog: 0
   dogReleased: 0
-  meleeMode: 1
+  meleeMode: 0
   phase: 1
   phase2Health: 100
   phase3Health: 50
   meleeRange: 3
   meleeDelay: 1
-  burstCount: 3
-  burstDelay: 0.5
+  burstCount: 1
+  burstDelay: 0
   attackTime: 10
-  meleeCooldownTime: 10
+  meleeCooldownTime: 2
   damage: 3
-  smitePrefab: {fileID: 0}
+  smitePrefab: {fileID: 7620061339211070860, guid: 2384489b8cdea8341a3fe70aad10b01d, type: 3}
   smiteCounter: 0
   smiteCountMax: 5
-  smiteDelay: 3
+  smiteDelay: 1
   smiteCooldownTime: 0
   smiteCooldown: 0
   smiteAttacking: 0
-  dogPrefab: {fileID: 0}
+  dogPrefab: {fileID: 2825934852813729431, guid: acf7160c7fae5564c9de40bda1f1e6d1, type: 3}
   dogTimer: 7.5
   dogCooldownTime: 10
   dogAttacking: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   bossLevel: 0
   debugDamageKey: 56
   debugDamageAmount: 50
+  isMelee: 0
   isContacting: 0
 --- !u!50 &7883565597260841302
 Rigidbody2D:

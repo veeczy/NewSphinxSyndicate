@@ -244,6 +244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_LightpostDouble (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7258893207684956201, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7616165524256399325, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.64
@@ -127739,6 +127743,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_LightpostSingle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7258893207684956201, guid: 8a67e64ccb05bc84eaceaf0fd24e7d34, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7616165524256399325, guid: 8a67e64ccb05bc84eaceaf0fd24e7d34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.29
@@ -127986,6 +127994,10 @@ PrefabInstance:
     - target: {fileID: 7258893207684956201, guid: 6b672b91da1588b45b6c83e7bfbfa3f0, type: 3}
       propertyPath: m_Name
       value: Obstacle_Mailbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258893207684956201, guid: 6b672b91da1588b45b6c83e7bfbfa3f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7616165524256399325, guid: 6b672b91da1588b45b6c83e7bfbfa3f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -128581,7 +128593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4631927169213410237, guid: b41a582915321ef4482ab494fd52047e, type: 3}
       propertyPath: health
-      value: 49
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4631927169213410237, guid: b41a582915321ef4482ab494fd52047e, type: 3}
       propertyPath: healthUI
@@ -128626,6 +128638,10 @@ PrefabInstance:
     - target: {fileID: 4631927169213410237, guid: b41a582915321ef4482ab494fd52047e, type: 3}
       propertyPath: smiteCooldownTime
       value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578455290790024149, guid: b41a582915321ef4482ab494fd52047e, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6752870052120019323, guid: b41a582915321ef4482ab494fd52047e, type: 3}
       propertyPath: m_Size.x
@@ -128691,6 +128707,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7883565597260841302, guid: b41a582915321ef4482ab494fd52047e, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -128712,6 +128732,10 @@ PrefabInstance:
     - target: {fileID: 7258893207684956201, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
       propertyPath: m_Name
       value: Obstacle_LightpostDouble (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258893207684956201, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7616165524256399325, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -128774,6 +128798,10 @@ PrefabInstance:
     - target: {fileID: 7258893207684956201, guid: 8a67e64ccb05bc84eaceaf0fd24e7d34, type: 3}
       propertyPath: m_Name
       value: Obstacle_LightpostSingle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258893207684956201, guid: 8a67e64ccb05bc84eaceaf0fd24e7d34, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7616165524256399325, guid: 8a67e64ccb05bc84eaceaf0fd24e7d34, type: 3}
       propertyPath: m_LocalPosition.x
@@ -128989,6 +129017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_LightpostDouble
       objectReference: {fileID: 0}
+    - target: {fileID: 7258893207684956201, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7616165524256399325, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.29072
@@ -129171,6 +129203,10 @@ PrefabInstance:
     - target: {fileID: 7258893207684956201, guid: 6b672b91da1588b45b6c83e7bfbfa3f0, type: 3}
       propertyPath: m_Name
       value: Obstacle_Mailbox (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258893207684956201, guid: 6b672b91da1588b45b6c83e7bfbfa3f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7616165524256399325, guid: 6b672b91da1588b45b6c83e7bfbfa3f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -129914,7 +129950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1419171099445873015, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: bypassPlayerPrefs
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3844704270189968715, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_Layer
@@ -129998,6 +130034,10 @@ PrefabInstance:
     - target: {fileID: 7258893207684956201, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
       propertyPath: m_Name
       value: Obstacle_LightpostDouble (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258893207684956201, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7616165524256399325, guid: 3939d03f73f961f49ac5c851107053ac, type: 3}
       propertyPath: m_LocalPosition.x
