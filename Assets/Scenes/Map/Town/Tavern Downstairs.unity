@@ -76773,6 +76773,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504ddf3b394e0a748830b2238e5a13dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 0}
+  pausePanelUI: {fileID: 0}
+  isPaused: 0
 --- !u!4 &1815954760
 Transform:
   m_ObjectHideFlags: 0
@@ -77400,6 +77403,10 @@ PrefabInstance:
     - target: {fileID: 6571740171942279381, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -89.4138
+      objectReference: {fileID: 0}
+    - target: {fileID: 8115081355077021313, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
