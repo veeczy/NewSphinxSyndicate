@@ -93,6 +93,11 @@ public class PlayerMovement : MonoBehaviour
         {
             offset = GameObject.Find("GunHolder"); //look for offset object in hierarchy and set it to that
         }
+        //SET CURSOR
+        if (SetCursor.Instance != null)
+        {
+            SetCursor.Instance.SetCrosshair(aimPos);
+        }
     }
 
     private void Update()
@@ -113,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         {
             controller = false;
         }
+
         //the controller for xbox rt is an axis, not a button
         //dodgekeypress = Input.GetButton("Dodge");
         if (Input.GetButtonDown("Dodge")) dodgekeypress = true;
@@ -122,15 +128,13 @@ public class PlayerMovement : MonoBehaviour
             dodgekeypress = false;
         }
 
-        if (BlackJackObject != null)
-        {
-            canMove = BlackJackObject.GetComponent<BlackJack>().canMove;
-        }
+
         //SET CURSOR
         if (SetCursor.Instance != null)
         {
             SetCursor.Instance.SetCrosshair(aimPos);
         }
+
         // Aim Rotation
         if (!controller)
         {

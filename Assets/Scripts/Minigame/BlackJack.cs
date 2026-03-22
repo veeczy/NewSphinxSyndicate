@@ -489,7 +489,7 @@ public class BlackJack : MonoBehaviour
 
     public void BetX1()
     {
-        betAmount--;
+        betAmount++;
         if (betAmount < credits) { dialogueIndex = 7; StartDialogue(); }
     }
 

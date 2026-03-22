@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class WantedBoardSceneSelect : MonoBehaviour
 {
     [Header("Scene to return to after picking")]
-    public string tavernSceneName = "Tavern Upstairs";
+    public string returnScene;
+    public string returnTown = "";
     public GameObject button1; //button for desert level
     public GameObject button2; //button for city level
     public GameObject button3; //button for swamp level
@@ -14,6 +15,16 @@ public class WantedBoardSceneSelect : MonoBehaviour
 
     void Start()
     {
+
+        if (PlayerPrefs.HasKey("PreviousScene"))
+        {
+            returnScene = PlayerPrefs.GetString("PreviousScene");
+        }
+        else
+        {
+            returnScene = "Tavern Upstairs";
+        }
+
         desertBoss = PlayerPrefs.GetInt("desertBoss");
         cityBoss = PlayerPrefs.GetInt("cityBoss");
         swampBoss = PlayerPrefs.GetInt("swampBoss");
@@ -35,28 +46,31 @@ public class WantedBoardSceneSelect : MonoBehaviour
     {
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.Desert;
-        SceneManager.LoadScene(tavernSceneName);
+        //SceneManager.LoadScene(returnScene);
+        LevelManager.instance.ReturnToTown();
     }
 
     public void PickCity()
     {
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.City;
-        SceneManager.LoadScene(tavernSceneName);
+        //SceneManager.LoadScene(returnScene);
+        LevelManager.instance.ReturnToTown();
     }
 
     public void PickSwamp()
     {
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.Swamp;
-        SceneManager.LoadScene(tavernSceneName);
+        //SceneManager.LoadScene(returnScene);
+        LevelManager.instance.ReturnToTown();
     }
 
     public void AllClear()
     {
         //ui that offers option to reset everything needs to be put here
         //ui that indicates on wanted board that you beat everything needs to be set active, possibly a star
-        SceneManager.LoadScene(tavernSceneName);
+        SceneManager.LoadScene(returnScene);
     }
 }
 

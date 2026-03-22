@@ -10,20 +10,27 @@ public class SetCursor : MonoBehaviour
 
     void Start()
     {
-        if(Instance != null)
+        if (Instance == null) //if there is not an instance of setcursor
         {
-            Destroy(gameObject);
-            return;
+            Instance = this;             
+            DontDestroyOnLoad(gameObject); //bring setcursor to next room
+                                           
+            cursorCanvas = Instantiate(cursorCanvasPrefab, transform.position, transform.rotation);
+            cursorObj = Instantiate(cursorPrefab, cursorCanvas.transform);
+
         }
-        cursorCanvas = Instantiate(cursorCanvasPrefab, transform.position, transform.rotation);
-        cursorObj = Instantiate(cursorPrefab, cursorCanvas.transform);
-        Instance = this;
-        DontDestroyOnLoad(cursorObj);
+        else //if there is an instance of set cursor already
+        {
+            Destroy(gameObject); //destroy duplicate
+        }
     }
     public void SetCrosshair(Vector2 pos)
     {
-        RectTransform rt = cursorObj.GetComponent<RectTransform>();
-        rt.position = Camera.main.WorldToScreenPoint(pos);
+        if(cursorObj != null)
+        {
+            RectTransform rt = cursorObj.GetComponent<RectTransform>();
+            rt.position = Camera.main.WorldToScreenPoint(pos);
+        }
     }
 
 }
