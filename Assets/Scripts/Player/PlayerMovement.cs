@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     // Reference to the BlackJack script on the BJ NPC object
     public bool canMove = true;
     private GameObject BlackJackObject;
+    private GameObject SlotsObject;
 
     [Header("Dodge Settings")]
     public float dodgeDistance = 1f;
@@ -80,11 +81,10 @@ public class PlayerMovement : MonoBehaviour
         playerSprite = GetComponent<SpriteRenderer>().sprite;
         playerAudio = GetComponent<AudioSource>();
         playerAudio.clip = footstepAudio;
+
         BlackJackObject = GameObject.Find("BJ-NPC-Test");
-        if (BlackJackObject != null)
-        {
-            canMove = BlackJackObject.GetComponent<BlackJack>().canMove;
-        }
+        SlotsObject = GameObject.Find("Slots");
+        
 
 
         anim = GetComponent<Animator>(); // NEW
@@ -97,6 +97,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (BlackJackObject != null) { canMove = BlackJackObject.GetComponent<BlackJack>().canMove; }
+        if (SlotsObject != null) { canMove = SlotsObject.GetComponent<Slots>().canMove; }
+        
+        
         if (LevelManager.instance.currentArea == LevelManager.AreaType.Swamp) { isSwamp = true; }
         else { isSwamp = false; }
 
