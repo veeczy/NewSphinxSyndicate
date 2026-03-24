@@ -34,9 +34,9 @@ public class SpiderAI : EnemyAI
         Vector2 direction = (player.position - transform.position).normalized;
 
         if (direction.x > 0)
-            sr.flipX = false;
-        else if (direction.x < 0)
             sr.flipX = true;
+        else if (direction.x < 0)
+            sr.flipX = false;
 
         CheckHealth();
     }

@@ -14,6 +14,9 @@ public class VultureAI : EnemyAI
     private Animator anim;
     private bool isAttacking = false;
 
+    [Header("Facing")]
+    public bool flipFacing = false;
+
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -31,8 +34,10 @@ public class VultureAI : EnemyAI
         // Flip sprite
         if (sr != null)
         {
-            if (direction.x > 0) sr.flipX = false;
-            else if (direction.x < 0) sr.flipX = true;
+            if (direction.x > 0)
+                sr.flipX = flipFacing;
+            else if (direction.x < 0)
+                sr.flipX = !flipFacing;
         }
 
         bool isMoving = false;

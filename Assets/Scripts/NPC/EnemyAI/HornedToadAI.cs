@@ -11,6 +11,9 @@ public class HornedToadAI : EnemyAI
 
     private Animator anim;
 
+    [Header("Facing")]
+    public bool flipFacing = false;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -27,8 +30,10 @@ public class HornedToadAI : EnemyAI
         // face player
         if (sr != null)
         {
-            if (direction.x > 0) sr.flipX = false;
-            else if (direction.x < 0) sr.flipX = true;
+            if (direction.x > 0)
+                sr.flipX = flipFacing;
+            else if (direction.x < 0)
+                sr.flipX = !flipFacing;
         }
 
         // --- MOVEMENT ---
