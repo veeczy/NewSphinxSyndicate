@@ -45,6 +45,12 @@ public class EnemyAI : MonoBehaviour
     {
         // stay idle until player enters aggro range
         if (!CheckAggro()) return;
+        if (player == null) return;
+
+        // face player
+        Vector2 faceDir = player.position - transform.position;
+        if (faceDir.x > 0) sr.flipX = false;
+        else if (faceDir.x < 0) sr.flipX = true;
 
         HandleMovement();
         CheckHealth();

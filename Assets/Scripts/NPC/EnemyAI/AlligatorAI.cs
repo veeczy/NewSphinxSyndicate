@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class HornedToadAI : EnemyAI
+public class AlligatorAI : EnemyAI
 {
     public float attackRange = 2f;
     public float attackCooldown = 1.5f;
@@ -24,28 +24,23 @@ public class HornedToadAI : EnemyAI
         float distance = Vector2.Distance(transform.position, player.position);
         Vector2 direction = (player.position - transform.position).normalized;
 
-        // face player
+        // flipped facing
         if (sr != null)
         {
-            if (direction.x > 0) sr.flipX = false;
-            else if (direction.x < 0) sr.flipX = true;
+            if (direction.x > 0) sr.flipX = true;
+            else if (direction.x < 0) sr.flipX = false;
         }
 
         // --- MOVEMENT ---
         if (distance > attackRange && !isAttacking)
         {
-            // Move toward player
             transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
 
-            // walking animation on
             anim.SetBool("isWalking", true);
-
-            // ensure attack animation stays off
             anim.SetBool("isAttacking", false);
         }
         else if (distance <= attackRange)
         {
-            // stop walking when in attack range
             anim.SetBool("isWalking", false);
 
             if (Time.time >= nextAttackTime && !isAttacking)
@@ -55,7 +50,6 @@ public class HornedToadAI : EnemyAI
         }
         else
         {
-            // idle when not moving
             anim.SetBool("isWalking", false);
         }
 
@@ -66,7 +60,6 @@ public class HornedToadAI : EnemyAI
     {
         isAttacking = true;
 
-        // Stop walking when attacking
         anim.SetBool("isWalking", false);
         anim.SetBool("isAttacking", true);
 

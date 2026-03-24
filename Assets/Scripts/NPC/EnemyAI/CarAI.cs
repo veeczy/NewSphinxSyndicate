@@ -27,6 +27,11 @@ public class CarAI : EnemyAI
         if (!CheckAggro()) return;
         if (player == null) return;
 
+        // face player
+        Vector2 direction = (player.position - transform.position).normalized;
+        if (direction.x > 0) sr.flipX = false;
+        else if (direction.x < 0) sr.flipX = true;
+
         if (isStunned)
         {
             CheckHealth();

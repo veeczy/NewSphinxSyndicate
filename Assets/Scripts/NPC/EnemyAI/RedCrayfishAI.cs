@@ -153,8 +153,8 @@ public class RedCrayfishAI : EnemyAI
 
         Vector2 toPlayer = player.position - transform.position;
 
-        if (toPlayer.x > 0) sr.flipX = false;
-        else if (toPlayer.x < 0) sr.flipX = true;
+        if (toPlayer.x > 0) sr.flipX = true;
+        else if (toPlayer.x < 0) sr.flipX = false;
     }
 
     private void SetWalkingAnim(bool walking)

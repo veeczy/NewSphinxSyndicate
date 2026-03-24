@@ -16,9 +16,13 @@ public class SnakeAI : EnemyAI
         if (!CheckAggro()) return;
         if (player == null) return;
 
+        // NEW: face player
+        Vector2 direction = (player.position - transform.position).normalized;
+        if (direction.x > 0) sr.flipX = false;
+        else if (direction.x < 0) sr.flipX = true;
+
         if (isGrabbing)
         {
-            // stick to player while grabbing
             transform.position = player.position;
             CheckHealth();
             return;
