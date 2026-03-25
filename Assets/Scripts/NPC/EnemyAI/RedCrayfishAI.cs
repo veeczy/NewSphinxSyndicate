@@ -25,6 +25,9 @@ public class RedCrayfishAI : EnemyAI
     public string meleeTrigger = "Melee";
     public string walkingBool = "isWalking";
 
+    [Header("Facing")]
+    public bool flipFacing = true;
+
     private bool isFiring = false;
     private bool isMelee = false;
 
@@ -83,7 +86,12 @@ public class RedCrayfishAI : EnemyAI
 
         // chase
         SetWalkingAnim(true);
-        HandleMovement();
+      
+        Vector2 direction = (player.position - transform.position).normalized;
+        transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+
+        // keep crayfish facing rule
+        FacePlayer();
 
         CheckHealth();
     }
@@ -153,8 +161,10 @@ public class RedCrayfishAI : EnemyAI
 
         Vector2 toPlayer = player.position - transform.position;
 
-        if (toPlayer.x > 0) sr.flipX = true;
-        else if (toPlayer.x < 0) sr.flipX = false;
+        if (toPlayer.x > 0)
+            sr.flipX = flipFacing;
+        else if (toPlayer.x < 0)
+            sr.flipX = !flipFacing;
     }
 
     private void SetWalkingAnim(bool walking)

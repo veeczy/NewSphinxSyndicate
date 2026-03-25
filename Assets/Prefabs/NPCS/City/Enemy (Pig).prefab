@@ -114,13 +114,14 @@ MonoBehaviour:
   health: 3
   maxHealth: 3
   healthBar: {fileID: 42797198607604300}
-  aggroRange: 10
+  aggroRange: 15
   hurtSound: {fileID: 8300000, guid: 9726d61ee4187e54ea48ff3c6f77b853, type: 3}
   hurtVolume: 0.2
   safeDistance: 6
   attackRange: 10
   shootInterval: 2
   projectilePrefab: {fileID: 3217030190005306906, guid: 786c685fa85e20947b80d2d11ecb3fc8, type: 3}
+  flipFacing: 0
 --- !u!50 &2321851424104822441
 Rigidbody2D:
   serializedVersion: 5

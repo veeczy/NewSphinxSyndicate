@@ -40,6 +40,7 @@ public class SnakeAI : EnemyAI
         CheckHealth();
     }
 
+
     void StartGrab()
     {
         if (isGrabbing) return;

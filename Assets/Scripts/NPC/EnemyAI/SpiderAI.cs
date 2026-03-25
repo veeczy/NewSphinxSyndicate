@@ -57,21 +57,21 @@ public class SpiderAI : EnemyAI
     {
         isResting = true;
 
-        // Play lunge animation
+        // play lunge animation
         anim.SetBool("isLunging", true);
 
         yield return new WaitForSeconds(0.15f);
 
-        // Direction toward player
+        // direction toward player
         Vector2 direction = (player.position - transform.position).normalized;
 
-        // Apply lunge force
+        // apply lunge force
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(direction * lungeForce, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(0.15f);
 
-        // Damage player if close enough during lunge
+        // damage player if close enough during lunge
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= damageRadius)
         {
@@ -82,10 +82,10 @@ public class SpiderAI : EnemyAI
 
         yield return new WaitForSeconds(0.15f);
 
-        // Stop movement
+        // stop movement
         rb.linearVelocity = Vector2.zero;
 
-        // Return to idle animation
+        // return to idle animation
         anim.SetBool("isLunging", false);
 
         isResting = false;
