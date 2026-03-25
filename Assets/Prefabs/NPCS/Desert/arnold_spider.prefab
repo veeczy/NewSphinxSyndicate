@@ -110,10 +110,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpiderAI
   moveSpeed: 3
   damage: 1
-  health: 1
+  health: 3
   maxHealth: 3
   healthBar: {fileID: 8858737417704920071}
-  aggroRange: 10
+  aggroRange: 15
   hurtSound: {fileID: 8300000, guid: 1f1568ae620295a468996b224ba7acee, type: 3}
   hurtVolume: 0.2
   lungeForce: 15

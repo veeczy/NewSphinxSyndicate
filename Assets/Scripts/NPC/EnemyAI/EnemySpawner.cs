@@ -32,9 +32,11 @@ public class EnemySpawner : MonoBehaviour
             Vector2 spawnPos = GetSpawnPosition();
             GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
 
+            /*
             // Only adjust spiders to walls
             if (prefab.name.ToLower().Contains("spider"))
                 AlignSpiderToWall(enemy);
+            */
         }
     }
 
@@ -44,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
         float offsetY = Random.Range(-spawnHeight / 2f, spawnHeight / 2f);
         return new Vector2(transform.position.x + offsetX, transform.position.y + offsetY);
     }
-
+    /*
     void AlignSpiderToWall(GameObject spider)
     {
         Collider2D closestWall = FindClosestWall(spider.transform.position);
@@ -54,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
 
         StickSpiderSafely(spider, closestWall);
     }
-
+    
     Collider2D FindClosestWall(Vector2 origin)
     {
         float searchRadius = 40f;
@@ -99,7 +101,7 @@ public class EnemySpawner : MonoBehaviour
 
         spider.transform.SetPositionAndRotation(safePosition, Quaternion.Euler(0, 0, angle));
     }
-
+    */
 
     void OnDrawGizmosSelected()
     {

@@ -305,11 +305,12 @@ MonoBehaviour:
   health: 3
   maxHealth: 3
   healthBar: {fileID: 508868923073616268}
-  aggroRange: 10
+  aggroRange: 15
   hurtSound: {fileID: 8300000, guid: 1f1568ae620295a468996b224ba7acee, type: 3}
   hurtVolume: 1
   attackRange: 2
   attackCooldown: 1.5
+  flipFacing: 0
 --- !u!1001 &6091475414786282987
 PrefabInstance:
   m_ObjectHideFlags: 0

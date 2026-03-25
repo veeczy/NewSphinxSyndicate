@@ -11,18 +11,16 @@ public class SnakeAI : EnemyAI
     private PlayerHealth playerHealth;
     private PlayerMovement playerMovement;
 
+    private float savedPlayerSpeed;
+
     protected override void Update()
     {
         if (!CheckAggro()) return;
         if (player == null) return;
 
-        // face player
-        Vector2 direction = (player.position - transform.position).normalized;
-        if (direction.x > 0) sr.flipX = false;
-        else if (direction.x < 0) sr.flipX = true;
-
         if (isGrabbing)
         {
+            // stick to player while grabbing
             transform.position = player.position;
             CheckHealth();
             return;
@@ -52,7 +50,13 @@ public class SnakeAI : EnemyAI
         playerMovement = player.GetComponent<PlayerMovement>();
 
         if (playerMovement != null)
-            playerMovement.canMove = false;
+        {
+            savedPlayerSpeed = playerMovement.speed;
+            playerMovement.speed = 0f;
+
+            if (playerMovement.myPlayer != null)
+                playerMovement.myPlayer.linearVelocity = Vector2.zero;
+        }
 
         StartCoroutine(DamageLoop());
     }
@@ -80,7 +84,7 @@ public class SnakeAI : EnemyAI
         isGrabbing = false;
 
         if (playerMovement != null)
-            playerMovement.canMove = true;
+            playerMovement.speed = savedPlayerSpeed;
     }
 
     void OnDestroy()
