@@ -10,6 +10,13 @@ public class WinSceneButtons : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    // Call this on Return to Office button
+    public void ReturnOffice()
+    {
+        Debug.Log("[WinScene] Return button pressed.");
+        SceneManager.LoadScene("Office");
+    }
+
     // Call this on Quit Game button
     public void QuitGame()
     {
