@@ -10,7 +10,7 @@ public class OpenWantedBoard : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(interactKey))
+        if (playerInRange && (Input.GetKeyDown(interactKey) || Input.GetButtonDown("Interact")))
         {
             // save where we came from
             PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
