@@ -71,8 +71,8 @@ public class PlayerMovement : MonoBehaviour
     public float controllerTurnSpeed = 15f;//Controller turn sensitivity
     public Vector2 deadzone = new Vector2(0.5f, 0.5f);
     public Vector2 stickAxis;
-    private float angle;
-    private Vector2 aimDir;
+    public float angle;
+    public Vector2 aimDir;
 
     void Start()
     {
