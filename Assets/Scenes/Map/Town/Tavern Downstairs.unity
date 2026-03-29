@@ -2999,11 +2999,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8466051375105908526, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.8129543
+      value: 1.8813028
       objectReference: {fileID: 0}
     - target: {fileID: 8466051375105908526, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.54307
+      value: 7.5089
       objectReference: {fileID: 0}
     - target: {fileID: 8466051375105908526, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3345,19 +3345,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8466051375105908526, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.7324717
+      value: 1.9441798
       objectReference: {fileID: 0}
     - target: {fileID: 8466051375105908526, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.121565
+      value: 4.0048213
       objectReference: {fileID: 0}
     - target: {fileID: 8466051375105908526, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.6304302
+      value: -3.5208
       objectReference: {fileID: 0}
     - target: {fileID: 8466051375105908526, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.98162
+      value: -7.0875
       objectReference: {fileID: 0}
     - target: {fileID: 8466051375105908526, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: m_LocalPosition.z
@@ -76773,6 +76773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504ddf3b394e0a748830b2238e5a13dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 0}
+  isPaused: 0
 --- !u!4 &1815954760
 Transform:
   m_ObjectHideFlags: 0
@@ -76835,9 +76837,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1558653807}
   - {fileID: 1700695533}
   - {fileID: 159182611}
-  - {fileID: 1558653807}
   - {fileID: 821235619}
   m_Father: {fileID: 2016429583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
