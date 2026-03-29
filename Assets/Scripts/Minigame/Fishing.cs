@@ -1,9 +1,11 @@
+using System.Collections;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 //using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class Fishing : MonoBehaviour
 {
@@ -31,10 +33,12 @@ public class Fishing : MonoBehaviour
     public GameObject timerGroup; //the parent for the timer objects
     public GameObject UITimer; //timer (the background)
     public GameObject UITimerFill; //this is the fill for the timer as it progresses
+    public Image FillBar;
 
     [Header("Fish UI - Game (WaitingScreen)")]
     public GameObject water;
     public GameObject reel;
+    public GameObject reelBase;
     public GameObject spool;
     public GameObject fishingRod;
     public GameObject fishShadowLarge;
@@ -54,16 +58,44 @@ public class Fishing : MonoBehaviour
     public string[] dialogueLines = new string[] { "", "Cast your line?", "HOOKED!" }; //dialogue the minigame can say
     public int dialogueIndex = 0; //number to call what dialogue is said
 
+    [Header("Fishing Minigame Data - Fish")]
+    public string fishSpecies; // what species fish is active, will be found by fishSpecies = fishgroup[index]
+    public int fishSpeciesIndex = 0; //index of whatever fish group you need, calculated using random of whichever group you want
+    public int ranSize; // random number that determines fish size
+    public int ranSkill; // random number that determines fish difficulty
+
+    public bool fishSpawned = false;
+    public bool hooked = false;
+
+    public Sprite[] fishSmallSprite;
+    public string[] fishSmallSpecies;
+
+    public Sprite[] fishMediumSprite;
+    public string[] fishMediumSpecies;
+
+    public Sprite[] fishLargeSprite;
+    public string[] fishLargeSpecies;
+
+    public enum FishSizeType { Small, Medium, Large }
+    public FishSizeType fishSize = FishSizeType.Medium; //defaults to Medium Size Fish
+    public enum FishSkillType { Easy, Normal, Hard }
+    public FishSkillType fishDifficulty = FishSkillType.Normal; //defaults to Normal Difficulty Fish
+
     [Header("Fishing Minigame Data - Timer")]
-    public float catchDuration; //this is the total duration for the timer for catching the fish - how long should you wait before a fish gets away
-    public float remainingDuration; //this is the measure for how far you are in the timer itself
+    public float catchDuration = 10f; //this is the total duration for the timer for catching the fish - how long should you wait before a fish gets away
+    public float catchremainingDuration; //this is the measure for how far you are in the timer itself for catching fish
+
+    public float spawnTimerDuration = 10f; //this is the total duration for the timer for spawning the fish - it should vary randomly using the ran function
+    public float spawnremainingDuration; //this is the measure for how far you are in the timer itself for spawning fish
+
+    public bool ongoingTimer = false;
 
     [Header("Fishing Minigame Data - Reel")]
+    public bool minigameScreenActive = false;
     public float angle;
     public Vector2 aimDir;
     public Vector2 aimPos;
     public Vector2 reelPos;
-    //public bool controller;
     public float controllerTurnSpeed;
 
 
@@ -78,10 +110,7 @@ public class Fishing : MonoBehaviour
     {
         if(player != null)
         {
-            //angle = player.GetComponent<PlayerMovement>().angle;
-            //aimDir = player.GetComponent<PlayerMovement>().aimDir;
             aimPos = player.GetComponent<PlayerMovement>().aimPos;
-            controllerTurnSpeed = player.GetComponent<PlayerMovement>().controllerTurnSpeed;
         }
 
         if (Input.GetButtonDown("Cancel")) { CloseGame(); }
@@ -102,10 +131,19 @@ public class Fishing : MonoBehaviour
         }
         if (!isTalking) { canMove = true; } // return movement if not talking to minigame npc
 
-        if (gameActive)
+        if (gameActive && !minigameScreenActive)
         {
-            //this is where stuff that happens inside the game goes
+            if(Input.GetButtonDown("Shoot") && fishSpawned) { hooked = true; } //if press when fish is spawned, you hook fish
 
+            //spawning for fish
+            if(!fishSpawned && !ongoingTimer) { StartTimer(spawnTimerDuration, spawnremainingDuration); }
+            if(fishSpawned) { SpawnFish(); }
+
+            if(hooked) { SplashScreen(); }
+        }
+
+        if (minigameScreenActive)
+        {
             //REELING
             reelPos = Camera.main.ScreenToWorldPoint(reel.transform.position); // get the reel position from the camera (its UI so it is converted to world space)
             aimDir = (Vector2)aimPos - (Vector2)reelPos; // recalculate the aim dir using the reel position
@@ -159,6 +197,7 @@ public class Fishing : MonoBehaviour
         if (timerGroup == null) { timerGroup = FindInactiveObjectByName("timer"); } //the parent for the timer objects
         if (UITimer == null) { UITimer = FindInactiveObjectByName("timerBackground"); } //timer (the background)
         if (UITimerFill == null) { UITimerFill = FindInactiveObjectByName("timerFill"); } //this is the fill for the timer as it progresses
+        FillBar = UITimerFill.GetComponent<Image>();
 
         //FISH UI - Waiting Screen
         if (waitingScreen == null) { waitingScreen = FindInactiveObjectByName("WaitingScreen"); } //the parent for entire waiting screen
@@ -167,6 +206,7 @@ public class Fishing : MonoBehaviour
         //FISH UI - Waiting Screen - Fishing Rod
         if (fishingRod == null) { fishingRod = FindInactiveObjectByName("FishingRod"); } //the fishing rod parent object - includes all decorative for the pole
         if (reel == null) { reel = FindInactiveObjectByName("reel"); } //the reel of the fishing rod
+        if (reelBase == null) { reelBase = FindInactiveObjectByName("reel-base"); } //the base circle for the reel of the fishing rod
         if (spool == null) { spool = FindInactiveObjectByName("spool"); } //the spool of the fishing rod
 
         //FISH UI - Waiting Screen - Fish Shadow
@@ -192,6 +232,42 @@ public class Fishing : MonoBehaviour
 
         //Player
         if (player == null) { player = GameObject.Find("Player"); }
+    }
+
+    private void StartTimer(float Duration, float RemainingDuration)
+    {
+        if(!fishSpawned) { Duration = UnityEngine.Random.Range(1f, 30f); } //if fish not spawned, timer waiting for fish
+        if(fishSpawned) { Duration = UnityEngine.Random.Range(0.5f, 7f); } //if fish spawned, timer for hooking it
+        RemainingDuration = Duration;
+        if(!ongoingTimer)
+        {
+            ongoingTimer = true;
+            StartCoroutine(UpdateTimer(Duration, RemainingDuration));
+        }
+        ShowUI(timerGroup);
+    }
+
+    private IEnumerator UpdateTimer(float Duration, float RemainingDuration)
+    {
+        while(RemainingDuration >= 0)
+        {
+            ongoingTimer = true;
+            if(!hooked)
+            {
+                FillBar.fillAmount = Mathf.InverseLerp(0, Duration, RemainingDuration);
+                RemainingDuration--;
+                yield return new WaitForSeconds(1f);
+            }
+            yield return null;
+        }
+        EndTimer();
+    }
+
+    private void EndTimer()
+    {
+        if (fishSpawned) { fishSpawned = false; HideUI(fishShadowSmall); HideUI(fishShadowMedium); HideUI(fishShadowLarge); } //if fish spawn is true, it means this timer is for hooking and if you dont do it in time the fish gets away
+        else if (!fishSpawned) { fishSpawned = true; hooked = false; } //if fish spawn is false, it means this timer is for spawning said fish and needs to be turned true when done;
+        ongoingTimer = false;
     }
 
     public bool ReturnMovement()
@@ -233,7 +309,37 @@ public class Fishing : MonoBehaviour
 
     public void SpawnFish()
     {
+        //randomly generate fish
+        if(!ongoingTimer)
+        {
+            ranSize = UnityEngine.Random.Range(1, 3);
+            ranSkill = UnityEngine.Random.Range(1, 3);
+        }
+        
 
+        if(ranSize == 1)
+        {
+            fishSpeciesIndex = UnityEngine.Random.Range(0, fishSmallSpecies.Length); 
+            fishSpecies = fishSmallSpecies[fishSpeciesIndex];
+            ShowUI(fishShadowSmall);
+        }
+
+        if (ranSize == 2)
+        {
+            fishSpeciesIndex = UnityEngine.Random.Range(0, fishMediumSpecies.Length);
+            fishSpecies = fishMediumSpecies[fishSpeciesIndex];
+            ShowUI(fishShadowMedium);
+        }
+
+        if (ranSize == 3)
+        {
+            fishSpeciesIndex = UnityEngine.Random.Range(0, fishLargeSpecies.Length);
+            fishSpecies = fishLargeSpecies[fishSpeciesIndex];
+            ShowUI(fishShadowLarge);
+        }
+
+        //start timer for fish to unspawn
+        StartTimer(catchDuration, catchremainingDuration);
     }
 
     public void FishScreen() //trigger base screen - asks if you want to play
@@ -288,17 +394,36 @@ public class Fishing : MonoBehaviour
 
     public void SplashScreen() //trigger screen for when fish is hooked - decorative
     {
-
+        //show off animation that fish is hooked
+        MinigameScreen();
     }
 
     public void MinigameScreen() //trigger screen for minigame
     {
+        minigameScreenActive = true;
+
+        //screens
+        ShowUI(fishScreen); // background
+        HideUI(waitingScreen); // hide waiting screen
+        HideUI(splashScreen); // hide splash screens
+        ShowUI(minigameScreen); // current screen
+        HideUI(catchScreen); // hide future screens
+
+        //catch timer
+        HideUI(timerGroup);
+
+        //hide buttons
+        HideUI(button1);
+        HideUI(button2);
+
 
     }
 
     public void CatchScreen() //trigger screen for when fish is caught - win screen
     {
-
+        //change fish sprite to the fish species
+        //change dialogue to say fish name
+        //onWinLose reuse so when you click it closes and asks if you want to play again
     }
 
     public void ResetGame() //reset all game data

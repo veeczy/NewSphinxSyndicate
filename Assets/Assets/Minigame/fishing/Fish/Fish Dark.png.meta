@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 2e70a97c18d6e0940be8258ee08917ca
+guid: 029207b6d733d97418c692cc10bfc25d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6388541430603107461
-    second: arnold_fish_0
+      213: -220337647333923725
+    second: Fish Dark_0
+  - first:
+      213: 3092880049730349477
+    second: Fish Dark_1
+  - first:
+      213: 4120308543787337039
+    second: Fish Dark_2
+  - first:
+      213: -4537897507059282098
+    second: Fish Dark_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arnold_fish_0
+      name: Fish Dark_0
       rect:
         serializedVersion: 2
         x: 2
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58cc6fb4598a8a850800000000000000
-      internalID: 6388541430603107461
+      spriteID: 3742400c31431fcf0800000000000000
+      internalID: -220337647333923725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish Dark_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 34
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a9e119b40e1cea20800000000000000
+      internalID: 3092880049730349477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish Dark_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 4
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f45837d4ac64e2930800000000000000
+      internalID: 4120308543787337039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish Dark_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4fc99892462601c0800000000000000
+      internalID: -4537897507059282098
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      arnold_fish_0: 6388541430603107461
+      Fish Dark_0: -220337647333923725
+      Fish Dark_1: 3092880049730349477
+      Fish Dark_2: 4120308543787337039
+      Fish Dark_3: -4537897507059282098
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

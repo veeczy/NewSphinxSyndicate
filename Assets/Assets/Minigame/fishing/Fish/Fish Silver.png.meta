@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 2e70a97c18d6e0940be8258ee08917ca
+guid: e0d3b3830e5c182479fe79500065af8f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6388541430603107461
-    second: arnold_fish_0
+      213: 6225343910291169481
+    second: Fish Silver_0
+  - first:
+      213: -955196991365467785
+    second: Fish Silver_1
+  - first:
+      213: 8325726709530662823
+    second: Fish Silver_2
+  - first:
+      213: 1075053469735688222
+    second: Fish Silver_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arnold_fish_0
+      name: Fish Silver_0
       rect:
         serializedVersion: 2
         x: 2
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58cc6fb4598a8a850800000000000000
-      internalID: 6388541430603107461
+      spriteID: 9c0eb899d4dd46650800000000000000
+      internalID: 6225343910291169481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish Silver_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 34
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771b32fa5657eb2f0800000000000000
+      internalID: -955196991365467785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish Silver_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 4
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a79e8aa45cea8370800000000000000
+      internalID: 8325726709530662823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish Silver_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1895225f6b5bee00800000000000000
+      internalID: 1075053469735688222
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      arnold_fish_0: 6388541430603107461
+      Fish Silver_0: 6225343910291169481
+      Fish Silver_1: -955196991365467785
+      Fish Silver_2: 8325726709530662823
+      Fish Silver_3: 1075053469735688222
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
