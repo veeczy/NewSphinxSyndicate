@@ -123,7 +123,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -151,8 +151,8 @@ TextureImporter:
       name: tavern_tiles_new_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 96
+        x: 0
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -173,10 +173,10 @@ TextureImporter:
       name: tavern_tiles_new_1
       rect:
         serializedVersion: 2
-        x: 89
-        y: 104
-        width: 14
-        height: 24
+        x: 16
+        y: 112
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       name: tavern_tiles_new_2
       rect:
         serializedVersion: 2
-        x: 112
+        x: 32
         y: 112
         width: 16
         height: 16
@@ -217,10 +217,10 @@ TextureImporter:
       name: tavern_tiles_new_3
       rect:
         serializedVersion: 2
-        x: 165
-        y: 107
-        width: 9
-        height: 8
+        x: 48
+        y: 112
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,10 +239,10 @@ TextureImporter:
       name: tavern_tiles_new_4
       rect:
         serializedVersion: 2
-        x: 178
-        y: 107
-        width: 9
-        height: 8
+        x: 64
+        y: 112
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,7 +262,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 80
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -283,8 +283,8 @@ TextureImporter:
       name: tavern_tiles_new_6
       rect:
         serializedVersion: 2
-        x: 112
-        y: 64
+        x: 96
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -305,10 +305,10 @@ TextureImporter:
       name: tavern_tiles_new_7
       rect:
         serializedVersion: 2
-        x: 117
-        y: 81
-        width: 6
-        height: 11
+        x: 112
+        y: 112
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,7 +328,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 80
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -349,10 +349,10 @@ TextureImporter:
       name: tavern_tiles_new_9
       rect:
         serializedVersion: 2
-        x: 148
-        y: 81
-        width: 9
-        height: 8
+        x: 144
+        y: 112
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -372,7 +372,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 80
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -393,8 +393,8 @@ TextureImporter:
       name: tavern_tiles_new_11
       rect:
         serializedVersion: 2
-        x: 80
-        y: 64
+        x: 176
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -415,8 +415,8 @@ TextureImporter:
       name: tavern_tiles_new_12
       rect:
         serializedVersion: 2
-        x: 112
-        y: 48
+        x: 0
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -438,7 +438,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 32
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -459,8 +459,8 @@ TextureImporter:
       name: tavern_tiles_new_14
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 32
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -481,8 +481,8 @@ TextureImporter:
       name: tavern_tiles_new_15
       rect:
         serializedVersion: 2
-        x: 80
-        y: 16
+        x: 48
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -504,7 +504,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 16
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -525,8 +525,8 @@ TextureImporter:
       name: tavern_tiles_new_17
       rect:
         serializedVersion: 2
-        x: 0
-        y: 112
+        x: 80
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -547,8 +547,8 @@ TextureImporter:
       name: tavern_tiles_new_18
       rect:
         serializedVersion: 2
-        x: 16
-        y: 112
+        x: 96
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -569,8 +569,8 @@ TextureImporter:
       name: tavern_tiles_new_19
       rect:
         serializedVersion: 2
-        x: 32
-        y: 112
+        x: 112
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -591,8 +591,8 @@ TextureImporter:
       name: tavern_tiles_new_20
       rect:
         serializedVersion: 2
-        x: 48
-        y: 112
+        x: 128
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -613,8 +613,8 @@ TextureImporter:
       name: tavern_tiles_new_21
       rect:
         serializedVersion: 2
-        x: 64
-        y: 112
+        x: 144
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -635,8 +635,8 @@ TextureImporter:
       name: tavern_tiles_new_22
       rect:
         serializedVersion: 2
-        x: 80
-        y: 112
+        x: 160
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -657,8 +657,8 @@ TextureImporter:
       name: tavern_tiles_new_23
       rect:
         serializedVersion: 2
-        x: 96
-        y: 112
+        x: 176
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -679,8 +679,8 @@ TextureImporter:
       name: tavern_tiles_new_24
       rect:
         serializedVersion: 2
-        x: 128
-        y: 112
+        x: 0
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -701,8 +701,8 @@ TextureImporter:
       name: tavern_tiles_new_25
       rect:
         serializedVersion: 2
-        x: 144
-        y: 112
+        x: 16
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -723,8 +723,8 @@ TextureImporter:
       name: tavern_tiles_new_26
       rect:
         serializedVersion: 2
-        x: 160
-        y: 112
+        x: 32
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -745,8 +745,8 @@ TextureImporter:
       name: tavern_tiles_new_27
       rect:
         serializedVersion: 2
-        x: 176
-        y: 112
+        x: 48
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -767,8 +767,8 @@ TextureImporter:
       name: tavern_tiles_new_28
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 64
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -789,8 +789,8 @@ TextureImporter:
       name: tavern_tiles_new_29
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
+        x: 80
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -811,8 +811,8 @@ TextureImporter:
       name: tavern_tiles_new_30
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
+        x: 96
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -833,8 +833,8 @@ TextureImporter:
       name: tavern_tiles_new_31
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
+        x: 112
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -855,8 +855,8 @@ TextureImporter:
       name: tavern_tiles_new_32
       rect:
         serializedVersion: 2
-        x: 80
-        y: 96
+        x: 128
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -877,8 +877,8 @@ TextureImporter:
       name: tavern_tiles_new_33
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
+        x: 144
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -899,8 +899,8 @@ TextureImporter:
       name: tavern_tiles_new_34
       rect:
         serializedVersion: 2
-        x: 112
-        y: 96
+        x: 160
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -921,8 +921,8 @@ TextureImporter:
       name: tavern_tiles_new_35
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 176
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -943,8 +943,8 @@ TextureImporter:
       name: tavern_tiles_new_36
       rect:
         serializedVersion: 2
-        x: 144
-        y: 96
+        x: 0
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -965,8 +965,8 @@ TextureImporter:
       name: tavern_tiles_new_37
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
+        x: 16
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -987,8 +987,8 @@ TextureImporter:
       name: tavern_tiles_new_38
       rect:
         serializedVersion: 2
-        x: 176
-        y: 96
+        x: 32
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -1009,8 +1009,8 @@ TextureImporter:
       name: tavern_tiles_new_39
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 48
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -1031,8 +1031,8 @@ TextureImporter:
       name: tavern_tiles_new_40
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
+        x: 64
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -1053,8 +1053,8 @@ TextureImporter:
       name: tavern_tiles_new_41
       rect:
         serializedVersion: 2
-        x: 32
-        y: 80
+        x: 80
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -1075,8 +1075,8 @@ TextureImporter:
       name: tavern_tiles_new_42
       rect:
         serializedVersion: 2
-        x: 48
-        y: 80
+        x: 96
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -1097,8 +1097,8 @@ TextureImporter:
       name: tavern_tiles_new_43
       rect:
         serializedVersion: 2
-        x: 64
-        y: 80
+        x: 112
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -1119,8 +1119,8 @@ TextureImporter:
       name: tavern_tiles_new_44
       rect:
         serializedVersion: 2
-        x: 96
-        y: 80
+        x: 128
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -1141,8 +1141,8 @@ TextureImporter:
       name: tavern_tiles_new_45
       rect:
         serializedVersion: 2
-        x: 112
-        y: 80
+        x: 0
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1163,8 +1163,8 @@ TextureImporter:
       name: tavern_tiles_new_46
       rect:
         serializedVersion: 2
-        x: 144
-        y: 80
+        x: 16
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1185,8 +1185,8 @@ TextureImporter:
       name: tavern_tiles_new_47
       rect:
         serializedVersion: 2
-        x: 176
-        y: 80
+        x: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1207,8 +1207,8 @@ TextureImporter:
       name: tavern_tiles_new_48
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 48
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1229,8 +1229,8 @@ TextureImporter:
       name: tavern_tiles_new_49
       rect:
         serializedVersion: 2
-        x: 16
-        y: 64
+        x: 64
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1251,8 +1251,8 @@ TextureImporter:
       name: tavern_tiles_new_50
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 80
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1273,8 +1273,8 @@ TextureImporter:
       name: tavern_tiles_new_51
       rect:
         serializedVersion: 2
-        x: 48
-        y: 64
+        x: 96
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1295,8 +1295,8 @@ TextureImporter:
       name: tavern_tiles_new_52
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 112
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1317,8 +1317,8 @@ TextureImporter:
       name: tavern_tiles_new_53
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 128
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1339,8 +1339,8 @@ TextureImporter:
       name: tavern_tiles_new_54
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 144
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1361,7 +1361,7 @@ TextureImporter:
       name: tavern_tiles_new_55
       rect:
         serializedVersion: 2
-        x: 0
+        x: 160
         y: 48
         width: 16
         height: 16
@@ -1383,7 +1383,7 @@ TextureImporter:
       name: tavern_tiles_new_56
       rect:
         serializedVersion: 2
-        x: 16
+        x: 176
         y: 48
         width: 16
         height: 16
@@ -1405,8 +1405,8 @@ TextureImporter:
       name: tavern_tiles_new_57
       rect:
         serializedVersion: 2
-        x: 32
-        y: 48
+        x: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -1427,8 +1427,8 @@ TextureImporter:
       name: tavern_tiles_new_58
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
+        x: 64
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -1449,8 +1449,8 @@ TextureImporter:
       name: tavern_tiles_new_59
       rect:
         serializedVersion: 2
-        x: 64
-        y: 48
+        x: 80
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -1471,8 +1471,8 @@ TextureImporter:
       name: tavern_tiles_new_60
       rect:
         serializedVersion: 2
-        x: 80
-        y: 48
+        x: 96
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -1493,8 +1493,8 @@ TextureImporter:
       name: tavern_tiles_new_61
       rect:
         serializedVersion: 2
-        x: 96
-        y: 48
+        x: 16
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -1515,8 +1515,8 @@ TextureImporter:
       name: tavern_tiles_new_62
       rect:
         serializedVersion: 2
-        x: 128
-        y: 48
+        x: 32
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -1537,8 +1537,8 @@ TextureImporter:
       name: tavern_tiles_new_63
       rect:
         serializedVersion: 2
-        x: 144
-        y: 48
+        x: 64
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -1559,8 +1559,8 @@ TextureImporter:
       name: tavern_tiles_new_64
       rect:
         serializedVersion: 2
-        x: 160
-        y: 48
+        x: 80
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -1581,8 +1581,8 @@ TextureImporter:
       name: tavern_tiles_new_65
       rect:
         serializedVersion: 2
-        x: 176
-        y: 48
+        x: 96
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -1603,8 +1603,8 @@ TextureImporter:
       name: tavern_tiles_new_66
       rect:
         serializedVersion: 2
-        x: 80
-        y: 32
+        x: 16
+        y: 0
         width: 16
         height: 16
       alignment: 0
@@ -1625,8 +1625,8 @@ TextureImporter:
       name: tavern_tiles_new_67
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 32
+        y: 0
         width: 16
         height: 16
       alignment: 0
@@ -1639,116 +1639,6 @@ TextureImporter:
       bones: []
       spriteID: 2cca27401d2b72145bed3a44558d8c19
       internalID: -351788761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tavern_tiles_new_68
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6eb49f41756425f44a7f286d441470fc
-      internalID: -531677879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tavern_tiles_new_69
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b92ea31bf41c5184e8dc5e53df45b0d5
-      internalID: -226113733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tavern_tiles_new_70
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41377022d3083194eb462eb7491eebe9
-      internalID: -230900725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tavern_tiles_new_71
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84d77f3261a68204b873c902a9bc7795
-      internalID: -822576301
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tavern_tiles_new_72
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f6b69de6a44a584e9d2782f5e29854c
-      internalID: 1701829120
       vertices: []
       indices: 
       edges: []
@@ -1767,7 +1657,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":1,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       tavern_tiles_new_0: 5802780529855109362
       tavern_tiles_new_1: 6468089879443891624
@@ -1834,12 +1724,7 @@ TextureImporter:
       tavern_tiles_new_65: 1084772112
       tavern_tiles_new_66: 157669454
       tavern_tiles_new_67: -351788761
-      tavern_tiles_new_68: -531677879
-      tavern_tiles_new_69: -226113733
       tavern_tiles_new_7: -7481608395410816591
-      tavern_tiles_new_70: -230900725
-      tavern_tiles_new_71: -822576301
-      tavern_tiles_new_72: 1701829120
       tavern_tiles_new_8: 9047084755785892211
       tavern_tiles_new_9: -3168758124301921474
   mipmapLimitGroupName: 
