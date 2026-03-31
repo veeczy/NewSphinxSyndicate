@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthUI : MonoBehaviour
 {
@@ -14,12 +15,56 @@ public class PlayerHealthUI : MonoBehaviour
     public Sprite quarterHeart;     // 1/4
     public Sprite emptyHeart;       // 0/4
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void Start()
+    {
+        FindPlayer();
+        FindHearts();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        FindPlayer();
+        FindHearts();
+    }
+
+    void FindPlayer()
+    {
+        playerHealth = FindFirstObjectByType<PlayerHealth>();
+    }
+
+    // reconnects the heart image
+    void FindHearts()
+    {
+        hearts = new Image[3]; 
+
+        hearts[0] = GameObject.Find("Heart1")?.GetComponent<Image>();
+        hearts[1] = GameObject.Find("Heart2")?.GetComponent<Image>();
+        hearts[2] = GameObject.Find("Heart3")?.GetComponent<Image>();
+    }
 
     void Update()
     {
-        if (playerHealth == null) return;
+        if (playerHealth == null)
+        {
+            // reconnects the player
+            FindPlayer();
+            if (playerHealth == null) return;
+        }
 
-        int hp = playerHealth.currentHealth; // now 0�12
+        if (hearts == null || hearts.Length < 3) return;
+        if (hearts[0] == null || hearts[1] == null || hearts[2] == null) return;
+
+        int hp = playerHealth.currentHealth; // now 0–12
 
         for (int i = 0; i < hearts.Length; i++)
         {
