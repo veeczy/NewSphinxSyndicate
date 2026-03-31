@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5980195246294053068}
   - component: {fileID: 4799619551900780419}
   - component: {fileID: 3811901851084903600}
+  - component: {fileID: -5803971681083151148}
   m_Layer: 9
   m_Name: Revolver
   m_TagString: Untagged
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 4726518394171148836, guid: 1eea548fc09c899428bf657403c8d4a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -115,6 +116,7 @@ MonoBehaviour:
   toggleFlash: 0
   muzzleFlash: {fileID: 0}
   isShooting: 0
+  inGame: 0
 --- !u!82 &3811901851084903600
 AudioSource:
   m_ObjectHideFlags: 0
@@ -212,3 +214,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-5803971681083151148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760977183097486977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2c53a25c72525408939545874533a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item_Weapon
+  weaponIndex: 0
