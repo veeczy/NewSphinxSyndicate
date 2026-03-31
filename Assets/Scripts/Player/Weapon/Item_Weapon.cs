@@ -15,6 +15,7 @@ public class Item_Weapon : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             weaponScript.weaponInventory[weaponIndex] = true;
+            PlayerPrefs.SetInt("Weapon_" + weaponIndex, 1); // new, save the weapon pickup
             weaponScript.EquipWeapon(weaponIndex);
             Destroy(gameObject);
         }

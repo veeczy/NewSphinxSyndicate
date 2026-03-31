@@ -10,7 +10,7 @@ public class WeaponSwitch : MonoBehaviour
     public PlayerMovement pmScript;
     public GameObject[] weaponInstances;
     public bool[] weaponInventory;
-    private int currentIndex = 0;
+    private int currentIndex = -1; // change from 0 to -1
     private float lastSwitchTime = 0f;
     void Start()
     {
@@ -23,13 +23,25 @@ public class WeaponSwitch : MonoBehaviour
             weapon.GetComponent<Shoot>().bulletSpawn = bulletSpawner;
             weapon.SetActive(false);
             weaponInstances[i] = weapon;
+            weaponInventory[i] = PlayerPrefs.GetInt("Weapon_" + i, 0) == 1; // new
         }
-
+        /*
         // First weapon equip!
         if (weaponInstances.Length > 0)
         {
             pmScript.weaponObject = weaponInstances[0];
             EquipWeapon(0);
+        }
+        */
+
+        // new, ensure no weapon is equipped at start, and check PlayerPrefs for saved weapon
+        pmScript.weaponObject = null;
+
+        int savedWeapon = PlayerPrefs.GetInt("CurrentWeapon", -1);
+
+        if (savedWeapon >= 0 && savedWeapon < weaponInstances.Length && weaponInventory[savedWeapon])
+        {
+            EquipWeapon(savedWeapon);
         }
     }
 
@@ -84,6 +96,8 @@ public class WeaponSwitch : MonoBehaviour
         }
         currentIndex = index;
         lastSwitchTime = Time.time;
+
+        PlayerPrefs.SetInt("CurrentWeapon", index); // save the current equipped weapn
     }
 
     public GameObject GetCurrentWeapon()
