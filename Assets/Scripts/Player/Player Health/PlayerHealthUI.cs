@@ -47,9 +47,9 @@ public class PlayerHealthUI : MonoBehaviour
     {
         hearts = new Image[3]; 
 
-        hearts[0] = GameObject.Find("Heart1")?.GetComponent<Image>();
-        hearts[1] = GameObject.Find("Heart2")?.GetComponent<Image>();
-        hearts[2] = GameObject.Find("Heart3")?.GetComponent<Image>();
+        hearts[0] = GameObject.Find("Heart")?.GetComponent<Image>();
+        hearts[1] = GameObject.Find("Heart (1)")?.GetComponent<Image>();
+        hearts[2] = GameObject.Find("Heart (2)")?.GetComponent<Image>();
     }
 
     void Update()
