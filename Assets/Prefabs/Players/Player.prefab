@@ -317,6 +317,9 @@ MonoBehaviour:
   controllerAimDist: 5
   lastStickPos: {x: 0, y: 0}
   useCursor: 1
+  inWater: 0
+  waterSpeedMultiplier: 0.5
+  waterControl: 0.2
   controller: 0
   controllerTurnSpeed: 15
   deadzone: {x: 0.5, y: 0.5}

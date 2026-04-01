@@ -64,6 +64,12 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 lastStickPos;
     public bool useCursor = true;
 
+    [Header("Water Settings")]
+    public bool inWater = false;
+    public float waterSpeedMultiplier = 0.5f;
+    public float waterControl = 0.3f;
+    private Vector2 waterVelocity;
+
     // NEW   animator reference
     private Animator anim;
     //INPUT
@@ -219,7 +225,24 @@ public class PlayerMovement : MonoBehaviour
         {
             // Movement
             direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-            myPlayer.linearVelocity = direction * speed;
+
+            // checks if in water
+            if (!inWater)
+            {
+                myPlayer.linearVelocity = direction * speed;
+            }
+            else
+            {
+                // random drift
+                Vector2 randomOffset = new Vector2(
+                    Random.Range(-waterControl, waterControl),
+                    Random.Range(-waterControl, waterControl)
+                );
+
+                Vector2 finalDir = (direction + randomOffset).normalized;
+
+                myPlayer.linearVelocity = finalDir * speed * waterSpeedMultiplier;
+            }
         }
 
 

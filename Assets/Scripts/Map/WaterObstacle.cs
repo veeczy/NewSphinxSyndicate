@@ -2,15 +2,31 @@ using UnityEngine;
 
 public class WaterObstacle : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement playerMove = other.GetComponent<PlayerMovement>();
+
+            if (playerMove != null)
+            {
+                playerMove.inWater = true;
+                Debug.Log("IN WATER");
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement playerMove = other.GetComponent<PlayerMovement>();
+
+            if (playerMove != null)
+            {
+                playerMove.inWater = false;
+                Debug.Log("OUT WATER");
+            }
+        }
     }
 }
