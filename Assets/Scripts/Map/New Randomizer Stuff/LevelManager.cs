@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 
+
+
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
@@ -385,5 +387,21 @@ public class LevelManager : MonoBehaviour
     public void SetArea(AreaType area)
     {
         currentArea = area;
+    }
+
+    // check all boss then loads victory scene
+    public void CheckAllBossesDead()
+    {
+        int desertBoss = PlayerPrefs.GetInt("desertBoss", 0);
+        int cityBoss = PlayerPrefs.GetInt("cityBoss", 0);
+        int swampBoss = PlayerPrefs.GetInt("swampBoss", 0);
+
+        Debug.Log("Desert: " + desertBoss + " City: " + cityBoss + " Swamp: " + swampBoss);
+
+        if (desertBoss == 1 && cityBoss == 1 && swampBoss == 1)
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("VictoryScene");
+        }
     }
 }
