@@ -34,7 +34,7 @@ public class WeaponSwitch : MonoBehaviour
         }
         */
 
-        // new, ensure no weapon is equipped at start, and check PlayerPrefs for saved weapon
+        // new, start with a random weapon, and check PlayerPrefs for saved weapon
         pmScript.weaponObject = null;
 
         int savedWeapon = PlayerPrefs.GetInt("CurrentWeapon", -1);
@@ -42,6 +42,15 @@ public class WeaponSwitch : MonoBehaviour
         if (savedWeapon >= 0 && savedWeapon < weaponInstances.Length && weaponInventory[savedWeapon])
         {
             EquipWeapon(savedWeapon);
+        }
+        else
+        {
+            int randomWeapon = Random.Range(0, weaponInstances.Length);
+
+            weaponInventory[randomWeapon] = true;
+            PlayerPrefs.SetInt("Weapon_" + randomWeapon, 1);
+
+            EquipWeapon(randomWeapon);
         }
     }
 
