@@ -8,6 +8,7 @@ public class BossAI : MonoBehaviour
     public float moveSpeed = 3f;
     public SpriteRenderer bossSprite;
     public Animator bossAnimator;
+    public Rigidbody2D rb;
     protected Transform player;
     public int damage = 1;
 
@@ -103,7 +104,7 @@ public class BossAI : MonoBehaviour
         else if (distance > minDistance && isAttacking && !attackCooldown)
         {
             bossAnimator.SetBool("isWalking", true);
-            transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+            rb.MovePosition(Vector2.MoveTowards(rb.position, player.position, moveSpeed * Time.deltaTime));
         }
         else if (distance <= stalkMaxDistance && !isAttacking && !sheepAttacking && sheepCounter < 5)
         {
