@@ -28,16 +28,16 @@ public class CameraMovement : MonoBehaviour
         Camera cam = mainCamera.GetComponent<Camera>();
 
         // new calculate camera size 
-        camHalfHeight = cam.orthographicSize;
-        camHalfWidth = camHalfHeight * cam.aspect;
+        //camHalfHeight = cam.orthographicSize;
+        //camHalfWidth = camHalfHeight * cam.aspect;
 
         // new get size bound from collider 
-        Bounds b = bounds.bounds;
+        //Bounds b = bounds.bounds;
 
-        minX = b.min.x;
-        maxX = b.max.x;
-        minY = b.min.y;
-        maxY = b.max.y;
+        //minX = b.min.x;
+        //maxX = b.max.x;
+        //minY = b.min.y;
+        //maxY = b.max.y;
     }
 
     private void LateUpdate()
@@ -49,10 +49,10 @@ public class CameraMovement : MonoBehaviour
         targetPosition.z = mainCamera.transform.position.z; //ensure the z stays the same so the camera still sees everything
 
         // new bounds box to make the camera stay in
-        float clampedX = Mathf.Clamp(targetPosition.x, minX + camHalfWidth, maxX - camHalfWidth);
-        float clampedY = Mathf.Clamp(targetPosition.y, minY + camHalfHeight, maxY - camHalfHeight);
+        //float clampedX = Mathf.Clamp(targetPosition.x, minX + camHalfWidth, maxX - camHalfWidth);
+        //float clampedY = Mathf.Clamp(targetPosition.y, minY + camHalfHeight, maxY - camHalfHeight);
 
-        targetPosition = new Vector3(clampedX, clampedY, targetPosition.z);
+        //targetPosition = new Vector3(clampedX, clampedY, targetPosition.z);
 
         mainCamera.transform.position = targetPosition; //camera position is updated to the player's position
     }
