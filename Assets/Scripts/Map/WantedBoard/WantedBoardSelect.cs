@@ -46,34 +46,31 @@ public class WantedBoardSceneSelect : MonoBehaviour
     {
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.Desert;
-        //SceneManager.LoadScene(returnScene);
-        //LevelManager.instance.ReturnToTown();
-        SceneManager.LoadScene("LoadingScreen");
+        LevelManager.instance.ResetRun();
+        LevelManager.instance.LoadSceneByTrigger("LoadingScreen");
     }
 
     public void PickCity()
     {
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.City;
-        //SceneManager.LoadScene(returnScene);
-        //LevelManager.instance.ReturnToTown();
-        SceneManager.LoadScene("LoadingScreen");
+        LevelManager.instance.ResetRun();
+        LevelManager.instance.LoadSceneByTrigger("LoadingScreen");
     }
 
     public void PickSwamp()
     {
         if (LevelManager.instance == null) return;
         LevelManager.instance.currentArea = LevelManager.AreaType.Swamp;
-        //SceneManager.LoadScene(returnScene);
-        //LevelManager.instance.ReturnToTown();
-        SceneManager.LoadScene("LoadingScreen");
+        LevelManager.instance.ResetRun();
+        LevelManager.instance.LoadSceneByTrigger("LoadingScreen");
     }
 
     public void AllClear()
     {
         //ui that offers option to reset everything needs to be put here
         //ui that indicates on wanted board that you beat everything needs to be set active, possibly a star
-        SceneManager.LoadScene(returnScene);
+        LevelManager.instance.LoadSceneByTrigger(returnScene);
     }
 }
 

@@ -615,16 +615,26 @@ MonoBehaviour:
   - City_Up_Left_Right
   - City_Up_Right
   swampRoomMaster:
-  - Swamp_Connecting
-  - Swamp_Connecting 1
-  - Swamp_Connecting 2
-  - Swamp_Connecting 3
-  - Swamp_Connecting 4
-  - Swamp_Enemy
-  - Swamp_Enemy 1
-  - Swamp_Enemy 2
-  - Swamp_Enemy 3
-  - Swamp_Enemy 4
+  - Swamp_Down
+  - Swamp_Down_Left
+  - Swamp_Down_Left_Right
+  - Swamp_Down_Right
+  - Swamp_Left
+  - Swamp_Left_Right
+  - Swamp_Right
+  - Swamp_Up
+  - Swamp_Down_Right_Alt
+  - Swamp_Up_Down
+  - Swamp_Left_Right_Alt
+  - Swamp_Up_Down_Left
+  - Swamp_Up_Down_Left_Right
+  - Swamp_Up_Down_Left_Right_Alt
+  - Swamp_Up_Down_Right
+  - Swamp_Up_Down_Right_Alt
+  - Swamp_Up_Left
+  - Swamp_Up_Right_Alt
+  - Swamp_Up_Left_Right
+  - Swamp_Up_Right
   remainingdesertRoom: []
   remainingcityRoom: []
   remainingswampRoom: []
@@ -638,10 +648,29 @@ MonoBehaviour:
   - City_Treasure_Left
   - City_Treasure_Right
   - City_Treasure_Up
-  swampSecretRooms: []
-  desertBossRoom: Desert_Boss_Up
-  cityBossRoom: City_Boss_Up
-  swampBossRoom: Swamp_Boss
+  swampSecretRooms:
+  - Swamp_Treasure_Down
+  - Swamp_Treasure_Left
+  - Swamp_Treasure_Right
+  - Swamp_Treasure_Up
+  desertbossRooms:
+  - Desert_Boss_Up
+  - Desert_Boss_Down
+  - Desert_Boss_Left
+  - Desert_Boss_Right
+  desertBossRoom: 
+  citybossRooms:
+  - City_Boss_Up
+  - City_Boss_Down
+  - City_Boss_Left
+  - City_Boss_Right
+  cityBossRoom: 
+  swampbossRooms:
+  - Swamp_Boss_Up
+  - Swamp_Boss_Down
+  - Swamp_Boss_Left
+  - Swamp_Boss_Right
+  swampBossRoom: 
   bossScene: 
   desertRoomPool: []
   cityRoomPool: []

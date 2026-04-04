@@ -144,7 +144,12 @@ public class PauseManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         Time.timeScale = 1f;
         isPaused = false;
-        SceneManager.LoadScene(currentScene.name);
+        //SceneManager.LoadScene(currentScene.name); //this just resets whatever scene youre already on
+
+        //send back to tavern so they can reset run if they desire by retry
+        PlayerPrefs.SetInt("health", 12); //reset health
+        //LevelManager.instance.LoadSceneByTrigger("Tavern Upstairs");
+        SceneManager.LoadScene("Tavern Upstairs");
     }
 
     public void QuitToMenu()

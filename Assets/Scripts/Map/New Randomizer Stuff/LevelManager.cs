@@ -31,9 +31,15 @@ public class LevelManager : MonoBehaviour
     public string[] swampSecretRooms;
 
     [Header("Boss Rooms")]
+    public string[] desertbossRooms;
     public string desertBossRoom;
+
+    public string[] citybossRooms;
     public string cityBossRoom;
+
+    public string[] swampbossRooms;
     public string swampBossRoom;
+
     public string bossScene;
 
     [Header("Random Rooms (when you start Run)")]
@@ -159,6 +165,8 @@ public class LevelManager : MonoBehaviour
                 {
                     RollRooms(remainingcityRoom, cityRoomPool); //add room
                 }
+                RandomRoom(citybossRooms);
+                cityBossRoom = citybossRooms[randomRoomIndex];
                 bossScene = cityBossRoom;
                 ResetRoomClear(cityRoomPool);
                 break;
@@ -167,6 +175,8 @@ public class LevelManager : MonoBehaviour
                 {
                     RollRooms(remainingswampRoom, swampRoomPool); //add room
                 }
+                RandomRoom(swampbossRooms);
+                swampBossRoom = swampbossRooms[randomRoomIndex];
                 bossScene = swampBossRoom;
                 ResetRoomClear(swampRoomPool);
                 break;
@@ -175,6 +185,8 @@ public class LevelManager : MonoBehaviour
                 {
                     RollRooms(remainingdesertRoom, desertRoomPool); //add room
                 }
+                RandomRoom(desertbossRooms);
+                desertBossRoom = desertbossRooms[randomRoomIndex];
                 bossScene = desertBossRoom;
                 ResetRoomClear(desertRoomPool);
                 break;

@@ -12,7 +12,8 @@ public class FadeManager : MonoBehaviour
     public Image fadeImage;
     public float fadeSpeed = 2f;
 
-    private bool isFading = false;
+    public bool isFading = false;
+    public bool canMove = true;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class FadeManager : MonoBehaviour
     private IEnumerator FadeOutAndLoad(string sceneName)
     {
         isFading = true;
+        canMove = false;
         yield return StartCoroutine(Fade(0f, 1f));
         SceneManager.LoadScene(sceneName);
     }
@@ -66,6 +68,7 @@ public class FadeManager : MonoBehaviour
     private IEnumerator FadeOutAndLoad(int sceneIndex)
     {
         isFading = true;
+        canMove = false;
         yield return StartCoroutine(Fade(0f, 1f));
         SceneManager.LoadScene(sceneIndex);
     }
@@ -79,6 +82,7 @@ public class FadeManager : MonoBehaviour
     {
         yield return StartCoroutine(Fade(1f, 0f));
         isFading = false;
+        canMove = true;
     }
 
     private IEnumerator Fade(float startAlpha, float endAlpha)

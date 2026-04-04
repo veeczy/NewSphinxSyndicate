@@ -32,13 +32,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/DV_Rest.unity
     guid: badfe10bd751b0841bb624ee0b2eaf36
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Cave_Room.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/DV_Enemy1.unity
     guid: f809bc6fb0f02c2408eee646878ac585
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/DV_Enemy2.unity
     guid: d262cf0c90e53184697574b3b0ca90b4
   - enabled: 1
@@ -117,35 +117,116 @@ EditorBuildSettings:
     path: Assets/Scenes/Map/Boss/Desert_Boss_Up.unity
     guid: 6988b1d460c5db44496d122e263f8189
   - enabled: 1
+    path: Assets/Scenes/Map/Boss/Desert_Boss_Down.unity
+    guid: 8d2649126741a674da5f88364d231b62
+  - enabled: 1
+    path: Assets/Scenes/Map/Boss/Desert_Boss_Left.unity
+    guid: 88e9bd95dbdcc0d469fc4459170ff231
+  - enabled: 1
+    path: Assets/Scenes/Map/Boss/Desert_Boss_Right.unity
+    guid: 6113b55027b39ff4eace6d992ac293ed
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Connect/Letso_City_ConnectingRoom1.unity
     guid: e384e7246d1999f479b46db02cb3d957
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Connect/Letso_City_ConnectingRoom2.unity
     guid: 64b03d47838d88e479879bceb6e8ebba
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Connect/Letso_City_ConnectingRoom3.unity
     guid: 217227aa006b0384ab0d9c9ad15be6a9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Connect/Letso_City_ConnectingRoom4.unity
     guid: 270021f4e18f69f41a09afad245090ee
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Connect/Letso_City_ConnectingRoom5.unity
     guid: 5922a5ab621abf1498b5d011a3ddc6ef
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Enemies/Letso_City_EnemyRoom1.unity
     guid: b7b2f645c9f5c2b4396ef05ce6256f50
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Enemies/Letso_City_EnemyRoom2.unity
     guid: 712a00e9f6addbc44b3b50386755a375
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Enemies/Letso_City_EnemyRoom3.unity
     guid: f1bee82de2002d5488b141c890591793
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Enemies/Letso_City_EnemyRoom4.unity
     guid: 0cac64bebaba42e4d8790f86d161b5db
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Old_Levels/Enemies/Letso_City_EnemyRoom5.unity
     guid: 11f21bcf45b99114183d50a6c7e2d4b0
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Alt Rooms/City_Down_Right_Alt.unity
+    guid: b2c29a73a6cbfb3458b8810b3beb58dd
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Alt Rooms/City_Up_Down_Left_Alt.unity
+    guid: e9f5563e12e19ce4eaf721a4c031b550
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Alt Rooms/City_Up_Down_Right_Alt.unity
+    guid: a0a2ae9f31315624d9c783628d77d833
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Alt Rooms/City_Up_Left_Alt.unity
+    guid: 4d3a079abece13b43926f22ea1eb1951
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Alt Rooms/City_Up_Left_Right_Alt.unity
+    guid: 921d729d3ff2d02439b00ce2da8894b0
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Four Ways/City_Up_Down_Left_Right.unity
+    guid: f99990a8f98546f46a866714a19abc1d
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/One Ways/City_Down.unity
+    guid: 37aa175a704015541af81786781942ed
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/One Ways/City_Left.unity
+    guid: e992f1c20ed97424db6550bbe5c5faca
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/One Ways/City_Right.unity
+    guid: b2b9b9fa1d4d3ee41a2e4b512b70c12b
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/One Ways/City_Up.unity
+    guid: 3a42e5e412fc4e648bb6c4668d1f91b3
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Secret Room One Ways/City_Treasure_Down.unity
+    guid: 1fc65594bff3335489892838b090f7bb
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Secret Room One Ways/City_Treasure_Left.unity
+    guid: fb194d672b6dc1748b8443914efa2443
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Secret Room One Ways/City_Treasure_Right.unity
+    guid: 83ab3441bde7b4a4893cc66389a28a87
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Secret Room One Ways/City_Treasure_Up.unity
+    guid: 859c92a23519a2145a508464db2f53f3
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Three Ways/City_Down_Left_Right.unity
+    guid: 07227937abd5ff74db5473fee987ff01
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Three Ways/City_Up_Down_Left.unity
+    guid: 6c64b3c02468b6e46881df427cd5e73e
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Three Ways/City_Up_Down_Right.unity
+    guid: ccd0b37ff78f21f4480cce9f9327ae92
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Three Ways/City_Up_Left_Right.unity
+    guid: fa7cbb73663a5c147bdb4fc111a0798f
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Two Ways/City_Down_Left.unity
+    guid: e4aeeb17fb07c1f478f1b6ad994559cc
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Two Ways/City_Down_Right.unity
+    guid: d37c0aed02517c142bad8fbb004080e9
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Two Ways/City_Left_Right.unity
+    guid: e58d6dd7cca40c74285c123cdbdb12dd
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Two Ways/City_Up_Down.unity
+    guid: e88683ada43141a4fa3a176cc17749d0
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Two Ways/City_Up_Left.unity
+    guid: 78b0d8f835aee7243beb3296df2e35d6
+  - enabled: 1
+    path: Assets/Scenes/Map/City_Modular/Two Ways/City_Up_Right.unity
+    guid: 6281e19cca4ce024fb5c27938b29b0a2
   - enabled: 1
     path: Assets/Scenes/Map/Town/Gas_Station_Exterior.unity
     guid: 6984b651da7273943b52c470d874b27a
@@ -153,47 +234,116 @@ EditorBuildSettings:
     path: Assets/Scenes/Map/Town/Gas_Station_Interior.unity
     guid: 42c864c9a95b60146a2649b60dd69b39
   - enabled: 1
+    path: Assets/Scenes/Map/Boss/City_Boss_Down.unity
+    guid: 8c2cb7dc050680b4ea6fafed37075a22
+  - enabled: 1
+    path: Assets/Scenes/Map/Boss/City_Boss_Left.unity
+    guid: e98582069cccd294c805d746098b1d3b
+  - enabled: 1
+    path: Assets/Scenes/Map/Boss/City_Boss_Right.unity
+    guid: d3210a44a501741479db23b74df19531
+  - enabled: 1
+    path: Assets/Scenes/Map/Boss/City_Boss_Up.unity
+    guid: 4436848c2e9b6924b90ecf0efc9e111c
+  - enabled: 0
     path: Assets/Scenes/Map/Boss/City_BossRoom.unity
     guid: ec9e8efb6cf06e84d9f8fd2a5b3b7e1e
   - enabled: 1
-    path: Assets/Scenes/Swamp/NPC_Rooms/Swamp_Shop_Interior.unity
+    path: Assets/Scenes/Map/Town/Swamp_Shop_Interior.unity
     guid: 5c2589b9bcdc4c14891d8c68fb1d43ad
   - enabled: 1
-    path: Assets/Scenes/Swamp/NPC_Rooms/Swamp_Shop_Exterior.unity
+    path: Assets/Scenes/Map/Town/Swamp_Shop_Exterior.unity
     guid: c398d4ef50359a8408149bc981061153
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/6.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/Alt_Rooms/Swamp_Down_Right_Alt.unity
+    guid: 1d7d134f5711d834eb10453917b55b07
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Alt_Rooms/Swamp_Left_Right_Alt.unity
+    guid: 9e468342abb621b46b21391111e3138e
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Alt_Rooms/Swamp_Up_Down_Left_Right_Alt.unity
+    guid: dac3e57f2ccc3cb408bed9f94d51c68c
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Alt_Rooms/Swamp_Up_Down_Right_Alt.unity
+    guid: 2af7451d361547d47a62c5f7f124311c
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Alt_Rooms/Swamp_Up_Right_Alt.unity
+    guid: 4b79a2865d46b124aa566076914d241a
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Four Ways/Swamp_Up_Down_Left_Right.unity
+    guid: 70a0e790626bf474b8941381054db7ef
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/One Ways/Swamp_Left.unity
+    guid: 6744d168b99136c43bb1e158c5c4f6f5
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/One Ways/Swamp_Up.unity
+    guid: 63d174b3886646144beac939ae6e6b41
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Three Ways/Swamp_Up_Down_Left.unity
     guid: 353b373b9786a1a449ac7c96a2655171
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/7.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/Three Ways/Swamp_Up_Down_Right.unity
     guid: 764c820cd39007040856b2bdcbd84e5f
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/8.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/One Ways/Swamp_Right.unity
     guid: 926853a25f63a5c48b2873444c3519a5
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/9.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/One Ways/Swamp_Down.unity
     guid: 1646fa2dad18319409be190a88503121
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/10.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/Secret Room One Ways/Swamp_Treasure_Down.unity
+    guid: 52f0d8bc9ab568c4891163a65ae1f733
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Secret Room One Ways/Swamp_Treasure_Left.unity
+    guid: 84bee21b98a96cd45a9ab0a1bba8b61d
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Secret Room One Ways/Swamp_Treasure_Right.unity
+    guid: afcba256ee0fb17408b0ae7bccc94dd2
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Secret Room One Ways/Swamp_Treasure_Up.unity
+    guid: acb4a6c1df1256a4bbf9a114e845987b
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Three Ways/Swamp_Up_Left_Right.unity
+    guid: 2720fa7243165d04d936f8a8d96f40f0
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Three Ways/Swamp_Down_Left_Right.unity
     guid: 6791eeeaa96c1744c8e59e83d0c7730b
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/1_Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/Two Ways/Swamp_Up_Left.unity
     guid: 073314ac8b70abe408bbb03dfb3a6b69
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/2.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/Two Ways/Swamp_Down_Right.unity
     guid: beb75c7a7297f834a9f164798c8626f7
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/3.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/Two Ways/Swamp_Down_Left.unity
     guid: 4e1ee9495e5b3e2488e11538c687b82d
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/4.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/Two Ways/Swamp_Up_Down.unity
+    guid: 9bd5238bcb7be204caed4be015088afe
+  - enabled: 1
+    path: Assets/Scenes/Map/Swamp_Modular/Two Ways/Swamp_Left_Right.unity
     guid: 9d87334df44d35644a7db720383b35ec
   - enabled: 1
-    path: Assets/Scenes/Swamp/Main_Rooms/5.Swamp.unity
+    path: Assets/Scenes/Map/Swamp_Modular/Two Ways/Swamp_Up_Right.unity
     guid: 2836bfc6929973745b57f1fd06df84a0
   - enabled: 1
-    path: Assets/Scenes/Swamp/Boss_Room/Swamp_Boss_Up.unity
+    path: Assets/Scenes/Map/Boss/Swamp_Boss_Down.unity
+    guid: 63c469e1370c6c94cb27fa3162eb06ba
+  - enabled: 1
+    path: Assets/Scenes/Map/Boss/Swamp_Boss_Left.unity
+    guid: 9591862e4653c004eb52677ad5c27a8a
+  - enabled: 1
+    path: Assets/Scenes/Map/Boss/Swamp_Boss_Right.unity
+    guid: 6afc6884eb392a948826c4781bb2c417
+  - enabled: 1
+    path: Assets/Scenes/Map/Boss/Swamp_Boss_Up.unity
+    guid: 49a853d2193f8de46a76b7a679fdb779
+  - enabled: 0
+    path: Assets/Scenes/Swamp/Boss_Room/Swamp_Boss.unity
     guid: 5fb794c5092114141a46f4736499f4db
+  - enabled: 1
+    path: Assets/Scenes/Map/Town/Office.unity
+    guid: 2776377245ba666419ea54f6b3a93fbc
   - enabled: 1
     path: Assets/Scenes/Menus/Wanted Board.unity
     guid: 5ee3503181e618d4f8c244dddf8bb915
