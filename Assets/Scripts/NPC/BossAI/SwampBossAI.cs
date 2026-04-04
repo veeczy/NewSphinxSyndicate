@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SwampBossAI : MonoBehaviour
 {
@@ -134,23 +135,33 @@ public class SwampBossAI : MonoBehaviour
         }
     }
 
+    //updated check boss count and then loads victory scene if it equals 3. Looks different cause swamp boss is being a pain
     void HandleBossDefeated()
     {
-        string bossKey = "desertBoss";
-        if (bossLevel == 1) bossKey = "cityBoss";
-        if (bossLevel == 2) bossKey = "swampBoss";
+        PlayerPrefs.SetInt("swampBoss", 1);
+        PlayerPrefs.Save();
 
-        if (PlayerPrefs.GetInt(bossKey, 0) == 0)
+        int desert = PlayerPrefs.GetInt("desertBoss", 0);
+        int city = PlayerPrefs.GetInt("cityBoss", 0);
+        int swamp = PlayerPrefs.GetInt("swampBoss", 0);
+
+        
+
+        if (desert == 1 && city == 1 && swamp == 1)
         {
-            PlayerPrefs.SetInt(bossKey, 1);
-            PlayerPrefs.SetInt("bossCounter", PlayerPrefs.GetInt("bossCounter", 0) + 1);
+          
+            SceneManager.LoadScene("VictoryScene");
+            return;
         }
 
+        int count = PlayerPrefs.GetInt("bossCounter", 0) + 1;
+        PlayerPrefs.SetInt("bossCounter", count);
         PlayerPrefs.Save();
+
         LevelManager.instance.ResetRun();
         Destroy(gameObject);
     }
-   private IEnumerator meleeAttack()
+    private IEnumerator meleeAttack()
     {
         isMelee = true;
         bossAnimator.SetBool("isAttacking", true);

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 155157071166823999}
   - component: {fileID: 301454460710164990}
   - component: {fileID: 1139236369363584754}
+  - component: {fileID: 8880186795196989794}
   m_Layer: 9
   m_Name: Shotgun
   m_TagString: Untagged
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: -6074842687553318334, guid: 6eb4d623d41d7ba43b1c566a699a4a1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -115,6 +116,7 @@ MonoBehaviour:
   toggleFlash: 0
   muzzleFlash: {fileID: 0}
   isShooting: 0
+  inGame: 0
 --- !u!82 &1139236369363584754
 AudioSource:
   m_ObjectHideFlags: 0
@@ -212,3 +214,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8880186795196989794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803231637575374788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2c53a25c72525408939545874533a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item_Weapon
+  weaponIndex: 1

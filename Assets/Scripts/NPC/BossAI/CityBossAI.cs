@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CityBossAI : MonoBehaviour
 {
@@ -144,19 +145,25 @@ public class CityBossAI : MonoBehaviour
 //END HANDLE BOSS PHASES
     }
 
+    //updated check boss count and then loads victory scene if it equals 3
     void HandleBossDefeated()
     {
-        string bossKey = "desertBoss";
-        if (bossLevel == 1) bossKey = "cityBoss";
-        if (bossLevel == 2) bossKey = "swampBoss";
 
-        if (PlayerPrefs.GetInt(bossKey, 0) == 0)
-        {
-            PlayerPrefs.SetInt(bossKey, 1);
-            PlayerPrefs.SetInt("bossCounter", PlayerPrefs.GetInt("bossCounter", 0) + 1);
-        }
+        PlayerPrefs.SetInt("cityBoss", 1);
+
+        int count = PlayerPrefs.GetInt("bossCounter", 0) + 1;
+        PlayerPrefs.SetInt("bossCounter", count);
 
         PlayerPrefs.Save();
+
+        Debug.Log("Boss Count: " + count);
+
+        if (count >= 3)
+        {
+            SceneManager.LoadScene("VictoryScene");
+            return;
+        }
+
         LevelManager.instance.ResetRun();
         Destroy(gameObject);
     }

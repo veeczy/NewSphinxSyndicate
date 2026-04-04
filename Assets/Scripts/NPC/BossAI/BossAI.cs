@@ -123,15 +123,24 @@ public class BossAI : MonoBehaviour
         }
     }
 
+    //updated check boss count and then loads victory scene if it equals 3
     void HandleBossDefeated()
     {
-        if (PlayerPrefs.GetInt(bossKey, 0) == 0)
-        {
-            PlayerPrefs.SetInt(bossKey, 1);
-            PlayerPrefs.SetInt("bossCounter", PlayerPrefs.GetInt("bossCounter", 0) + 1);
-        }
+        PlayerPrefs.SetInt("desertBoss", 1);
+
+        int count = PlayerPrefs.GetInt("bossCounter", 0) + 1;
+        PlayerPrefs.SetInt("bossCounter", count);
 
         PlayerPrefs.Save();
+
+        Debug.Log("Boss Count: " + count);
+
+        if (count >= 3)
+        {
+            SceneManager.LoadScene("VictoryScene");
+            return;
+        }
+
         LevelManager.instance.ResetRun();
         Destroy(gameObject);
     }

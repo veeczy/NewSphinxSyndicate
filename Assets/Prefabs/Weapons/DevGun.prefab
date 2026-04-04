@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8657791880217399601}
   - component: {fileID: 3076816928042717376}
   - component: {fileID: 1130534500493977853}
+  - component: {fileID: 1681001191387186118}
   m_Layer: 9
   m_Name: DevGun
   m_TagString: Untagged
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 00f2f13faaf36ae4f89a3621ec5570fb, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 1
@@ -114,6 +115,8 @@ MonoBehaviour:
   velocityMultiplier: 50
   toggleFlash: 0
   muzzleFlash: {fileID: 0}
+  isShooting: 0
+  inGame: 0
 --- !u!82 &1130534500493977853
 AudioSource:
   m_ObjectHideFlags: 0
@@ -211,3 +214,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1681001191387186118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4131928234258855427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2c53a25c72525408939545874533a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item_Weapon
+  weaponIndex: 3

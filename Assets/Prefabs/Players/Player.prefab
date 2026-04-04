@@ -176,7 +176,6 @@ GameObject:
   - component: {fileID: 2566705348305773587}
   - component: {fileID: 3797201481818275215}
   - component: {fileID: 4926514013110605406}
-  - component: {fileID: 4899432532245730738}
   - component: {fileID: 6011222854516327287}
   - component: {fileID: 2536056011199687431}
   m_Layer: 7
@@ -318,6 +317,9 @@ MonoBehaviour:
   controllerAimDist: 5
   lastStickPos: {x: 0, y: 0}
   useCursor: 1
+  inWater: 0
+  waterSpeedMultiplier: 0.5
+  waterControl: 0.2
   controller: 0
   controllerTurnSpeed: 15
   deadzone: {x: 0.5, y: 0.5}
@@ -504,23 +506,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.25
---- !u!114 &4899432532245730738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897928467854683093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe8c353bf2486074a8dff8add9a1f5d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 12
-  currentHealth: 12
-  bypassPlayerPrefs: 0
-  invincible: 0
-  Arnold: {fileID: 4897928467854683093}
 --- !u!95 &6011222854516327287
 Animator:
   serializedVersion: 7

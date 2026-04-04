@@ -10,7 +10,7 @@ public class WeaponSwitch : MonoBehaviour
     public PlayerMovement pmScript;
     public GameObject[] weaponInstances;
     public bool[] weaponInventory;
-    private int currentIndex = 0;
+    private int currentIndex = -1; // change from 0 to -1
     private float lastSwitchTime = 0f;
     void Start()
     {
@@ -23,13 +23,34 @@ public class WeaponSwitch : MonoBehaviour
             weapon.GetComponent<Shoot>().bulletSpawn = bulletSpawner;
             weapon.SetActive(false);
             weaponInstances[i] = weapon;
+            weaponInventory[i] = PlayerPrefs.GetInt("Weapon_" + i, 0) == 1; // new
         }
-
+        /*
         // First weapon equip!
         if (weaponInstances.Length > 0)
         {
             pmScript.weaponObject = weaponInstances[0];
             EquipWeapon(0);
+        }
+        */
+
+        // new, start with a random weapon, and check PlayerPrefs for saved weapon
+        pmScript.weaponObject = null;
+
+        int savedWeapon = PlayerPrefs.GetInt("CurrentWeapon", -1);
+
+        if (savedWeapon >= 0 && savedWeapon < weaponInstances.Length && weaponInventory[savedWeapon])
+        {
+            EquipWeapon(savedWeapon);
+        }
+        else
+        {
+            int randomWeapon = Random.Range(0, weaponInstances.Length);
+
+            weaponInventory[randomWeapon] = true;
+            PlayerPrefs.SetInt("Weapon_" + randomWeapon, 1);
+
+            EquipWeapon(randomWeapon);
         }
     }
 
@@ -37,12 +58,20 @@ public class WeaponSwitch : MonoBehaviour
     {
         if (weaponInstances.Length == 0) return;
 
-        // Switch via Scroll Wheel
+        // new/change like the orginal but now check the weapon list
         float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if ((scroll > 0f || Input.GetButtonDown("Next Weapon")) && weaponInventory[(currentIndex - 1 + weaponInstances.Length) % weaponInstances.Length])
+            EquipWeapon((currentIndex - 1 + weaponInstances.Length) % weaponInstances.Length);
+        else if ((scroll < 0f || Input.GetButtonDown("Last Weapon")) && weaponInventory[(currentIndex + 1) % weaponInstances.Length])
+            EquipWeapon((currentIndex + 1) % weaponInstances.Length);
+
+        /*
+        // Switch via Scroll Wheel
         if ((scroll > 0f) || (Input.GetButtonDown("Next Weapon")) && weaponInventory[(currentIndex - 1 + weaponInstances.Length) % weaponInstances.Length])
             EquipWeapon((currentIndex - 1 + weaponInstances.Length) % weaponInstances.Length);
         else if ((scroll < 0f) || (Input.GetButtonDown("Last Weapon"))  && weaponInventory[(currentIndex + 1) % weaponInstances.Length])
             EquipWeapon((currentIndex + 1) % weaponInstances.Length);
+        */
 
         // Switch via Numbers 1-9 (Will be fully fleshed out in final version)
         /*for (int i = 0; i < weaponInstances.Length; i++)
@@ -84,6 +113,8 @@ public class WeaponSwitch : MonoBehaviour
         }
         currentIndex = index;
         lastSwitchTime = Time.time;
+
+        PlayerPrefs.SetInt("CurrentWeapon", index); // save the current equipped weapn
     }
 
     public GameObject GetCurrentWeapon()
