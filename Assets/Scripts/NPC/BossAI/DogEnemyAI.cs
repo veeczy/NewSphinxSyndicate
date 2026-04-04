@@ -14,6 +14,7 @@ public class DogEnemyAI : MonoBehaviour
     public bool isRetreating = false;
     public float retreatTimer;
     public float stunTimer = 5f;//Time which player is stunned after contact
+    public GameObject stunPrefab;//Spawn prefab for shock collar visuals
     protected Rigidbody2D rb;
     public Rigidbody2D playerRb;
     protected SpriteRenderer sr;
@@ -72,7 +73,7 @@ public class DogEnemyAI : MonoBehaviour
         {
             direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
         }
-        rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
+        rb.MovePosition(Vector2.MoveTowards(rb.position, player.position, moveSpeed * Time.deltaTime));
 
         // Flip left/right only
         if (direction.x > 0) sr.flipX = false;
@@ -160,7 +161,9 @@ public class DogEnemyAI : MonoBehaviour
             playerRb.simulated = false;
             isRetreating = true;
             canRun = false;
+            GameObject stunVisual = Instantiate(stunPrefab, transform.position, transform.rotation);
             yield return new WaitForSeconds(stunTimer);
+            Destroy(stunVisual);
             canRun = true;
             playerRb.simulated = true;
         }

@@ -95,7 +95,7 @@ public class SwampBossAI : MonoBehaviour
 
         distance = Vector2.Distance(transform.position, player.position);
         direction = (player.position - transform.position).normalized;
-        bossSprite.flipX = direction.x < 0;
+        bossSprite.flipX = direction.x > 0;
 
         if(!meleeMode && isGrounded && !meleeCooldown)//(!meleeMode && isGrounded && !meleeCooldown && isContacting && !isDamaging && !isMelee)
         {
@@ -109,7 +109,7 @@ public class SwampBossAI : MonoBehaviour
             }
             if(!isMelee)
                 StartCoroutine("meleeAttack");//HANDLE MELEE DAMAGE
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);//MOVE TOWARDS PLAYER POSITION
+            rb.MovePosition(Vector2.MoveTowards(rb.position, player.position, moveSpeed * Time.deltaTime));//MOVE TOWARDS PLAYER POSITION
         }
         else if(!meleeMode && isGrounded && meleeCooldown && !waterAttacking)
         {
@@ -131,7 +131,7 @@ public class SwampBossAI : MonoBehaviour
         }
         if(!isGrounded)
         {
-            rb.MovePosition(jumpPos + direction * moveSpeed * Time.deltaTime);
+            rb.MovePosition(Vector2.MoveTowards(rb.position, jumpPos, moveSpeed * Time.deltaTime));
         }
     }
 
@@ -164,16 +164,17 @@ public class SwampBossAI : MonoBehaviour
     private IEnumerator meleeAttack()
     {
         isMelee = true;
-        bossAnimator.SetBool("isAttacking", true);
         for(int i = 0; i < 3; i++)
         {
             float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= meleeRange && isContacting)
         {
+            bossAnimator.SetBool("isAttacking", true);
             PlayerHealth ph = player.GetComponent<PlayerHealth>();
             if (ph != null)
                 ph.TakeDamage(damage);
                 yield return new WaitForSeconds(burstDelay);
+                bossAnimator.SetBool("isAttacking", false);
         }
         }  
         yield return new WaitForSeconds(meleeDelay);
@@ -205,6 +206,7 @@ public class SwampBossAI : MonoBehaviour
     IEnumerator jump()
     { 
         isGrounded = false;
+        bossAnimator.SetBool("isJumping", true);//Start jump animation
         projectileCounter = 0;
         if(onLand)
         {
@@ -219,6 +221,7 @@ public class SwampBossAI : MonoBehaviour
             onLand = true;
         }
         yield return new WaitForSeconds(jumpTimer);
+        bossAnimator.SetBool("isJumping", false);//Stop jumping animation
         isGrounded = true;
     }
 

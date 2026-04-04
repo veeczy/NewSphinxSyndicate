@@ -118,7 +118,7 @@ public class CityBossAI : MonoBehaviour
                         StartCoroutine("meleeAttack");//HANDLE MELEE DAMAGE
                     }
         }
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);//MOVE TOWARD PLAYER
+                rb.MovePosition(Vector2.MoveTowards(rb.position, player.position, moveSpeed * Time.deltaTime));//MOVE TOWARD PLAYER
             }      
             if(!dogAttacking && !dogReleased && spawnDog && !dogCooldown)
             {
