@@ -15,9 +15,9 @@ public class PlayerMovement : MonoBehaviour
 
     // Reference to the BlackJack script on the BJ NPC object
     public bool canMove = true;
-    public GameObject BlackJackObject;
-    public GameObject SlotsObject;
-    public GameObject FishingObject;
+    private GameObject BlackJackObject;
+    private GameObject SlotsObject;
+    private GameObject FishingObject;
 
     [Header("Dodge Settings")]
     public float dodgeDistance = 1f;
@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Player Objects")]
     public GameObject weaponObject;
+    public Vector3 weaponStart;
+    public Vector3 weaponEnd;
     public bool isDodging = false;
     private bool canDodge = true;
     private Vector2 dodgeStart;
@@ -92,8 +94,6 @@ public class PlayerMovement : MonoBehaviour
         BlackJackObject = GameObject.Find("BJ-NPC-Test");
         SlotsObject = GameObject.Find("Slots");
         FishingObject = GameObject.Find("Fishing-NPC-Test");
-
-
 
         anim = GetComponent<Animator>(); // NEW
 
@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         }
         aimDir = (Vector2)aimPos - (Vector2)transform.position;
         angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle), controllerTurnSpeed * Time.deltaTime);
+        offset.transform.rotation = Quaternion.Lerp(offset.transform.rotation, Quaternion.Euler(0, 0, angle), 2 * controllerTurnSpeed * Time.deltaTime); //rotates gun
     }
 
     void FixedUpdate()
@@ -302,12 +302,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (angle > 90 || angle < -90)
         {
-            GetComponent<SpriteRenderer>().flipY = true;
+            GetComponent<SpriteRenderer>().flipX = true;
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 180, 0), 2* controllerTurnSpeed * Time.deltaTime); //paper mario turn
+
+            offset.transform.position = Vector3.MoveTowards(transform.position + weaponEnd, transform.position + weaponStart, Time.deltaTime);
             weaponObject.GetComponent<SpriteRenderer>().flipY = true;
         }
         else
         {
-            GetComponent<SpriteRenderer>().flipY = false;
+            GetComponent<SpriteRenderer>().flipX = false;
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), 2* controllerTurnSpeed * Time.deltaTime); //paper mario turn
+
+            offset.transform.position = Vector3.MoveTowards(transform.position + weaponStart, transform.position + weaponEnd, Time.deltaTime);
             weaponObject.GetComponent<SpriteRenderer>().flipY = false;
         }
 
