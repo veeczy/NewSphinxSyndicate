@@ -20,7 +20,7 @@ public class BulletId : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject != sender && !simpleMode)
+        if (col.gameObject != sender && !simpleMode && !(col.CompareTag("CameraBoundary")))
         {
             for (int i = 0; i < surfaceTags.Length; i++)
             {
