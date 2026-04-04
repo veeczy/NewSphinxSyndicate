@@ -153,7 +153,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Map/Town/Gas_Station_Interior.unity
     guid: 42c864c9a95b60146a2649b60dd69b39
   - enabled: 1
-    path: Assets/Scenes/Map/Boss/City_BossRoom.unity
+    path: Assets/Scenes/Map/Boss/City_BossRoom_RightEntry.unity
     guid: ec9e8efb6cf06e84d9f8fd2a5b3b7e1e
   - enabled: 1
     path: Assets/Scenes/Swamp/Shop/Swamp_Shop_Interior.unity
@@ -215,6 +215,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map/Town/Starting_Area.unity
     guid: 15e9ec97a1f155f4a9ff1da61a60be43
+  - enabled: 1
+    path: Assets/Scenes/Map/Town/Office.unity
+    guid: 2776377245ba666419ea54f6b3a93fbc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
