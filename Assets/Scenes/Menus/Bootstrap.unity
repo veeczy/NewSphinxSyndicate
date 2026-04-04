@@ -573,39 +573,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   currentArea: 0
   desertRoomMaster:
-  - DV_Enemy1
-  - DV_Enemy2
-  - Ian_EnemyRoom1
-  - Ian_EnemyRoom2
-  - Ian_EnemyRoom3
-  - Ian_EnemyRoom4
-  - Ian_EnemyRoom5
-  - Letso_EnemyRoom1
-  - Letso_EnemyRoom2
-  - Letso_EnemyRoom3
-  - Letso_EnemyRoom4
-  - Letso_EnemyRoom5
-  - Ian_ConnectingRoom1
-  - Ian_ConnectingRoom2
-  - Ian_ConnectingRoom3
-  - Ian_ConnectingRoom4
-  - Ian_ConnectingRoom5
-  - Letso_ConnectingRoom1
-  - Letso_ConnectingRoom2
-  - Letso_ConnectingRoom3
-  - Letso_ConnectingRoom4
-  - Letso_ConnectingRoom5
+  - Desert_Down
+  - Desert_Down_Left
+  - Desert_Down_Left_Right
+  - Desert_Down_Right
+  - Desert_Left
+  - Desert_Left_Right
+  - Desert_Right
+  - Desert_Up
+  - Desert_Up_Alt
+  - Desert_Up_Down
+  - Desert_Up_Down_Alt
+  - Desert_Up_Down_Left
+  - Desert_Up_Down_Left_Right
+  - Desert_Up_Down_Left_Right_Alt
+  - Desert_Up_Down_Right
+  - Desert_Up_Down_Right_Alt
+  - Desert_Up_Left
+  - Desert_Up_Left_Alt
+  - Desert_Up_Left_Right
+  - Desert_Up_Right
   cityRoomMaster:
-  - Letso_City_EnemyRoom1
-  - Letso_City_EnemyRoom2
-  - Letso_City_EnemyRoom3
-  - Letso_City_EnemyRoom4
-  - Letso_City_EnemyRoom5
-  - Letso_City_ConnectingRoom1
-  - Letso_City_ConnectingRoom2
-  - Letso_City_ConnectingRoom3
-  - Letso_City_ConnectingRoom4
-  - Letso_City_ConnectingRoom5
+  - City_Down
+  - City_Down_Left
+  - City_Down_Left_Right
+  - City_Down_Right
+  - City_Left
+  - City_Left_Right
+  - City_Right
+  - City_Up
+  - City_Down_Right_Alt
+  - City_Up_Down
+  - City_Up_Down_Left_Alt
+  - City_Up_Down_Left
+  - City_Up_Down_Left_Right
+  - City_Up_Down_Right_Alt
+  - City_Up_Down_Right
+  - City_Up_Left_Alt
+  - City_Up_Left
+  - City_Up_Left_Right_Alt
+  - City_Up_Left_Right
+  - City_Up_Right
   swampRoomMaster:
   - Swamp_Connecting
   - Swamp_Connecting 1
@@ -621,14 +629,18 @@ MonoBehaviour:
   remainingcityRoom: []
   remainingswampRoom: []
   desertSecretRooms:
-  - DV_Treasure_BottomUp
-  - DV_Treasure_LeftRight
-  - DV_Treasure_RightLeft
-  - DV_Treasure_TopDown
-  citySecretRooms: []
+  - Desert_Treasure_Down
+  - Desert_Treasure_Left
+  - Desert_Treasure_Right
+  - Desert_Treasure_Up
+  citySecretRooms:
+  - City_Treasure_Down
+  - City_Treasure_Left
+  - City_Treasure_Right
+  - City_Treasure_Up
   swampSecretRooms: []
-  desertBossRoom: DV_Boss
-  cityBossRoom: City_BossRoom
+  desertBossRoom: Desert_Boss_Up
+  cityBossRoom: City_Boss_Up
   swampBossRoom: Swamp_Boss
   bossScene: 
   desertRoomPool: []
