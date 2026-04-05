@@ -63,6 +63,7 @@ public class FadeManager : MonoBehaviour
         canMove = false;
         yield return StartCoroutine(Fade(0f, 1f));
         SceneManager.LoadScene(sceneName);
+        canMove = true;
     }
 
     private IEnumerator FadeOutAndLoad(int sceneIndex)
@@ -71,6 +72,7 @@ public class FadeManager : MonoBehaviour
         canMove = false;
         yield return StartCoroutine(Fade(0f, 1f));
         SceneManager.LoadScene(sceneIndex);
+        canMove = true;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -81,8 +83,8 @@ public class FadeManager : MonoBehaviour
     private IEnumerator FadeIn()
     {
         yield return StartCoroutine(Fade(1f, 0f));
-        isFading = false;
         canMove = true;
+        isFading = false;
     }
 
     private IEnumerator Fade(float startAlpha, float endAlpha)

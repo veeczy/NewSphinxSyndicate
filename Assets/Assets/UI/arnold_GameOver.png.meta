@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f810e5f5c0b67854da331e16ab5af544
+guid: a8ccf291b8fe1264cbd942a2bdcf36fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6020595791812721927
-    second: arnold_win_0
+      213: -8360296430044683461
+    second: arnold_GameOver_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 270
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arnold_win_0
+      name: arnold_GameOver_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9f28acc960c827ca0800000000000000
-      internalID: -6020595791812721927
+      spriteID: b33683e01b24afb80800000000000000
+      internalID: -8360296430044683461
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      arnold_win_0: -6020595791812721927
+      arnold_GameOver_0: -8360296430044683461
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

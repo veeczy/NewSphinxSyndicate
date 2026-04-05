@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        canMove = true;
         myPlayer.linearDamping = stopSpeed;
         myPlayer.gravityScale = 0;
         playerSprite = GetComponent<SpriteRenderer>().sprite;
