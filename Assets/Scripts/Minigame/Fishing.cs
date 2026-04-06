@@ -15,6 +15,7 @@ public class Fishing : MonoBehaviour
     public bool playAgain = true;
     public bool gameActive = false;
     public bool playerNear = false;
+    public bool onWinLose = false;
     private GameObject player; 
 
 
@@ -108,7 +109,6 @@ public class Fishing : MonoBehaviour
     public string[] dialogueLines = new string[] { "", "Cast your line?", "HOOKED!" }; //dialogue the minigame can say
     public int dialogueIndex = 0; //number to call what dialogue is said
     private Animator anim;
-    public bool splashScreenActive = false;
     public int rotation = 0; //this measures how many times you have reeled a full rotation
 
     [Header("Fishing Minigame Data - Fish")]
@@ -145,6 +145,8 @@ public class Fishing : MonoBehaviour
     public bool ongoingTimer = false;
 
     [Header("Fishing Minigame Data - Reel")]
+    public bool fishScreenActive = false;
+    public bool splashScreenActive = false;
     public bool minigameScreenActive = false;
     public bool catchScreenActive = false;
     public float angle;
@@ -190,7 +192,7 @@ public class Fishing : MonoBehaviour
         {
             playAgain = true;
             canMove = false; // you don't want player to be able to move around while Gambling so need to freeze movement
-            FishScreen(); //set up screen
+            if (!fishScreenActive) { FishScreen(); } //set up screen
 
             if (!playAgain) { CloseGame(); } //hides all ui related to slots
         }
@@ -204,7 +206,7 @@ public class Fishing : MonoBehaviour
             if(!fishSpawned && !ongoingTimer) { StartTimer(spawnTimerDuration, spawnremainingDuration); }
             if(fishSpawned && !splashScreenActive && !fishHasSpawned) { SpawnFish(); }
 
-            if(hooked) { splashScreenActive = true; SplashScreen(); }
+            if(hooked && !splashScreenActive) { splashScreenActive = true; SplashScreen(); }
         }
 
         if (minigameScreenActive)
@@ -222,9 +224,9 @@ public class Fishing : MonoBehaviour
             if(rotation == hitZoneValue) { CatchProgress(); }
         }
 
-        if(catchScreenActive)
+        if(catchScreenActive && fishCatch3 && !ongoingTimer && gameActive)
         {
-            //
+            //StartCoroutine(WaitTime(5f));
         }
 
         if (!gameActive)
@@ -260,6 +262,8 @@ public class Fishing : MonoBehaviour
 
     public void InitializeGameObjects() //if anything is not linked in inspector, it will now be found
     {
+        Debug.Log("Initialized Game Objects.");
+
         //FISH UI BASE
         if (fishScreenBG == null) { fishScreenBG = FindInactiveObjectByName("FishingScreen"); }
         if (dialogueUI == null) { dialogueUI = FindInactiveObjectByName("DialogueBG-Fish"); }
@@ -326,7 +330,7 @@ public class Fishing : MonoBehaviour
         if (reel8 == null) { reel8 = FindInactiveObjectByName("Reel8"); }
 
         //FISH UI - Minigame Screen - Stars
-        if (starGroup == null) { starGroup = FindInactiveObjectByName("StarPoints"); }
+        if (starGroup == null) { starGroup = FindInactiveObjectByName("StarSpace"); }
         if (star1 == null) { star1 = FindInactiveObjectByName("Star1"); }
         if (star2 == null) { star2 = FindInactiveObjectByName("Star2"); }
         if (star3 == null) { star3 = FindInactiveObjectByName("Star3"); }
@@ -366,13 +370,14 @@ public class Fishing : MonoBehaviour
         Object.GetComponent<Image>().sprite = NewSprite;
     }
 
-    private void StartTimer(float Duration, float RemainingDuration)
+    private void StartTimer(float Duration, float RemainingDuration) //visible timer
     {
         if(!fishSpawned) { Duration = UnityEngine.Random.Range(1f, 7f); fishHasSpawned = false; } //if fish not spawned, timer waiting for fish
         if(fishSpawned) { Duration = UnityEngine.Random.Range(0.5f, 4f); } //if fish spawned, timer for hooking it
         RemainingDuration = Duration;
         if(!ongoingTimer)
         {
+            Debug.Log("Timer has Started.");
             ongoingTimer = true;
             StartCoroutine(UpdateTimer(Duration, RemainingDuration));
         }
@@ -397,17 +402,19 @@ public class Fishing : MonoBehaviour
 
     private void EndTimer()
     {
+        Debug.Log("Timer has ended.");
         if (fishSpawned) { fishSpawned = false; HideUI(fishShadowSmall); HideUI(fishShadowMedium); HideUI(fishShadowLarge); } //if fish spawn is true, it means this timer is for hooking and if you dont do it in time the fish gets away
         else if (!fishSpawned) { fishSpawned = true; hooked = false; } //if fish spawn is false, it means this timer is for spawning said fish and needs to be turned true when done;
         ongoingTimer = false;
     }
 
-    private IEnumerator WaitTime(float Duration)
+    private IEnumerator WaitTime(float Duration) //invisible timer
     {
-        //yield return new WaitForSeconds(Duration);
+        //Debug.Log("Wait Time is Called.");
+
         if (splashScreenActive) { yield return new WaitForSeconds(Duration); MinigameScreen(); } //if this is timer for splash screen, then it needs to call minigame screen when done
         if (minigameScreenActive && !reelTimeComplete) { reelTimeComplete = true; hasDecreased = false; yield return new WaitForSeconds(Duration); DecreaseRotation(); } //if this is timer for reeling, then it decreases rotation as time passes
-        if (fishCatch3) { yield return new WaitForSeconds(Duration); CatchScreen(); }
+        if (fishCatch3 && !catchScreenActive && !fishScreenActive && minigameScreenActive) {yield return new WaitForSeconds(Duration); CatchScreen(); } //if got all three reel, small delay to show star got before changing scenes
     }
 
     public bool ReturnMovement()
@@ -455,47 +462,53 @@ public class Fishing : MonoBehaviour
 
     public void CatchProgress()
     {
-        if(!fishCatch1 && rotation == hitZoneValue) { fishCatch1 = true; UpdateSprite(star1, starSprites[1]); rotation = 0; hitZoneValue = UnityEngine.Random.Range(7, 16); } //first star
+        Debug.Log("Fish Catch Progress Increase.");
+        if (!fishCatch1 && rotation == hitZoneValue) { fishCatch1 = true; UpdateSprite(star1, starSprites[1]); rotation = 0; hitZoneValue = UnityEngine.Random.Range(7, 16); } //first star
         if(!fishCatch2 && fishCatch1 && rotation == hitZoneValue) { fishCatch2 = true; UpdateSprite(star2, starSprites[1]); rotation = 0; hitZoneValue = UnityEngine.Random.Range(7, 16); } //second star
         if(!fishCatch3 && fishCatch2 && rotation == hitZoneValue) { fishCatch3 = true; UpdateSprite(star3, starSprites[1]); SuccessCaught(); } //third star
     }
 
     public void SuccessCaught()
     {
+        Debug.Log("Fish Caught Successfully!");
         StartCoroutine(WaitTime(.25f));
     }
 
     public void SpawnFish()
     {
-        //randomly generate fish
         fishHasSpawned = true;
         if(!ongoingTimer)
         {
+            Debug.Log("Fish Spawned.");
             ranSize = UnityEngine.Random.Range(1, 3);
             ranSkill = UnityEngine.Random.Range(1, 3);
-            hitZoneValue = UnityEngine.Random.Range(7, 16);
+            hitZoneValue = UnityEngine.Random.Range(7, 14);
         }
 
         if(ranSkill == 1) //if difficulty easy
         {
+            Debug.Log("Fish is Easy Difficulty.");
             fishPull = 1.5f;
             successZoneHB = successZoneEasy;
         }
 
         if(ranSkill == 2) //if difficulty normal
         {
-            fishPull = 1f;
+            Debug.Log("Fish is Normal Difficulty.");
+            fishPull = 1.35f;
             successZoneHB = successZoneNormal;
         }
 
         if(ranSkill == 3) //if difficulty hard
         {
-            fishPull = .75f;
+            Debug.Log("Fish is Hard Difficulty.");
+            fishPull = 1.2f;
             successZoneHB = successZoneHard;
         }
 
         if(ranSize == 1) //if fish small
         {
+            Debug.Log("Fish is Small.");
             fishSpeciesIndex = UnityEngine.Random.Range(0, fishSmallSpecies.Length); 
             fishSpecies = fishSmallSpecies[fishSpeciesIndex];
             displayFish.GetComponent<Image>().sprite = fishSmallSprite[fishSpeciesIndex];
@@ -504,6 +517,7 @@ public class Fishing : MonoBehaviour
 
         if (ranSize == 2) //if fish medium
         {
+            Debug.Log("Fish is Medium.");
             fishSpeciesIndex = UnityEngine.Random.Range(0, fishMediumSpecies.Length);
             fishSpecies = fishMediumSpecies[fishSpeciesIndex];
             displayFish.GetComponent<Image>().sprite = fishMediumSprite[fishSpeciesIndex];
@@ -512,6 +526,7 @@ public class Fishing : MonoBehaviour
 
         if (ranSize == 3) //if fish large
         {
+            Debug.Log("Fish is Large.");
             fishSpeciesIndex = UnityEngine.Random.Range(0, fishLargeSpecies.Length);
             fishSpecies = fishLargeSpecies[fishSpeciesIndex];
             displayFish.GetComponent<Image>().sprite = fishLargeSprite[fishSpeciesIndex];
@@ -524,14 +539,21 @@ public class Fishing : MonoBehaviour
 
     public void FishScreen() //trigger base screen - asks if you want to play
     {
-        ShowUI(fishScreenBG); //shows all ui related to fish
-        ShowUI(fishScreen); //fishing screen for start
-        ShowUI(water);
+        //ResetGame();
+        Debug.Log("Fish Screen Opened.");
+        fishScreenActive = true;
+
         //hide all other existing screens in case any is open to reset sceen
         HideUI(waitingScreen); 
         HideUI(splashScreen);
         HideUI(minigameScreen);
         HideUI(catchScreen);
+        HideUI(displayFish);
+
+        ShowUI(fishScreenBG); //shows all ui related to fish
+        ShowUI(fishScreen); //fishing screen for start
+        ShowUI(water);
+        
 
         dialogueIndex = 1; //ask if they want to cast a line
         StartDialogue();
@@ -543,6 +565,9 @@ public class Fishing : MonoBehaviour
 
     public void WaitingScreen() //trigger screen for waiting for fish to spawn
     {
+        Debug.Log("Waiting Screen opened.");
+        fishScreenActive = false;
+
         ShowUI(fishScreenBG); // background
         ShowUI(waitingScreen); // current screen
         HideUI(splashScreen); // hide future screens
@@ -577,6 +602,9 @@ public class Fishing : MonoBehaviour
 
     public void SplashScreen() //trigger screen for when fish is hooked - decorative
     {
+        Debug.Log("Splash Screen Opened.");
+        splashScreenActive = true;
+
         //show off animation that fish is hooked
         ShowUI(fishScreenBG); // background
         HideUI(waitingScreen); // hide waiting screen
@@ -594,7 +622,6 @@ public class Fishing : MonoBehaviour
 
         ShowUI(fishHookedText);
         ShowUI(particlesGroup);
-        splashScreenActive = true;
         AnimateText(fishHookedText, splashScreenActive);
 
         //delay then go to next
@@ -603,6 +630,8 @@ public class Fishing : MonoBehaviour
 
     public void MinigameScreen() //trigger screen for minigame
     {
+        Debug.Log("Minigame Screen Opened.");
+        fishScreenActive = false;
         minigameScreenActive = true;
 
         //screens
@@ -643,6 +672,8 @@ public class Fishing : MonoBehaviour
 
     public void ResetStars()
     {
+        //Debug.Log("Star Data Reset");
+
         UpdateSprite(star1, starSprites[0]);
         UpdateSprite(star2, starSprites[0]);
         UpdateSprite(star3, starSprites[0]);
@@ -654,6 +685,8 @@ public class Fishing : MonoBehaviour
 
     public void ResetReel()
     {
+        //Debug.Log("Reel Data Reset");
+
         UpdateSprite(reel1, reelSprites[0]);
         UpdateSprite(reel2, reelSprites[0]);
         UpdateSprite(reel3, reelSprites[0]);
@@ -675,7 +708,9 @@ public class Fishing : MonoBehaviour
 
     public void Reeling()
     {
-        if(angle >= 70 && angle <= 105) //range for star 1
+        //Debug.Log("Measuring Reeling.");
+
+        if (angle >= 70 && angle <= 105) //range for star 1
         {
             UpdateSprite(reel1, reelSprites[1]);
             star1Hit = true;
@@ -734,6 +769,8 @@ public class Fishing : MonoBehaviour
 
     public void CatchScreen() //trigger screen for when fish is caught - win screen
     {
+        Debug.Log("Catch Screen Opened.");
+        fishScreenActive = false;
         catchScreenActive = true;
         minigameScreenActive = false;
 
@@ -752,19 +789,48 @@ public class Fishing : MonoBehaviour
         AnimateText(displayFishTextPanel, catchScreenActive);
 
         //change fish sprite to the fish species
-        ShowUI(displayFish);
-        
+        if (catchScreenActive) { ShowUI(displayFish); }
+
         //onWinLose reuse so when you click it closes and asks if you want to play again
+        onWinLose = true;
     }
 
     public void ResetGame() //reset all game data
     {
+        Debug.Log("Data Reset");
 
+        ResetReel();
+        ResetStars();
+        fishCatch3 = false;
+
+        gameActive = false;
+        //playAgain = false;
+        //isTalking = false;
+        canMove = true;
+        onWinLose = false;
+
+        catchScreenActive = false;
+        minigameScreenActive = false;
+        splashScreenActive = false;
+        fishScreenActive = false;
+
+        fishHasSpawned = false;
+        fishSpawned = false;
+        hooked = false;
     }
+
+    public void RestartGame()
+    {
+        ResetGame();
+        FishScreen();
+    }
+
 
     public void CloseGame() //hide all screens related to fishing and save data
     {
-        HideUI(fishScreen); //hide UI related
+        Debug.Log("Game Closed.");
+
+        HideUI(fishScreenBG); //hide UI related
 
         ResetGame(); //reset game data
 
