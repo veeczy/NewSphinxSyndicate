@@ -1009,7 +1009,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a7cd5061305f40d47a46ee6666469379, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2725,7 +2725,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a7cd5061305f40d47a46ee6666469379, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3481,7 +3481,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 7.8961096
+      m_AnimationSpeed: 11.666434
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 6, z: 0}
@@ -3490,7 +3490,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 1.3496325
+      m_AnimationSpeed: 11.897922
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 6, z: 0}
@@ -3499,7 +3499,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 4.0010457
+      m_AnimationSpeed: 4.768246
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: 6, z: 0}
@@ -3508,7 +3508,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 4.1230764
+      m_AnimationSpeed: 9.6168165
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 6, z: 0}
@@ -3517,7 +3517,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 5.4127216
+      m_AnimationSpeed: 1.2545251
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: 6, z: 0}
@@ -3526,7 +3526,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 10.536795
+      m_AnimationSpeed: 1.2065026
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -4417,6 +4417,7 @@ GameObject:
   - component: {fileID: 276869977}
   - component: {fileID: 276869976}
   - component: {fileID: 276869974}
+  - component: {fileID: 276869980}
   m_Layer: 10
   m_Name: Bartender-NPC-Test
   m_TagString: Untagged
@@ -4563,8 +4564,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: d5d79685b69f77e4fac70f6631cc21f7, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: 969fed717919c694eb1757c2429410e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4591,9 +4592,31 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.68, y: 3.91}
+  m_AnchoredPosition: {x: -3.68, y: 3.869}
   m_SizeDelta: {x: 0.5981, y: 0.6758}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &276869980
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276869973}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb256b14c644b334881f8c580637a3d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &338642038
 GameObject:
   m_ObjectHideFlags: 0
@@ -5304,6 +5327,7 @@ GameObject:
   - component: {fileID: 454826619}
   - component: {fileID: 454826618}
   - component: {fileID: 454826617}
+  - component: {fileID: 454826622}
   m_Layer: 10
   m_Name: Guest-NPC-Test (1)
   m_TagString: Untagged
@@ -5366,7 +5390,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5, y: 1}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5448,7 +5472,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 0499992feed4b7745a393167e0c99c56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 936133cc446b2ba49b7471ca24d92538, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5468,16 +5492,38 @@ RectTransform:
   m_GameObject: {fileID: 454826616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2073310062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.33, y: -2.23}
+  m_AnchoredPosition: {x: 2.222, y: -1.796}
   m_SizeDelta: {x: 0.5981, y: 0.6758}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &454826622
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454826616}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7cb942835949b24ba34e063ea716146, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &459509983
 GameObject:
   m_ObjectHideFlags: 0
@@ -7312,7 +7358,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101214,6 +101260,7 @@ GameObject:
   - component: {fileID: 1375446521}
   - component: {fileID: 1375446520}
   - component: {fileID: 1375446519}
+  - component: {fileID: 1375446524}
   m_Layer: 10
   m_Name: Guest-NPC-Test
   m_TagString: Untagged
@@ -101276,7 +101323,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5, y: 1}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -101358,7 +101405,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 0499992feed4b7745a393167e0c99c56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0110618ef837a214482fab63de93dece, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101378,16 +101425,38 @@ RectTransform:
   m_GameObject: {fileID: 1375446518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2073310062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.478, y: -5.15}
+  m_AnchoredPosition: {x: -10.35, y: -4.61}
   m_SizeDelta: {x: 0.5981, y: 0.6758}
   m_Pivot: {x: 0.4122995, y: 0.71168256}
+--- !u!95 &1375446524
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375446518}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4451d691e6e30d448d063f1598a6748, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1384640468
 GameObject:
   m_ObjectHideFlags: 0
@@ -101940,7 +102009,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a7cd5061305f40d47a46ee6666469379, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104055,6 +104124,7 @@ GameObject:
   - component: {fileID: 1911348435}
   - component: {fileID: 1911348434}
   - component: {fileID: 1911348433}
+  - component: {fileID: 1911348437}
   m_Layer: 10
   m_Name: BJ-NPC-Test
   m_TagString: Untagged
@@ -104071,14 +104141,14 @@ RectTransform:
   m_GameObject: {fileID: 1911348431}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1999999, y: 1.1999999, z: 1.1999999}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2073310062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.49, y: -0.87}
+  m_AnchoredPosition: {x: -8.31, y: -0.64}
   m_SizeDelta: {x: 0.5981, y: 0.6758}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1911348433
@@ -104279,7 +104349,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5, y: 1}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -104361,7 +104431,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 0499992feed4b7745a393167e0c99c56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0110618ef837a214482fab63de93dece, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104372,6 +104442,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1911348437
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911348431}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4451d691e6e30d448d063f1598a6748, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1931612789
 GameObject:
   m_ObjectHideFlags: 0
@@ -104430,7 +104522,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a7cd5061305f40d47a46ee6666469379, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
