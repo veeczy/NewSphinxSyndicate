@@ -9,7 +9,7 @@ public class Door : MonoBehaviour
     public bool isSecretDoor = false;
 
     [Header("Backwards or Forwards (is this where you entered)")]
-    public bool isEntry;
+    //public bool isEntry;
     private int roomIndex;
 
     [Header("Force Scene Name (filling this overrides randomizer)")]
@@ -30,11 +30,11 @@ public class Door : MonoBehaviour
         {
             LevelManager.instance.LoadSecretRoom();
         }
-        else if (isEntry)
-        {
-            if(roomIndex > 0) { LevelManager.instance.LoadPreviousRoom(); }
-            if(roomIndex <= 0) { LevelManager.instance.ReturnToTown(); }
-        }
+        //else if (isEntry)
+        //{
+            //if(roomIndex > 0) { LevelManager.instance.LoadPreviousRoom(); }
+            //if(roomIndex <= 0) { LevelManager.instance.ReturnToTown(); }
+        //}
         else
         {
             LevelManager.instance.LoadNextRoom();
