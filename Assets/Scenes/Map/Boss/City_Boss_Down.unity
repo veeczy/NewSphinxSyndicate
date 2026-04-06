@@ -27974,11 +27974,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -327.44913
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10.863724
+      value: 177
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -35169,6 +35169,10 @@ PrefabInstance:
       value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5578455290790024149, guid: b41a582915321ef4482ab494fd52047e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578455290790024149, guid: b41a582915321ef4482ab494fd52047e, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -35179,6 +35183,10 @@ PrefabInstance:
     - target: {fileID: 6752870052120019323, guid: b41a582915321ef4482ab494fd52047e, type: 3}
       propertyPath: m_Size.y
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752870052120019323, guid: b41a582915321ef4482ab494fd52047e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6752870052120019323, guid: b41a582915321ef4482ab494fd52047e, type: 3}
       propertyPath: m_Offset.x
@@ -35239,6 +35247,10 @@ PrefabInstance:
     - target: {fileID: 7883565597260841302, guid: b41a582915321ef4482ab494fd52047e, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8941264894603243688, guid: b41a582915321ef4482ab494fd52047e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35331,6 +35343,14 @@ PrefabInstance:
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 8d4cae78448eafc45948300182722470, type: 3}
+    - target: {fileID: 217066545272836644, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844704270189968715, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4736883666061568222, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.46
@@ -35374,6 +35394,14 @@ PrefabInstance:
     - target: {fileID: 4897928467854683093, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897928467854683093, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926514013110605406, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7233425569726320240, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: footstepAudio

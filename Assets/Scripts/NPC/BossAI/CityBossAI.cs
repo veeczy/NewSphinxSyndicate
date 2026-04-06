@@ -72,6 +72,9 @@ public class CityBossAI : MonoBehaviour
     public bool isMelee = false;
     public bool isContacting = false;
 
+    public KeyCode heavyDamageKey = KeyCode.J; // NEW
+    public int heavyDamageAmount = 15; // NEW
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -90,6 +93,15 @@ public class CityBossAI : MonoBehaviour
             healthUI.value = health;
             Debug.Log("DEBUG: Boss took " + debugDamageAmount + " damage. Health = " + health);
         }
+
+        // J KEY DAMAGE
+        if (Input.GetKeyDown(heavyDamageKey))
+        {
+            health -= heavyDamageAmount;
+            healthUI.value = health;
+            Debug.Log("J HIT: Boss took " + heavyDamageAmount + " damage. Health = " + health);
+        }
+
         // DEATH CHECK (runs once)
         if (health <= 0 && !hasDied)
         {

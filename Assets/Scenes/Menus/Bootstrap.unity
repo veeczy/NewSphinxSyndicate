@@ -575,14 +575,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   currentArea: 0
   desertRoomMaster:
-  - Desert_Down
   - Desert_Down_Left
   - Desert_Down_Left_Right
   - Desert_Down_Right
-  - Desert_Left
   - Desert_Left_Right
-  - Desert_Right
-  - Desert_Up
   - Desert_Up_Alt
   - Desert_Up_Down
   - Desert_Up_Down_Alt
@@ -596,14 +592,10 @@ MonoBehaviour:
   - Desert_Up_Left_Right
   - Desert_Up_Right
   cityRoomMaster:
-  - City_Down
   - City_Down_Left
   - City_Down_Left_Right
   - City_Down_Right
-  - City_Left
   - City_Left_Right
-  - City_Right
-  - City_Up
   - City_Down_Right_Alt
   - City_Up_Down
   - City_Up_Down_Left_Alt
@@ -617,14 +609,10 @@ MonoBehaviour:
   - City_Up_Left_Right
   - City_Up_Right
   swampRoomMaster:
-  - Swamp_Down
   - Swamp_Down_Left
   - Swamp_Down_Left_Right
   - Swamp_Down_Right
-  - Swamp_Left
   - Swamp_Left_Right
-  - Swamp_Right
-  - Swamp_Up
   - Swamp_Down_Right_Alt
   - Swamp_Up_Down
   - Swamp_Left_Right_Alt
