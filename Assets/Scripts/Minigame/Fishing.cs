@@ -200,7 +200,7 @@ public class Fishing : MonoBehaviour
 
         if (gameActive && !minigameScreenActive && !catchScreenActive)
         {
-            if(Input.GetButtonDown("Shoot") && fishSpawned) { hooked = true; } //if press when fish is spawned, you hook fish
+            if(Input.GetButton("Shoot") && fishSpawned) { hooked = true; } //if press when fish is spawned, you hook fish
 
             //spawning for fish
             if(!fishSpawned && !ongoingTimer) { StartTimer(spawnTimerDuration, spawnremainingDuration); }
