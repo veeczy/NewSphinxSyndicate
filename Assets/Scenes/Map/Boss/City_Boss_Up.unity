@@ -124,6 +124,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4897928467854683093, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
   m_PrefabInstance: {fileID: 2114000704}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &129694425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 129694426}
+  - component: {fileID: 129694427}
+  m_Layer: 0
+  m_Name: WinTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &129694426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129694425}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.2634902, y: 1.6139903, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1407463241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &129694427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129694425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94feb0a9756596445b87cd91ffdfe099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WinTrigger
+  target: {fileID: 1776807848}
+  winSceneName: WinScene
 --- !u!1001 &137662764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31769,7 +31815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_AnchorMin.x
@@ -31777,7 +31823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -31829,11 +31875,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 180
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 7753135739038794704, guid: 3d7a7122237707b42bb5a89845a5535c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -31980,6 +32026,7 @@ Transform:
   - {fileID: 1866343505}
   - {fileID: 1221462093}
   - {fileID: 386508084}
+  - {fileID: 129694426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467055259
@@ -32501,6 +32548,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6843089427659254959, guid: b41a582915321ef4482ab494fd52047e, type: 3}
   m_PrefabInstance: {fileID: 1776807846}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1776807848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4631927169213410237, guid: b41a582915321ef4482ab494fd52047e, type: 3}
+  m_PrefabInstance: {fileID: 1776807846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3bd7a861ecff143beeb8af3d6bcbd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityBossAI
 --- !u!1001 &1865339373
 PrefabInstance:
   m_ObjectHideFlags: 0
