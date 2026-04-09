@@ -11,7 +11,8 @@ public class SnakeAI : EnemyAI
     private PlayerHealth playerHealth;
     private PlayerMovement playerMovement;
 
-    private float savedPlayerSpeed;
+    private static int activeGrabCount = 0;
+    private static float savedPlayerSpeed;
 
     protected override void Update()
     {
@@ -20,7 +21,6 @@ public class SnakeAI : EnemyAI
 
         if (isGrabbing)
         {
-            // stick to player while grabbing
             transform.position = player.position;
             CheckHealth();
             return;
@@ -40,7 +40,6 @@ public class SnakeAI : EnemyAI
         CheckHealth();
     }
 
-
     void StartGrab()
     {
         if (isGrabbing) return;
@@ -52,7 +51,12 @@ public class SnakeAI : EnemyAI
 
         if (playerMovement != null)
         {
-            savedPlayerSpeed = playerMovement.speed;
+            if (activeGrabCount == 0)
+            {
+                savedPlayerSpeed = playerMovement.speed;
+            }
+
+            activeGrabCount++;
             playerMovement.speed = 0f;
 
             if (playerMovement.myPlayer != null)
@@ -82,10 +86,20 @@ public class SnakeAI : EnemyAI
 
     void ReleasePlayer()
     {
+        if (!isGrabbing) return;
+
         isGrabbing = false;
 
         if (playerMovement != null)
-            playerMovement.speed = savedPlayerSpeed;
+        {
+            activeGrabCount--;
+
+            if (activeGrabCount <= 0)
+            {
+                activeGrabCount = 0;
+                playerMovement.speed = savedPlayerSpeed;
+            }
+        }
     }
 
     void OnDestroy()

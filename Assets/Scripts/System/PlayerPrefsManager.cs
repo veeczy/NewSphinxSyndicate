@@ -40,16 +40,8 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.SetFloat("gamma", 0.5f);
 
         //SETTINGS DATA
-        if(debugSceneChange == "") { debugSceneChange = "MainMenu"; }
+        if (debugSceneChange == "") { debugSceneChange = "MainMenu"; }
         SceneManager.LoadScene(debugSceneChange);
-
-        //WEAPON DATA
-        PlayerPrefs.SetInt("CurrentWeapon", -1);
-
-        for (int i = 0; i < 4; i++)
-        {
-            PlayerPrefs.SetInt("Weapon_" + i, 0);
-        }
 
     }
 
