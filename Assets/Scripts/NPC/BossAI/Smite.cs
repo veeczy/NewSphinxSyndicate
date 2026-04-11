@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 public class Smite : MonoBehaviour
 {
+    public Sprite indicatorSprite;
+    public Sprite smiteAttackSprite;
+    public SpriteRenderer smiteSprite;
     public float countdownTimer;
     public float dmgTimer;
     public int smiteDamage;
@@ -26,7 +29,9 @@ public class Smite : MonoBehaviour
     IEnumerator dmgZone()
     {
         isRunning = true;
+        smiteSprite.sprite = indicatorSprite;
         yield return new WaitForSeconds(countdownTimer);
+        smiteSprite.sprite = smiteAttackSprite;
         doDamage = true;
         if(gameObject.GetComponent<AudioSource>())
         gameObject.GetComponent<AudioSource>().PlayOneShot(smiteSound);

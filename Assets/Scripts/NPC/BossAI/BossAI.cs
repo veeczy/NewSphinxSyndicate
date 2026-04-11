@@ -9,7 +9,7 @@ public class BossAI : MonoBehaviour
     public SpriteRenderer bossSprite;
     public Animator bossAnimator;
     public Rigidbody2D rb;
-    protected Transform player;
+    public Transform player;
     public int damage = 1;
 
     [Header("Health")]
@@ -63,19 +63,6 @@ public class BossAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        switch (LevelManager.instance.currentArea)
-        {
-            case LevelManager.AreaType.City:
-                bossKey = "cityBoss";
-                break;
-            case LevelManager.AreaType.Swamp:
-                bossKey = "swampBoss";
-                break;
-            case LevelManager.AreaType.Desert:
-                bossKey = "desertBoss";
-                break;
-        }
-
         // DEBUG DAMAGE
         if (Input.GetKeyDown(debugDamageKey))
         {

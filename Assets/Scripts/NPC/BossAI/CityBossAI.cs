@@ -207,7 +207,9 @@ private IEnumerator meleeAttack()
     {
         isMelee = true;
         bossAnimator.SetBool("isWalking", false);
+        bossAnimator.SetBool("isAttacking", true);
         yield return new WaitForSeconds(meleeDelay);
+        bossAnimator.SetBool("isAttacking", false);
         isMelee = false;
     }
     IEnumerator closeAttack()

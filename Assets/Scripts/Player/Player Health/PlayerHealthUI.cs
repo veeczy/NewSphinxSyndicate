@@ -103,7 +103,7 @@ public class PlayerHealthUI : MonoBehaviour
         }
 
         int hp = playerHealth.currentHealth; // now 0–12
-        Debug.Log("PHUI Update hp = " + hp);
+        //Debug.Log("PHUI Update hp = " + hp);
 
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -111,7 +111,7 @@ public class PlayerHealthUI : MonoBehaviour
             int heartHP = hp - (i * 4);
             heartHP = Mathf.Clamp(heartHP, 0, 4);
 
-            Debug.Log("PHUI heart " + i + " value = " + heartHP);
+            //Debug.Log("PHUI heart " + i + " value = " + heartHP);
 
             if (heartHP == 4) hearts[i].sprite = fullHeart;
             else if (heartHP == 3) hearts[i].sprite = threeQuarterHeart;
@@ -123,7 +123,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     void DebugHearts(string fromWhere)
     {
-        Debug.Log("PHUI DebugHearts from " + fromWhere);
+        //Debug.Log("PHUI DebugHearts from " + fromWhere);
 
         if (hearts == null)
         {

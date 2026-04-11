@@ -150,6 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2924db3f86c06d342878c0bf717f8a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Smite
+  indicatorSprite: {fileID: 21300000, guid: bf9539af559ee1c4699b3c95431f9174, type: 3}
+  smiteAttackSprite: {fileID: 21300000, guid: 8d4bfd570eb24434eb6d172bf3f867d0, type: 3}
+  smiteSprite: {fileID: 8310469832690682457}
   countdownTimer: 3
   dmgTimer: 2
   smiteDamage: 3

@@ -117,6 +117,7 @@ public class SwampBossAI : MonoBehaviour
             {
                 StartCoroutine("jump");
             }
+            if(isGrounded)
             StartCoroutine("waterAttack");//WATER ATTACK
         }
 
