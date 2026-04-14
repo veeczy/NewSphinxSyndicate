@@ -3481,7 +3481,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 11.666434
+      m_AnimationSpeed: 3.496111
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 6, z: 0}
@@ -3490,7 +3490,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 11.897922
+      m_AnimationSpeed: 2.7822773
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 6, z: 0}
@@ -3499,7 +3499,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 4.768246
+      m_AnimationSpeed: 9.954303
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: 6, z: 0}
@@ -3508,7 +3508,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 9.6168165
+      m_AnimationSpeed: 8.500268
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 6, z: 0}
@@ -3517,7 +3517,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 1.2545251
+      m_AnimationSpeed: 9.465762
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: 6, z: 0}
@@ -3526,7 +3526,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 1.2065026
+      m_AnimationSpeed: 4.1539907
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -4479,7 +4479,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.010246038, y: -0.26278722}
+  m_Offset: {x: 0.16510749, y: -0.5895496}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4489,7 +4489,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.258195, y: 2.5255744}
+  m_Size: {x: 2.4906855, y: 0.78731894}
   m_EdgeRadius: 0
 --- !u!50 &276869977
 Rigidbody2D:
@@ -4585,14 +4585,14 @@ RectTransform:
   m_GameObject: {fileID: 276869973}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2073310062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.68, y: 3.869}
+  m_AnchoredPosition: {x: -3.5710099, y: 4.12749}
   m_SizeDelta: {x: 0.5981, y: 0.6758}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &276869980
@@ -5492,14 +5492,14 @@ RectTransform:
   m_GameObject: {fileID: 454826616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2073310062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.222, y: -1.796}
+  m_AnchoredPosition: {x: 2.4289901, y: -1.37251}
   m_SizeDelta: {x: 0.5981, y: 0.6758}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &454826622
@@ -101425,7 +101425,7 @@ RectTransform:
   m_GameObject: {fileID: 1375446518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2073310062}
@@ -103420,7 +103420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   onTrigger: 1
   isSecretDoor: 0
-  isEntry: 0
   sceneName: 
 --- !u!4 &1792755546
 Transform:
@@ -104141,7 +104140,7 @@ RectTransform:
   m_GameObject: {fileID: 1911348431}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2073310062}
