@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: acd1d6484443f564599fd7472600b371, type: 3}
+  m_Texture: {fileID: 2800000, guid: 37ad4c47070181c4cb91da58b956bdf2, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1676,18 +1676,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   currentArea: 0
-  desertRoomIndexes: 0600000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000110000001000000012000000130000001400000015000000160000001700000018000000190000001a0000001b000000
-  cityRoomIndexes: 22000000230000002400000025000000260000002700000028000000290000002a0000002b000000
-  swampRoomIndexes: 2f000000300000003100000032000000330000003400000035000000360000003700000038000000
-  desertSecretRoomIndexes: 050000001e0000001f000000
-  citySecretRoomIndexes: 
-  swampSecretRoomIndexes: 
-  desertBossRoomIndex: 7
-  cityBossRoomIndex: 60
-  swampBossRoomIndex: 57
+  desertRoomMaster: []
+  cityRoomMaster: []
+  swampRoomMaster: []
+  remainingdesertRoom: []
+  remainingcityRoom: []
+  remainingswampRoom: []
+  desertSecretRooms: []
+  citySecretRooms: []
+  swampSecretRooms: []
+  desertbossRooms: []
+  desertBossRoom: 
+  citybossRooms: []
+  cityBossRoom: 
+  swampbossRooms: []
+  swampBossRoom: 
+  bossScene: 
+  desertRoomPool: []
+  cityRoomPool: []
+  swampRoomPool: []
+  randomRoomIndex: 0
+  randomRoomValue: 
   maxRoomsBeforeBoss: 10
   roomsCompleted: 0
-  resetSceneIndex: 2
+  currentRoom: 
+  currentRoomIndex: 0
+  firstRoom: 0
+  enemiesDefeated: 0
+  roomsCleared: 
+  resetSceneName: 
+  desertBossClear: 0
+  cityBossClear: 0
+  swampBossClear: 0
+  AllClear: 0
 --- !u!4 &1831634118
 Transform:
   m_ObjectHideFlags: 0

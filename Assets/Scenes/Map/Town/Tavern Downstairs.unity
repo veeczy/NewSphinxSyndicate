@@ -700,7 +700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3165900961447319827, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
+  m_Sprite: {fileID: 4308117831312523991, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3481,7 +3481,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 11.666434
+      m_AnimationSpeed: 9.508941
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 6, z: 0}
@@ -3490,7 +3490,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 11.897922
+      m_AnimationSpeed: 1.1647455
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 6, z: 0}
@@ -3499,7 +3499,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 4.768246
+      m_AnimationSpeed: 5.5662026
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: 6, z: 0}
@@ -3508,7 +3508,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 9.6168165
+      m_AnimationSpeed: 11.42003
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 6, z: 0}
@@ -3517,7 +3517,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 1.2545251
+      m_AnimationSpeed: 4.5609636
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: 6, z: 0}
@@ -3526,7 +3526,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 1.2065026
+      m_AnimationSpeed: 11.549787
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -4835,7 +4835,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3165900961447319827, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
+  m_Sprite: {fileID: 4308117831312523991, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -100915,7 +100915,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3165900961447319827, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
+  m_Sprite: {fileID: 4308117831312523991, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -103420,7 +103420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   onTrigger: 1
   isSecretDoor: 0
-  isEntry: 0
   sceneName: 
 --- !u!4 &1792755546
 Transform:
@@ -104294,17 +104293,17 @@ MonoBehaviour:
   takeMoney: 0
   perfectScore: 1
   creditSprites:
-  - {fileID: -3165900961447319827, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: 4162654858106537688, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: -2490347125135155694, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: 1430861672571420075, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: 4330612674243830785, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: 3251297493403104950, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: 2614713867975450342, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: -3981149375017666691, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: 1011965255162748082, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: -707700386920030021, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
-  - {fileID: 1408777318490569171, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
+  - {fileID: 4308117831312523991, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: -7415923299472190941, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: -5435237688880294741, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: -3139877859451316586, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: 4096004025522177507, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: 5864333483251108556, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: -4668488919237166563, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: 3632791529089188756, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: -9212816370486394961, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: -4517071451864051022, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
+  - {fileID: -3145565271903232582, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
   creditsString: 
   ones: 0
   tens: 0
@@ -105336,7 +105335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3165900961447319827, guid: 9e250a14b33872e4cb4d7b3b2b8deb0f, type: 3}
+  m_Sprite: {fileID: 4308117831312523991, guid: af492ccad62663b46b39c142caa2f6f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
