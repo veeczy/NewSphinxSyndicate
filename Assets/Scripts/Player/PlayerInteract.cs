@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteract : MonoBehaviour
 {
     [Header("Interaction Settings")]
     public float interactRange = 2f;
@@ -61,6 +61,8 @@ public class PlayerInteraction : MonoBehaviour
         talkingToNPC = currentNPC;   
         dialogueUI.SetActive(true);
         dialogueText.text = currentNPC.dialogueLines[dialogueIndex];
+        talkingToNPC.StartTalkingAnimation();
+        talkingToNPC.hasSpoken = true;
     }
 
     void NextDialogue()
@@ -84,6 +86,10 @@ public class PlayerInteraction : MonoBehaviour
         dialogueUI.SetActive(false);
         isDialogueActive = false;
         dialogueIndex = 0;
+        if (talkingToNPC != null)
+        {
+            talkingToNPC.StopTalkingAnimation();
+        }
         talkingToNPC = null;   
     }
 

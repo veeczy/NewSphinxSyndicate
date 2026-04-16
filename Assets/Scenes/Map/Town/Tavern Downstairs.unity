@@ -3481,7 +3481,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 3.496111
+      m_AnimationSpeed: 8.442161
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 6, z: 0}
@@ -3490,7 +3490,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 2.7822773
+      m_AnimationSpeed: 10.567626
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 6, z: 0}
@@ -3499,7 +3499,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 9.954303
+      m_AnimationSpeed: 6.281572
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: 6, z: 0}
@@ -3508,7 +3508,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 8.500268
+      m_AnimationSpeed: 2.1723633
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 6, z: 0}
@@ -3517,7 +3517,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 9.465762
+      m_AnimationSpeed: 6.9303465
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: 6, z: 0}
@@ -3526,7 +3526,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 4.1539907
+      m_AnimationSpeed: 4.668408
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -4437,6 +4437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410ad2898dd92ee4499bb4ab44417358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
+  npcType: 0
   dialogueLines:
   - 'Howdy partner. Not sure how a scrawny thing
 
@@ -4445,6 +4446,7 @@ MonoBehaviour:
   - 'If you want to see our bounties, there''s a board
 
     up the stairs.'
+  hasSpoken: 0
 --- !u!61 &276869976
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5347,11 +5349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410ad2898dd92ee4499bb4ab44417358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
+  npcType: 0
   dialogueLines:
   - 'Those poor people in the city. They thought they
 
     got saved but now they''re
     under new management.'
+  hasSpoken: 0
 --- !u!61 &454826618
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99412,6 +99416,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1545368741}
     - target: {fileID: 4736883666061568222, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736883666061568222, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736883666061568222, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736883666061568222, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.91
       objectReference: {fileID: 0}
@@ -99450,6 +99466,10 @@ PrefabInstance:
     - target: {fileID: 4736883666061568222, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736883666061568222, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4897928467854683093, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
       propertyPath: m_Name
@@ -101280,11 +101300,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410ad2898dd92ee4499bb4ab44417358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcType: 0
   dialogueLines:
   - 'That valley over in the desert, I saw that all the
 
     sheep went missing.
     Wonder what is up with that?'
+  hasSpoken: 0
 --- !u!61 &1375446520
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -104344,7 +104366,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.0267893, y: 0.0018017292}
+  m_Offset: {x: 0.32571042, y: -0.12451869}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -104354,7 +104376,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.0856454, y: 2.278535}
+  m_Size: {x: 1.0266218, y: 0.96480215}
   m_EdgeRadius: 0
 --- !u!50 &1911348435
 Rigidbody2D:

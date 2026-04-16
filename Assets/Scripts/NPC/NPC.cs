@@ -2,38 +2,34 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    public enum NPCType {Looping, Reaction}//One is animation loops then stops when talking to player, other stays still then shifts animation when talking then goes back to idle
+    public NPCType npcType;// drop down in inspector to organize better
+
     [TextArea]
-    public string[] dialogueLines; // GO TO INSPECTOR & FILL IN DIALOGUE LINES!
+    public string[] dialogueLines;
 
     private Animator anim;
-    private bool hasSpoken = false;
+    public bool hasSpoken = false;
 
     void Start()
     {
         anim = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)//box trigger for dialogue
+    public void StartTalkingAnimation()
     {
-        if (collision.CompareTag("Player") && !hasSpoken)
-        {
-            hasSpoken = true;//prevent re triggering dialogue
-            StartDialogue();
-        }
+        if (anim == null) return;
+        if (npcType == NPCType.Looping)
+            anim.SetBool("IsTalking", true);
+        else if (npcType == NPCType.Reaction)
+            anim.SetTrigger("PlayReaction");
     }
 
-    private void StartDialogue()
+    public void StopTalkingAnimation()
     {
-        anim.SetBool("IsTalking", true);
-
-        Debug.Log("speaking!!!"); //debug remove
-    }
-
-    public void FinishDialogue()
-    {
-        anim.SetBool("IsTalking", false);
-
-        Debug.Log("going to work"); //debug remove
+        if (anim==null) return;
+        if (npcType == NPCType.Looping)
+            anim.SetBool("IsTalking", false);
     }
 
 
