@@ -17,28 +17,28 @@ public class PlayerHealthUI : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("PHUI OnEnable");
+        //Debug.Log("PHUI OnEnable");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnDisable()
     {
-        Debug.Log("PHUI OnDisable");
+        //Debug.Log("PHUI OnDisable");
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void Start()
     {
-        Debug.Log("PHUI Start");
+        //Debug.Log("PHUI Start");
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("PHUI OnSceneLoaded: " + scene.name);
+        //Debug.Log("PHUI OnSceneLoaded: " + scene.name);
 
         if (scene.name == "Bootstrap")
         {
-            Debug.Log("PHUI skipping Bootstrap");
+            //Debug.Log("PHUI skipping Bootstrap");
             return;
         }
 
@@ -49,20 +49,20 @@ public class PlayerHealthUI : MonoBehaviour
 
     void FindPlayer()
     {
-        Debug.Log("PHUI FindPlayer called");
+        //Debug.Log("PHUI FindPlayer called");
 
         playerHealth = FindFirstObjectByType<PlayerHealth>();
 
-        if (playerHealth == null)
-            Debug.Log("PHUI FindPlayer = NULL");
-        else
-            Debug.Log("PHUI FindPlayer = FOUND " + playerHealth.gameObject.name);
+        //if (playerHealth == null)
+            //Debug.Log("PHUI FindPlayer = NULL");
+        //else
+            //Debug.Log("PHUI FindPlayer = FOUND " + playerHealth.gameObject.name);
     }
 
     // reconnects the heart image
     void FindHearts()
     {
-        Debug.Log("PHUI FindHearts called");
+        //Debug.Log("PHUI FindHearts called");
 
         hearts = new Image[3];
 
@@ -70,9 +70,9 @@ public class PlayerHealthUI : MonoBehaviour
         GameObject h1 = GameObject.Find("Heart (1)");
         GameObject h2 = GameObject.Find("Heart (2)");
 
-        Debug.Log("PHUI FindHearts Heart = " + (h0 != null ? h0.name : "NULL"));
-        Debug.Log("PHUI FindHearts Heart (1) = " + (h1 != null ? h1.name : "NULL"));
-        Debug.Log("PHUI FindHearts Heart (2) = " + (h2 != null ? h2.name : "NULL"));
+        //Debug.Log("PHUI FindHearts Heart = " + (h0 != null ? h0.name : "NULL"));
+        //Debug.Log("PHUI FindHearts Heart (1) = " + (h1 != null ? h1.name : "NULL"));
+        //Debug.Log("PHUI FindHearts Heart (2) = " + (h2 != null ? h2.name : "NULL"));
 
         if (h0 != null) hearts[0] = h0.GetComponent<Image>();
         if (h1 != null) hearts[1] = h1.GetComponent<Image>();
@@ -83,7 +83,7 @@ public class PlayerHealthUI : MonoBehaviour
     {
         if (playerHealth == null)
         {
-            Debug.Log("PHUI Update playerHealth NULL");
+            //Debug.Log("PHUI Update playerHealth NULL");
 
             FindPlayer();
             if (playerHealth == null) return;
@@ -91,19 +91,19 @@ public class PlayerHealthUI : MonoBehaviour
 
         if (hearts == null || hearts.Length < 3)
         {
-            Debug.Log("PHUI Update hearts array bad");
+            //Debug.Log("PHUI Update hearts array bad");
             return;
         }
 
         if (hearts[0] == null || hearts[1] == null || hearts[2] == null)
         {
-            Debug.Log("PHUI Update one or more hearts NULL");
+            //Debug.Log("PHUI Update one or more hearts NULL");
             DebugHearts("Update");
             return;
         }
 
         int hp = playerHealth.currentHealth; // now 0–12
-        Debug.Log("PHUI Update hp = " + hp);
+        //Debug.Log("PHUI Update hp = " + hp);
 
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -111,7 +111,7 @@ public class PlayerHealthUI : MonoBehaviour
             int heartHP = hp - (i * 4);
             heartHP = Mathf.Clamp(heartHP, 0, 4);
 
-            Debug.Log("PHUI heart " + i + " value = " + heartHP);
+            //Debug.Log("PHUI heart " + i + " value = " + heartHP);
 
             if (heartHP == 4) hearts[i].sprite = fullHeart;
             else if (heartHP == 3) hearts[i].sprite = threeQuarterHeart;
@@ -123,11 +123,11 @@ public class PlayerHealthUI : MonoBehaviour
 
     void DebugHearts(string fromWhere)
     {
-        Debug.Log("PHUI DebugHearts from " + fromWhere);
+        //Debug.Log("PHUI DebugHearts from " + fromWhere);
 
         if (hearts == null)
         {
-            Debug.Log("PHUI hearts array is NULL");
+            //Debug.Log("PHUI hearts array is NULL");
             return;
         }
 
@@ -135,10 +135,10 @@ public class PlayerHealthUI : MonoBehaviour
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (hearts[i] == null)
-                Debug.Log("PHUI hearts[" + i + "] = NULL");
-            else
-                Debug.Log("PHUI hearts[" + i + "] = " + hearts[i].gameObject.name);
+            //if (hearts[i] == null)
+                //Debug.Log("PHUI hearts[" + i + "] = NULL");
+            //else
+                //Debug.Log("PHUI hearts[" + i + "] = " + hearts[i].gameObject.name);
         }
     }
 }

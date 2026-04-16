@@ -22,7 +22,10 @@ public class PlayerInteract : MonoBehaviour
         // Detect nearest NPC within range
         Collider2D hit = Physics2D.OverlapCircle(transform.position, interactRange, npcLayer);
         if (hit != null)
+        {
             currentNPC = hit.GetComponent<NPC>();
+            Debug.Log("NPC detected.");
+        }
         else
             currentNPC = null;
 
