@@ -14,14 +14,35 @@ public class SnakeAI : EnemyAI
     private static int activeGrabCount = 0;
     private static float savedPlayerSpeed;
 
+    private Animator anim;
+
     protected override void Update()
     {
-        if (!CheckAggro()) return;
+        if (anim == null)
+            anim = GetComponent<Animator>();
+
+        if (!CheckAggro())
+        {
+            if (anim != null)
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isBinding", false);
+            }
+            return;
+        }
+
         if (player == null) return;
 
         if (isGrabbing)
         {
             transform.position = player.position;
+
+            if (anim != null)
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isBinding", true);
+            }
+
             CheckHealth();
             return;
         }
@@ -35,6 +56,12 @@ public class SnakeAI : EnemyAI
         else
         {
             HandleMovement();
+
+            if (anim != null)
+            {
+                anim.SetBool("isWalking", true);
+                anim.SetBool("isBinding", false);
+            }
         }
 
         CheckHealth();
@@ -45,6 +72,12 @@ public class SnakeAI : EnemyAI
         if (isGrabbing) return;
 
         isGrabbing = true;
+
+        if (anim != null)
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isBinding", true);
+        }
 
         playerHealth = player.GetComponent<PlayerHealth>();
         playerMovement = player.GetComponent<PlayerMovement>();
@@ -89,6 +122,12 @@ public class SnakeAI : EnemyAI
         if (!isGrabbing) return;
 
         isGrabbing = false;
+
+        if (anim != null)
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isBinding", false);
+        }
 
         if (playerMovement != null)
         {
