@@ -3481,7 +3481,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 8.442161
+      m_AnimationSpeed: 3.470138
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 6, z: 0}
@@ -3490,7 +3490,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 10.567626
+      m_AnimationSpeed: 1.5475854
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 6, z: 0}
@@ -3499,7 +3499,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 6.281572
+      m_AnimationSpeed: 3.541685
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: 6, z: 0}
@@ -3508,7 +3508,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 2.1723633
+      m_AnimationSpeed: 1.6572548
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 6, z: 0}
@@ -3517,7 +3517,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 6.9303465
+      m_AnimationSpeed: 6.6207542
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: 6, z: 0}
@@ -3526,7 +3526,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 4.668408
+      m_AnimationSpeed: 1.8541219
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -5390,7 +5390,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.49165517, y: -0.27785063}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5400,7 +5400,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5, y: 2}
+  m_Size: {x: 1.5871171, y: 1.1669899}
   m_EdgeRadius: 0
 --- !u!50 &454826619
 Rigidbody2D:
@@ -101337,11 +101337,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.17157578, y: 0.08578771}
+  m_Offset: {x: 0.39722246, y: -0.2424253}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -101351,7 +101351,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.9046729, y: 2.0762482}
+  m_Size: {x: 1.9548165, y: 1.0095551}
   m_EdgeRadius: 0
 --- !u!50 &1375446521
 Rigidbody2D:
