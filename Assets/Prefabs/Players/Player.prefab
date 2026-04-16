@@ -129,6 +129,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &3014017230194261181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5266594413280764867}
+  m_Layer: 0
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5266594413280764867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014017230194261181}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.04, y: -0.097, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4736883666061568222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3844704270189968715
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +210,7 @@ GameObject:
   - component: {fileID: 4926514013110605406}
   - component: {fileID: 6011222854516327287}
   - component: {fileID: 2536056011199687431}
+  - component: {fileID: 8210510617634408149}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -200,6 +232,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8399745640200758647}
+  - {fileID: 5266594413280764867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7345569019691328946
@@ -551,3 +584,22 @@ MonoBehaviour:
     m_Bits: 1024
   dialogueUI: {fileID: 0}
   dialogueText: {fileID: 0}
+--- !u!114 &8210510617634408149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4897928467854683093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1af97d3e86e84348b4ff4f252afb66f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OOBRecovery
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  centerCheck: {fileID: 5266594413280764867}
+  checkRadius: 0.05
+  stuckTime: 0.2
+  savedSpawnPosition: {x: 0, y: 0, z: 0}
