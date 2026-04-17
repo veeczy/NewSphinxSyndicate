@@ -116,10 +116,8 @@ public class PlayerMovement : MonoBehaviour
         if (FishingObject != null) { canMove = FishingObject.GetComponent<Fishing>().canMove; }
         if (FadeManager.Instance.isFading) { canMove = (FadeManager.Instance.canMove); }
         
-        
         if (LevelManager.instance.currentArea == LevelManager.AreaType.Swamp) { isSwamp = true; }
         else { isSwamp = false; }
-
         stickAxis = new Vector2(Input.GetAxis("Joystick Aim X"), Input.GetAxis("Joystick Aim Y"));
         if (!controller && (stickAxis.sqrMagnitude > deadzone.sqrMagnitude || stickAxis.sqrMagnitude < -deadzone.sqrMagnitude))
         {
@@ -132,7 +130,8 @@ public class PlayerMovement : MonoBehaviour
 
         //the controller for xbox rt is an axis, not a button
         //dodgekeypress = Input.GetButton("Dodge");
-        if (Input.GetButtonDown("Dodge")) dodgekeypress = true;
+        if (Input.GetButtonDown("Dodge")) 
+        dodgekeypress = true;
         if (Input.GetButtonUp("Dodge"))
         {
             dodgeclick = true;
@@ -145,7 +144,6 @@ public class PlayerMovement : MonoBehaviour
         {
             SetCursor.Instance.SetCrosshair(aimPos);
         }
-
         // Aim Rotation
         if (!controller)
         {
@@ -324,15 +322,15 @@ public class PlayerMovement : MonoBehaviour
 
             if ((dodgeclick) && !chargeDodge)
             {
-                //StartDodge(direction); // Dodge towards Keyboard Movement
+                StartDodge(direction); // Dodge towards Keyboard Movement
 
-                StartDodge(aimDir); // Dodge towards Mouse Click
+                //StartDodge(aimDir); // Dodge towards Mouse Click
             }
             if ((dodgeclick) && chargeDodge)
             {
-                //StartChargeRoll(direction); //Charge Roll towards Keyboard Movement
+                StartChargeRoll(direction); //Charge Roll towards Keyboard Movement
 
-                StartChargeRoll(aimDir); //Charge Roll towards Mouse Click
+                //StartChargeRoll(aimDir); //Charge Roll towards Mouse Click
             }
 
         }
@@ -361,7 +359,7 @@ public class PlayerMovement : MonoBehaviour
 
         //* END MOUSE AIM DODGE STUFF *//
 
-        dodgeDistance = 1f;
+        dodgeDistance = 3f;
         dodgeEnd = dodgeStart + dir * dodgeDistance;
 
         dodgeclick = false;
