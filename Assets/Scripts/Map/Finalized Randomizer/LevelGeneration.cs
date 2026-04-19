@@ -18,15 +18,19 @@ public class LevelGeneration : MonoBehaviour
     public GameObject roomWhiteObj;
 
     public bool isMapLoaded = false;
+    public bool hasBossSpawned = false;
     // room type 0 - entry/starting room
     // room type 1 - normal room
     // room type 2 - boss room 
-    // room type 3 - special room (for when we create caves? or possibly for special rooms?)
+    // room type 3 - treasure
 
     [Header("Map Info made for Humans")]
     public List<string> roomNameList;
     public List<Vector2> roomCoordsList;
 
+    public Vector2 testcoords;
+    public int testnameIndex;
+    public string testname;
 
     void Start()
     {
@@ -41,6 +45,12 @@ public class LevelGeneration : MonoBehaviour
         SetRoomDoors(); // assigns doors where rooms connect
 
         DrawMap(); // makes visual map for people to see via instantiated objects
+
+        testnameIndex = roomCoordsList.IndexOf(testcoords);
+        testname = roomNameList[testnameIndex];
+
+        //LevelManager.instance.mapCoordsList = roomCoordsList;
+        //LevelManager.instance.mapNameList = roomNameList;
     }
     void CreateRooms()
     {
@@ -52,7 +62,7 @@ public class LevelGeneration : MonoBehaviour
 
         // how much clump do we want for the randomizer
         float randomCompare = 0.2f, randomCompareStart = 0.2f, randomCompareEnd = 0.01f; //farther into loop, smaller the branch out
-
+        bool treasureChance = (Random.value < 0.7f);
         
         for (int i = 0; i < numberOfRooms - 1; i++) // add rooms, run once for each room we make
         {
@@ -71,10 +81,25 @@ public class LevelGeneration : MonoBehaviour
             }
 
             // finalize position
-            rooms[(int) checkPos.x + gridSizeX, (int) checkPos.y + gridSizeY] = new RoomType(checkPos, 1); // calculate offset for array while creating it in new position, room type 1 for normal room
+            if (!hasBossSpawned)
+            {
+                if(takenPositions.Count >= numberOfRooms - 1)
+                {
+                    rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new RoomType(checkPos, 2); // calculate offset for array while creating it in new position, room type 2 for boss room
+                    hasBossSpawned = true;
+                }
+                else 
+                {
+                    if (!treasureChance) { rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new RoomType(checkPos, 1); } // calculate offset for array while creating it in new position, room type 1 for normal room
+                    if (treasureChance) { rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new RoomType(checkPos, 3); } // calculate offset for array while creating it in new position, room type 3 for treasure room
+                }
+            }
+            else
+            {
+                if (!treasureChance) { rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new RoomType(checkPos, 1); } // calculate offset for array while creating it in new position, room type 1 for normal room
+                if (treasureChance) { rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new RoomType(checkPos, 3); } // calculate offset for array while creating it in new position, room type 3 for treasure room
+            }
 
-            //SetRoomDoors();
-            //DrawLive(rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY]);
             takenPositions.Insert(takenPositions.Count, checkPos); // mark position as taken
         }
     }
@@ -193,6 +218,11 @@ public class LevelGeneration : MonoBehaviour
             drawPos.x *= 1;
             drawPos.y *= 1;
 
+            SetRoomString(room);
+
+            roomNameList.Insert(roomNameList.Count, room.RoomSetup);
+            roomCoordsList.Insert(roomCoordsList.Count, room.gridPos);
+
             // create map obj and draw based on info in Map Sprite Selector script
             MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
             mapper.type = room.type;
@@ -201,10 +231,7 @@ public class LevelGeneration : MonoBehaviour
             mapper.right = room.doorRight;
             mapper.left = room.doorLeft;
 
-            SetRoomString(room);
-
-            roomNameList.Insert(roomNameList.Count, room.RoomSetup);
-            roomCoordsList.Insert(roomCoordsList.Count, room.gridPos);
+            
 
         }
 
@@ -230,24 +257,24 @@ public class LevelGeneration : MonoBehaviour
         if (right && !down && !left && !up) { if (treasure) { room.RoomSetup = "Right Treasure"; } if (boss) { room.RoomSetup = "Right Boss"; } else { room.RoomSetup = "Right"; } }
 
         //two ways
-        if (up && down && !left && !right) { room.RoomSetup = "Up Down"; }
-        if (!up && !down && left && right) { room.RoomSetup = "Left Right"; }
+        if (up && down && !left && !right) { room.RoomSetup = "Up Down"; if (room.type == 3) { room.type = 1; } }
+        if (!up && !down && left && right) { room.RoomSetup = "Left Right"; if (room.type == 3) { room.type = 1; } }
 
-        if (up && !down && !left && right) { room.RoomSetup = "Up Right"; }
-        if (up && !down && left && !right) { room.RoomSetup = "Up Left"; }
+        if (up && !down && !left && right) { room.RoomSetup = "Up Right"; if (room.type == 3) { room.type = 1; } }
+        if (up && !down && left && !right) { room.RoomSetup = "Up Left"; if (room.type == 3) { room.type = 1; } }
 
-        if (!up && down && !left && right) { room.RoomSetup = "Down Right"; }
-        if (!up && down && left && !right) { room.RoomSetup = "Down Left"; }
+        if (!up && down && !left && right) { room.RoomSetup = "Down Right"; if (room.type == 3) { room.type = 1; } }
+        if (!up && down && left && !right) { room.RoomSetup = "Down Left"; if (room.type == 3) { room.type = 1; } }
 
         //three ways
-        if (up && down && !left && right) { room.RoomSetup = "Up Down Right"; }
-        if (up && down && left && !right) { room.RoomSetup = "Up Down Left"; }
+        if (up && down && !left && right) { room.RoomSetup = "Up Down Right"; if (room.type == 3) { room.type = 1; } }
+        if (up && down && left && !right) { room.RoomSetup = "Up Down Left"; if (room.type == 3) { room.type = 1; } }
 
-        if (!up && down && left && right) { room.RoomSetup = "Down Left Right"; }
-        if (up && !down && left && right) { room.RoomSetup = "Up Left Right"; }
+        if (!up && down && left && right) { room.RoomSetup = "Down Left Right"; if (room.type == 3) { room.type = 1; } }
+        if (up && !down && left && right) { room.RoomSetup = "Up Left Right"; if (room.type == 3) { room.type = 1; } }
 
         //four ways
-        if (up && down && left && right) { room.RoomSetup = "Up Down Left Right"; }
+        if (up && down && left && right) { room.RoomSetup = "Up Down Left Right"; if (room.type == 3) { room.type = 1; } }
         if (!up && !down && !left && !right) { room.RoomSetup = "Closed Room"; }
 
     }

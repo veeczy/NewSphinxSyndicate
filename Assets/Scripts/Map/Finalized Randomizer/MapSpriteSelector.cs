@@ -29,7 +29,7 @@ public class MapSpriteSelector : MonoBehaviour
     // room type 0 - entry/starting room
     // room type 1 - normal room
     // room type 2 - boss room 
-    // room type 3 - special room (for when we create caves? or possibly for special rooms?)
+    // room type 3 - treasure
     public string RoomSetup;
 
     public bool treasure = false, boss = false;
@@ -123,10 +123,10 @@ public class MapSpriteSelector : MonoBehaviour
         if(type == 3) { treasure = true; boss = false; }
 
         //one ways
-        if (up && !down && !left && !right) { if(treasure) { rend.sprite = spriteUpTreasure; RoomSetup = "Up Treasure"; } if(boss) { rend.sprite = spriteUpBoss; RoomSetup = "Up Boss"; } else { rend.sprite = spriteUp; RoomSetup = "Up"; } }
-        if (down && !up && !left && !right) { if(treasure) { rend.sprite = spriteDownTreasure; RoomSetup = "Down Treasure"; } if(boss) { rend.sprite = spriteDownBoss; RoomSetup = "Down Boss"; } else { rend.sprite = spriteDown; RoomSetup = "Down"; } }
-        if (left && !down && !up && !right) { if (treasure) { rend.sprite = spriteLeftTreasure; RoomSetup = "Left Treasure"; } if (boss) { rend.sprite = spriteLeftBoss; RoomSetup = "Left Boss"; } else { rend.sprite = spriteLeft; RoomSetup = "Left"; } }
-        if (right && !down && !left && !up) { if (treasure) { rend.sprite = spriteRightTreasure; RoomSetup = "Right Treasure"; } if (boss) { rend.sprite = spriteRightBoss; RoomSetup = "Right Boss"; } else { rend.sprite = spriteRight; RoomSetup = "Right"; } }
+        if (up && !down && !left && !right) { if(treasure) { rend.sprite = spriteUpTreasure; RoomSetup = "Up Treasure"; } if(boss) { rend.sprite = spriteUpBoss; RoomSetup = "Up Boss"; } if(!treasure && !boss) { rend.sprite = spriteUp; RoomSetup = "Up"; } }
+        if (down && !up && !left && !right) { if(treasure) { rend.sprite = spriteDownTreasure; RoomSetup = "Down Treasure"; } if(boss) { rend.sprite = spriteDownBoss; RoomSetup = "Down Boss"; } if(!treasure && !boss) { rend.sprite = spriteDown; RoomSetup = "Down"; } }
+        if (left && !down && !up && !right) { if (treasure) { rend.sprite = spriteLeftTreasure; RoomSetup = "Left Treasure"; } if (boss) { rend.sprite = spriteLeftBoss; RoomSetup = "Left Boss"; } if(!treasure && !boss) { rend.sprite = spriteLeft; RoomSetup = "Left"; } }
+        if (right && !down && !left && !up) { if (treasure) { rend.sprite = spriteRightTreasure; RoomSetup = "Right Treasure"; } if (boss) { rend.sprite = spriteRightBoss; RoomSetup = "Right Boss"; } if(!treasure && !boss) { rend.sprite = spriteRight; RoomSetup = "Right"; } }
 
         //two ways
         if (up && down && !left && !right) { rend.sprite = spriteUpDown; RoomSetup = "Up Down"; }

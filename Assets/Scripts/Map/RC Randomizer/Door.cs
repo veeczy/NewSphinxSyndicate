@@ -41,7 +41,7 @@ public class Door : MonoBehaviour
             MoveRooms(); // update coordinates
 
             // use coordinates to move in map
-            //LevelManager.instance.LoadRoom();
+            LevelManager.instance.LoadRoom();
         }
     }
 
