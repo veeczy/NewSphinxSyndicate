@@ -181,10 +181,11 @@ public class PlayerMovement : MonoBehaviour
             //GetComponent<SpriteRenderer>().sprite = dodgeSprite; //OLD
 
             // NEW   during dodge, force idle animation
-            anim.SetBool("isWalking", false);
+            //anim.SetBool("isWalking", false);
             anim.SetBool("isDodging", true);
             if (t >= 1f)
             {
+                anim.SetBool("isDodging", false);
                 isDodging = false;
                 //GetComponent<SpriteRenderer>().sprite = playerSprite; //OLD
                 StartCoroutine(DodgeCooldown());
@@ -195,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
 
         //raycast stuff
         if (isSwamp) { mask = LayerMask.GetMask("SwampWall"); } //if swamp, wall layer is swamp wall
-        if (!isSwamp) { mask = LayerMask.GetMask("SwampWall"); } //if not, normal wall
+        if (!isSwamp) { mask = LayerMask.GetMask("Wall"); } //if not, normal wall
         contactFilter.layerMask = mask;
         offsetPos = offset.transform.position;
 
@@ -253,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
         // NEW   walking animation toggle
         bool isMoving = direction.magnitude > 0.1f;
         anim.SetBool("isWalking", isMoving);
-        anim.SetBool("isDodging", isDodging);
+        //anim.SetBool("isDodging", isDodging);
         anim.SetBool("ischarging", isCharging);
         anim.SetBool("chargeRoll", chargeDodge);
 
@@ -287,12 +288,13 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("isDodging", false);
                 StartCoroutine(DodgeCooldown());
             }
-            if (hit == null)
+            else if (hit == null)
             {
                 myPlayer.position = myPlayer.position + direction * dodgeTimer;
-                anim.SetBool("isWalking", false);
+                myPlayer.MovePosition(Vector2.MoveTowards(myPlayer.position, myPlayer.position + direction * dodgeTimer, speed * Time.deltaTime));
+                //anim.SetBool("isWalking", false);
                 anim.SetBool("isDodging", true);
-                anim.SetBool("ischarging", false);
+                //anim.SetBool("ischarging", false);
             }
 
             return;
@@ -322,7 +324,7 @@ public class PlayerMovement : MonoBehaviour
         if (canDodge)
         {
 
-            if ((dodgeclick) && !chargeDodge)
+            if ((dodgeclick) && !chargeDodge && !isDodging)
             {
                 StartDodge(direction); // Dodge towards Keyboard Movement
 
@@ -340,6 +342,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartDodge(Vector2 dir)
     {
+        anim.SetBool("isDodging", true);
         isDodging = true;
         canDodge = false;
         dodgeTimer = 0f;
@@ -379,6 +382,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator DodgeCooldown()
     {
+        anim.SetBool("isDodging", false);
         yield return new WaitForSeconds(dodgeCooldown);
         canDodge = true;
     }
