@@ -234,7 +234,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 75
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -265,7 +265,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7648342475951760235
+--- !u!1001 &1805973492
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -275,11 +275,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2999257091916339084, guid: 5106d16dbc04a4f41a6d6aebe0d7b6ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.40413
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999257091916339084, guid: 5106d16dbc04a4f41a6d6aebe0d7b6ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.45931
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999257091916339084, guid: 5106d16dbc04a4f41a6d6aebe0d7b6ca, type: 3}
       propertyPath: m_LocalPosition.z
@@ -317,6 +317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 8333215595116863119, guid: 5106d16dbc04a4f41a6d6aebe0d7b6ca, type: 3}
+      propertyPath: numberOfRooms
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -327,4 +331,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 243382782}
-  - {fileID: 7648342475951760235}
+  - {fileID: 1805973492}

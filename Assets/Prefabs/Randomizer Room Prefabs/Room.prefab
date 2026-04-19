@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3941326484341421843}
   - component: {fileID: 5586762892046293618}
   m_Layer: 0
-  m_Name: MapSprite
+  m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   spriteDownBoss: {fileID: 0}
   spriteRightBoss: {fileID: 0}
   spriteLeftBoss: {fileID: 0}
+  spriteClosedRoom: {fileID: -1286447070270468795, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
   spriteTreasureIcon: {fileID: 1796795135, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
   spriteBossIcon: {fileID: -808539164, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
   spriteStartIcon: {fileID: -2134371478, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
@@ -162,4 +163,4 @@ MonoBehaviour:
   boss: 0
   mainColor: {r: 0, g: 0, b: 0, a: 0}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  enterColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  enterColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}

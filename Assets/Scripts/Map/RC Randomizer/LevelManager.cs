@@ -215,8 +215,8 @@ public class LevelManager : MonoBehaviour
     //*END CHECK FOR RESET SCENE*//
 
 
-    // Call this when leaving the biome start zone
-    public void StartRunInCurrentArea()
+    
+    public void StartRunInCurrentArea() // Call this when leaving the biome start zone
     {
         currentRoomIndex = 0;
         if(!runStarted) //if run was not already started

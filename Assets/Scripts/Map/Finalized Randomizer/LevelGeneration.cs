@@ -1,20 +1,32 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.LightTransport.PostProcessing;
+using UnityEngine.Timeline;
 
 public class LevelGeneration : MonoBehaviour
 {
+    [Header("Map info made for Computers")]
     Vector2 worldSize = new Vector2(4, 4); // currently half the size of normal world for 8x8 grid
     RoomType[,] rooms;
     public List<Vector2> takenPositions = new List<Vector2>(); // easier to search taken positions in the world
     public int gridSizeX, gridSizeY, numberOfRooms = 20;
     public GameObject roomWhiteObj;
 
+    public bool isMapLoaded = false;
     // room type 0 - entry/starting room
     // room type 1 - normal room
     // room type 2 - boss room 
     // room type 3 - special room (for when we create caves? or possibly for special rooms?)
+
+    [Header("Map Info made for Humans")]
+    public List<string> roomNameList;
+    public List<Vector2> roomCoordsList;
+
 
     void Start()
     {
@@ -24,18 +36,19 @@ public class LevelGeneration : MonoBehaviour
         }
         gridSizeX = Mathf.RoundToInt((worldSize.x)); // the space of the world x value is set to grid size x
         gridSizeY = Mathf.RoundToInt((worldSize.y)); // the space of the world y value is set to grid size y
-        CreateRooms();
-        SetRoomDoors();
-        DrawMap();
+
+        CreateRooms(); // lays out actual map data
+        SetRoomDoors(); // assigns doors where rooms connect
+
+        DrawMap(); // makes visual map for people to see via instantiated objects
     }
-    
     void CreateRooms()
     {
         // setup
         rooms = new RoomType[gridSizeX * 2, gridSizeY * 2]; // create room of specific type for size of grid
         rooms[gridSizeX, gridSizeY] = new RoomType(Vector2.zero, 0); //start in center of the room grid, room type 0 for starting room
         takenPositions.Insert(0, Vector2.zero); 
-        Vector2 checkPos = Vector2.zero; 
+        Vector2 checkPos = Vector2.zero;
 
         // how much clump do we want for the randomizer
         float randomCompare = 0.2f, randomCompareStart = 0.2f, randomCompareEnd = 0.01f; //farther into loop, smaller the branch out
@@ -46,19 +59,23 @@ public class LevelGeneration : MonoBehaviour
             // math 
             float randomPerc = ((float)i) / (((float)numberOfRooms - 1)); // percent of room completion (current room number / total room number)
             randomCompare = Mathf.Lerp(randomCompareStart, randomCompareEnd, randomPerc); // calculate how clumpy based on start, end, and the percentage of completion
-
+            
             checkPos = NewPosition(); // grab new position
+            
 
             if (NumberOfNeighbors(checkPos, takenPositions) > 1 && Random.value > randomCompare) // test new position
             {
                 int iterations = 0;
                 do { checkPos = SelectiveNewPosition(); iterations++; } while(NumberOfNeighbors(checkPos, takenPositions) > 1 && iterations < 100); // this checks position until finds safe spot
-                if (iterations >= 50) { Debug.Log("error: could not create with fewer neighbors than: " + NumberOfNeighbors(checkPos, takenPositions)); } // if it takes really long to search
+                //if (iterations >= 50) { Debug.Log("error: could not create with fewer neighbors than: " + NumberOfNeighbors(checkPos, takenPositions)); } // if it takes really long to search
             }
 
             // finalize position
-            rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new RoomType(checkPos, 1); // calculate offset for array while creating it in new position, room type 1 for normal room
-            takenPositions.Insert(0, checkPos); // mark position as taken
+            rooms[(int) checkPos.x + gridSizeX, (int) checkPos.y + gridSizeY] = new RoomType(checkPos, 1); // calculate offset for array while creating it in new position, room type 1 for normal room
+
+            //SetRoomDoors();
+            //DrawLive(rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY]);
+            takenPositions.Insert(takenPositions.Count, checkPos); // mark position as taken
         }
     }
 
@@ -87,6 +104,7 @@ public class LevelGeneration : MonoBehaviour
                 else { x -= 1; }
             }
 
+            checkingPos = new Vector2(x, y);
         } while (takenPositions.Contains(checkingPos) || x >= gridSizeX || x < -gridSizeX || y >= gridSizeY || y < -gridSizeY);
         return checkingPos;
     }
@@ -121,7 +139,7 @@ public class LevelGeneration : MonoBehaviour
             checkingPos = new Vector2(x, y);
         } while (takenPositions.Contains(checkingPos) || x >= gridSizeX || x < -gridSizeX || y >= gridSizeY || y < -gridSizeY);
 
-        if(inc >= 100) { Debug.Log("error: could not find position with only one neighbor!"); }
+        //if(inc >= 100) { Debug.Log("error: could not find position with only one neighbor!"); }
 
         return checkingPos;
     }
@@ -168,20 +186,86 @@ public class LevelGeneration : MonoBehaviour
         foreach (RoomType room in rooms) // loop for every coordinate
         {
             if (room == null) { continue; } //if there isnt a room in that position on the map, skip to next slot
-
+            
             Vector2 drawPos = room.gridPos; // gather coordinate
 
-            // multiply to size of map sprite px
-            drawPos.x *= 16;
-            drawPos.y *= 16;
+            // multiply to size of map sprite ratio
+            drawPos.x *= 1;
+            drawPos.y *= 1;
 
-            // draw based on info in Map Sprite Selector script
+            // create map obj and draw based on info in Map Sprite Selector script
             MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
             mapper.type = room.type;
             mapper.up = room.doorTop;
             mapper.down = room.doorBottom;
             mapper.right = room.doorRight;
             mapper.left = room.doorLeft;
+
+            SetRoomString(room);
+
+            roomNameList.Insert(roomNameList.Count, room.RoomSetup);
+            roomCoordsList.Insert(roomCoordsList.Count, room.gridPos);
+
         }
+
+        if(roomNameList.Count == takenPositions.Count) { isMapLoaded = true; }
+    }
+
+    void SetRoomString(RoomType room)
+    {
+        bool up = room.doorTop;
+        bool down = room.doorBottom;
+        bool right = room.doorRight;
+        bool left = room.doorLeft;
+        bool treasure = false, boss = false;
+
+        if (room.type == 0 || room.type == 1) { treasure = false; boss = false; }
+        if (room.type == 2) { treasure = false; boss = true; }
+        if (room.type == 3) { treasure = true; boss = false; }
+
+        //one ways
+        if (up && !down && !left && !right) { if (treasure) { room.RoomSetup = "Up Treasure"; } if (boss) { room.RoomSetup = "Up Boss"; } else { room.RoomSetup = "Up"; } }
+        if (down && !up && !left && !right) { if (treasure) { room.RoomSetup = "Down Treasure"; } if (boss) { room.RoomSetup = "Down Boss"; } else { room.RoomSetup = "Down"; } }
+        if (left && !down && !up && !right) { if (treasure) { room.RoomSetup = "Left Treasure"; } if (boss) { room.RoomSetup = "Left Boss"; } else { room.RoomSetup = "Left"; } }
+        if (right && !down && !left && !up) { if (treasure) { room.RoomSetup = "Right Treasure"; } if (boss) { room.RoomSetup = "Right Boss"; } else { room.RoomSetup = "Right"; } }
+
+        //two ways
+        if (up && down && !left && !right) { room.RoomSetup = "Up Down"; }
+        if (!up && !down && left && right) { room.RoomSetup = "Left Right"; }
+
+        if (up && !down && !left && right) { room.RoomSetup = "Up Right"; }
+        if (up && !down && left && !right) { room.RoomSetup = "Up Left"; }
+
+        if (!up && down && !left && right) { room.RoomSetup = "Down Right"; }
+        if (!up && down && left && !right) { room.RoomSetup = "Down Left"; }
+
+        //three ways
+        if (up && down && !left && right) { room.RoomSetup = "Up Down Right"; }
+        if (up && down && left && !right) { room.RoomSetup = "Up Down Left"; }
+
+        if (!up && down && left && right) { room.RoomSetup = "Down Left Right"; }
+        if (up && !down && left && right) { room.RoomSetup = "Up Left Right"; }
+
+        //four ways
+        if (up && down && left && right) { room.RoomSetup = "Up Down Left Right"; }
+        if (!up && !down && !left && !right) { room.RoomSetup = "Closed Room"; }
+
+    }
+
+    void DrawLive(RoomType room)
+    {
+        Vector2 drawPos = room.gridPos; // gather coordinate
+
+        // multiply to size of map sprite ratio
+        drawPos.x *= 1;
+        drawPos.y *= 1;
+
+        // create map obj and draw based on info in Map Sprite Selector script
+        MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
+        mapper.type = room.type;
+        mapper.up = room.doorTop;
+        mapper.down = room.doorBottom;
+        mapper.right = room.doorRight;
+        mapper.left = room.doorLeft;
     }
 }

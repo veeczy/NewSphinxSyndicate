@@ -14,6 +14,7 @@ public class MapSpriteSelector : MonoBehaviour
     //special rooms
     public Sprite spriteUpTreasure, spriteDownTreasure, spriteRightTreasure, spriteLeftTreasure; // treasure rooms (basic one ways) [type 3]
     public Sprite spriteUpBoss, spriteDownBoss, spriteRightBoss, spriteLeftBoss; // boss rooms [type 2]
+    public Sprite spriteClosedRoom;
 
     //alt rooms
     //public Sprite spriteUpDownAlt, spriteUpDownLeftRightAlt; // desert alt rooms
@@ -24,13 +25,14 @@ public class MapSpriteSelector : MonoBehaviour
 
     [Header("Map Assign Data")]
     public int type;
-    public bool up, down, left, right = false;
+    public bool up, down, left, right;
     // room type 0 - entry/starting room
     // room type 1 - normal room
     // room type 2 - boss room 
     // room type 3 - special room (for when we create caves? or possibly for special rooms?)
+    public string RoomSetup;
 
-    public bool treasure, boss = false;
+    public bool treasure = false, boss = false;
 
     [Header("Map Render Data")]
     public Color mainColor;
@@ -121,30 +123,33 @@ public class MapSpriteSelector : MonoBehaviour
         if(type == 3) { treasure = true; boss = false; }
 
         //one ways
-        if (up && !down && !left && !right) { if(treasure) { rend.sprite = spriteUpTreasure; } if(boss) { rend.sprite = spriteUpBoss; } else { rend.sprite = spriteUp; } }
-        if (down && !up && !left && !right) { if(treasure) { rend.sprite = spriteDownTreasure; } if(boss) { rend.sprite = spriteDownBoss; } else { rend.sprite = spriteDown; } }
-        if (left && !down && !up && !right) { if (treasure) { rend.sprite = spriteLeftTreasure; } if (boss) { rend.sprite = spriteLeftBoss; } else { rend.sprite = spriteLeft; } }
-        if (right && !down && !left && !up) { if (treasure) { rend.sprite = spriteRightTreasure; } if (boss) { rend.sprite = spriteRightBoss; } else { rend.sprite = spriteRight; } }
+        if (up && !down && !left && !right) { if(treasure) { rend.sprite = spriteUpTreasure; RoomSetup = "Up Treasure"; } if(boss) { rend.sprite = spriteUpBoss; RoomSetup = "Up Boss"; } else { rend.sprite = spriteUp; RoomSetup = "Up"; } }
+        if (down && !up && !left && !right) { if(treasure) { rend.sprite = spriteDownTreasure; RoomSetup = "Down Treasure"; } if(boss) { rend.sprite = spriteDownBoss; RoomSetup = "Down Boss"; } else { rend.sprite = spriteDown; RoomSetup = "Down"; } }
+        if (left && !down && !up && !right) { if (treasure) { rend.sprite = spriteLeftTreasure; RoomSetup = "Left Treasure"; } if (boss) { rend.sprite = spriteLeftBoss; RoomSetup = "Left Boss"; } else { rend.sprite = spriteLeft; RoomSetup = "Left"; } }
+        if (right && !down && !left && !up) { if (treasure) { rend.sprite = spriteRightTreasure; RoomSetup = "Right Treasure"; } if (boss) { rend.sprite = spriteRightBoss; RoomSetup = "Right Boss"; } else { rend.sprite = spriteRight; RoomSetup = "Right"; } }
 
         //two ways
-        if (up && down && !left && !right) { rend.sprite = spriteUpDown; }
-        if (!up && !down && left && right) { rend.sprite = spriteLeftRight; }
+        if (up && down && !left && !right) { rend.sprite = spriteUpDown; RoomSetup = "Up Down"; }
+        if (!up && !down && left && right) { rend.sprite = spriteLeftRight; RoomSetup = "Left Right"; }
 
-        if (up && !down && !left && right) { rend.sprite = spriteUpRight; }
-        if (up && !down && left && !right) { rend.sprite = spriteUpLeft; }
+        if (up && !down && !left && right) { rend.sprite = spriteUpRight; RoomSetup = "Up Right"; }
+        if (up && !down && left && !right) { rend.sprite = spriteUpLeft; RoomSetup = "Up Left"; }
 
-        if (!up && down && !left && right) { rend.sprite = spriteDownRight; }
-        if (!up && down && left && !right) { rend.sprite = spriteDownLeft; }
+        if (!up && down && !left && right) { rend.sprite = spriteDownRight; RoomSetup = "Down Right"; }
+        if (!up && down && left && !right) { rend.sprite = spriteDownLeft; RoomSetup = "Down Left"; }
 
         //three ways
-        if (up && down && !left && right) { rend.sprite = spriteUpDownRight; }
-        if (up && down && left && !right) { rend.sprite = spriteUpDownLeft; }
+        if (up && down && !left && right) { rend.sprite = spriteUpDownRight; RoomSetup = "Up Down Right"; }
+        if (up && down && left && !right) { rend.sprite = spriteUpDownLeft; RoomSetup = "Up Down Left"; }
 
-        if (!up && down && left && right) { rend.sprite = spriteDownLeftRight; }
-        if (up && !down && left && right) { rend.sprite = spriteUpLeftRight; }
+        if (!up && down && left && right) { rend.sprite = spriteDownLeftRight; RoomSetup = "Down Left Right"; }
+        if (up && !down && left && right) { rend.sprite = spriteUpLeftRight; RoomSetup = "Up Left Right"; }
 
         //four ways
-        if (up && down && left && right) { rend.sprite = spriteUpDownLeftRight; }
+        if (up && down && left && right) { rend.sprite = spriteUpDownLeftRight; RoomSetup = "Up Down Left Right"; }
+
+
+        if(!up && !down && !left && !right) { rend.sprite = spriteClosedRoom; }
     }
 
     void PickColor()
