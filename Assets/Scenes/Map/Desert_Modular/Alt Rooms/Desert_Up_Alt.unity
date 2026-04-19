@@ -505,6 +505,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5606947235136161330, guid: aae1c78e75352524abf8a1f34f5cdeec, type: 3}
   m_PrefabInstance: {fileID: 222207986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &227268602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1913225928956996752, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
+  m_PrefabInstance: {fileID: 884204332}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &259209179
 GameObject:
   m_ObjectHideFlags: 0
@@ -196941,6 +196946,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2100074254217777687, guid: 1933dc6c00644544caac688803ecac9c, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100074254217777687, guid: 1933dc6c00644544caac688803ecac9c, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 2393615184384186901, guid: 1933dc6c00644544caac688803ecac9c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -197068,6 +197081,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6822002944301911691, guid: 1933dc6c00644544caac688803ecac9c, type: 3}
   m_PrefabInstance: {fileID: 364984179}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &364984184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2100074254217777687, guid: 1933dc6c00644544caac688803ecac9c, type: 3}
+  m_PrefabInstance: {fileID: 364984179}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &379183410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -202379,6 +202403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8283459715218222439, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
+      propertyPath: enemyText
+      value: 
+      objectReference: {fileID: 1047550526}
     - target: {fileID: 9036624114286174314, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
       propertyPath: m_LocalPosition.x
       value: 243.74911
@@ -202422,13 +202450,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1913225928956996752, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 884204336}
+    - targetCorrespondingSourceObject: {fileID: 1913225928956996752, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 884204337}
   m_SourcePrefab: {fileID: 100100000, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
 --- !u!4 &884204333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9036624114286174314, guid: 5e2e2c118563ef94b9aa2fef390e4d64, type: 3}
   m_PrefabInstance: {fileID: 884204332}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &884204336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227268602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafd790627cf9c041928e45e1566290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DodgeUIText
+  dodgeText: {fileID: 364984184}
+  dodgeCooldown: 0.6
+--- !u!114 &884204337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227268602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581f0243323087042aedf38eda72c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponUI
+  weaponSwitch: {fileID: 2026004736}
+  weaponImage: {fileID: 988742212}
+  weaponIcons:
+  - {fileID: 4726518394171148836, guid: 1eea548fc09c899428bf657403c8d4a7, type: 3}
+  - {fileID: -6074842687553318334, guid: 6eb4d623d41d7ba43b1c566a699a4a1b, type: 3}
+  - {fileID: 1977787208937102330, guid: 669d24249cf1fac46931512bdf507603, type: 3}
 --- !u!1001 &926488441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203343,6 +203409,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &988742212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8759913061455255961, guid: 1933dc6c00644544caac688803ecac9c, type: 3}
+  m_PrefabInstance: {fileID: 364984179}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1041816250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203417,6 +203494,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5606947235136161330, guid: aae1c78e75352524abf8a1f34f5cdeec, type: 3}
   m_PrefabInstance: {fileID: 1041816250}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1047550526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3905381544474297385, guid: 1933dc6c00644544caac688803ecac9c, type: 3}
+  m_PrefabInstance: {fileID: 364984179}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1056615231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203524,6 +203612,14 @@ PrefabInstance:
     - target: {fileID: 5204935514750397017, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
       propertyPath: m_Name
       value: PausedCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122320874338895693, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.280594
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122320874338895693, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -80.912994
       objectReference: {fileID: 0}
     - target: {fileID: 6571740171942279381, guid: 231af2edba2b3ac48b5b9012756b1c7d, type: 3}
       propertyPath: m_SizeDelta.y
@@ -205569,6 +205665,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8c353bf2486074a8dff8add9a1f5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2026004736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2566705348305773587, guid: 2dce4446351741844ba3612a5aa77119, type: 3}
+  m_PrefabInstance: {fileID: 2026004728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026004729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489e0ba35b2a7724cb5619f632ad9ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSwitch
 --- !u!1001 &2111298864
 PrefabInstance:
   m_ObjectHideFlags: 0
