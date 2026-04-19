@@ -138,7 +138,8 @@ public class LevelManager : MonoBehaviour
         currentRoomIndex = mapCoordsList.IndexOf(playerCoords); //get index of destination coords
         currentRoom = mapNameList[currentRoomIndex]; //use index to get scene name for it
 
-        FadeManager.Instance.FadeAndLoadScene(currentRoom); // go to scene using scene name
+        //FadeManager.Instance.FadeAndLoadScene(currentRoom); // go to scene using scene name
+        SceneManager.LoadScene(currentRoom);
     }
 
     public void RebuildRoomPool()
