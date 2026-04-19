@@ -152,50 +152,51 @@ public class LevelManager : MonoBehaviour
 
     public void RebuildRoomPool()
     {
+        
         switch (currentArea)
         {
             case AreaType.Desert:
                 for (int i = 0; i < mapNameList.Count; i++)
                 {
+                    bool altChance = Random.value < 0.5f;
+
                     //one ways
-                    if (roomName == "Up") { roomName = ""; }
-                    if (roomName == "Down") { roomName = ""; }
-                    if (roomName == "Left") { roomName = ""; }
-                    if (roomName == "Right") { roomName = ""; }
+                    if (roomName == "Up") { if (!altChance) { roomName = "Desert_Up"; } if (altChance) { roomName = "Desert_Up_Alt"; } }
+                    if (roomName == "Down") { roomName = "Desert_Down"; }
+                    if (roomName == "Left") { roomName = "Desert_Left"; }
+                    if (roomName == "Right") { roomName = "Desert_Right"; }
 
                     //two ways
-                    if (roomName == "Up Down") { roomName = ""; }
-                    if (roomName == "Left Right") { roomName = ""; }
+                    if (roomName == "Up Down") { if (!altChance) { roomName = "Desert_Up_Down"; } if (altChance) { roomName = "Desert_Up_Down_Alt"; } }
+                    if (roomName == "Left Right") { roomName = "Desert_Left_Right"; }
 
-                    if (roomName == "Up Left") { roomName = ""; }
-                    if (roomName == "Up Right") { roomName = ""; }
+                    if (roomName == "Up Left") { if (!altChance) { roomName = "Desert_Up_Left"; } if (altChance) { roomName = "Desert_Up_Left_Alt"; } }
+                    if (roomName == "Up Right") { roomName = "Desert_Up_Right"; }
 
-                    if (roomName == "Down Left") { roomName = ""; }
-                    if (roomName == "Down Right") { roomName = ""; }
+                    if (roomName == "Down Left") { roomName = "Desert_Down_Left"; }
+                    if (roomName == "Down Right") { roomName = "Desert_Down_Right"; }
 
                     //three ways
-                    if (roomName == "Up Down Left") { roomName = ""; }
-                    if (roomName == "Up Down Right") { roomName = ""; }
+                    if (roomName == "Up Down Left") { roomName = "Desert_Up_Down_Left"; }
+                    if (roomName == "Up Down Right") { if (!altChance) { roomName = "Desert_Up_Down_Right"; } if (altChance) { roomName = "Desert_Up_Down_Right_Alt"; } }
 
-                    if (roomName == "Down Left Right") { roomName = ""; }
-                    if (roomName == "Up Left Right") { roomName = ""; }
+                    if (roomName == "Down Left Right") { roomName = "Desert_Down_Left_Right"; }
+                    if (roomName == "Up Left Right") { roomName = "Desert_Up_Left_Right"; }
 
                     //four ways
-                    if (roomName == "Up Down Left Right") { roomName = ""; }
+                    if (roomName == "Up Down Left Right") { if (!altChance) { roomName = "Desert_Up_Down_Left_Right"; } if (altChance) { roomName = "Desert_Up_Down_Left_Right_Alt"; } }
 
                     //boss rooms
-                    if (roomName == "Up Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Down Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Left Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Right Boss") { roomName = ""; bossScene = roomName; }
+                    if (roomName == "Up Boss") { roomName = "Desert_Boss_Up"; bossScene = roomName; }
+                    if (roomName == "Down Boss") { roomName = "Desert_Boss_Down"; bossScene = roomName; }
+                    if (roomName == "Left Boss") { roomName = "Desert_Boss_Left"; bossScene = roomName; }
+                    if (roomName == "Right Boss") { roomName = "Desert_Boss_Right"; bossScene = roomName; }
 
                     //treasure rooms
-                    if (roomName == "Up Treasure") { roomName = ""; }
-                    if (roomName == "Down Treasure") { roomName = ""; }
-                    if (roomName == "Left Treasure") { roomName = ""; }
-                    if (roomName == "Right Treasure") { roomName = ""; }
-
-                    //alt rooms
+                    if (roomName == "Up Treasure") { roomName = "Desert_Treasure_Up"; }
+                    if (roomName == "Down Treasure") { roomName = "Desert_Treasure_Down"; }
+                    if (roomName == "Left Treasure") { roomName = "Desert_Treasure_Left"; }
+                    if (roomName == "Right Treasure") { roomName = "Desert_Treasure_Right"; }
 
                     mapNameList[i] = roomName;
                 }
@@ -204,45 +205,45 @@ public class LevelManager : MonoBehaviour
             case AreaType.City:
                 for (int i = 0; i < mapNameList.Count; i++)
                 {
+                    bool altChance = Random.value < 0.5f;
+
                     //one ways
-                    if (roomName == "Up") { roomName = ""; }
-                    if (roomName == "Down") { roomName = ""; }
-                    if (roomName == "Left") { roomName = ""; }
-                    if (roomName == "Right") { roomName = ""; }
+                    if (roomName == "Up") { roomName = "City_Up"; }
+                    if (roomName == "Down") { roomName = "City_Down"; }
+                    if (roomName == "Left") { roomName = "City_Left"; }
+                    if (roomName == "Right") { roomName = "City_Right"; }
 
                     //two ways
-                    if (roomName == "Up Down") { roomName = ""; }
-                    if (roomName == "Left Right") { roomName = ""; }
+                    if (roomName == "Up Down") { roomName = "City_Up_Down"; }
+                    if (roomName == "Left Right") { roomName = "City_Left_Right"; }
 
-                    if (roomName == "Up Left") { roomName = ""; }
-                    if (roomName == "Up Right") { roomName = ""; }
+                    if (roomName == "Up Left") { roomName = "City_Up_Left"; }
+                    if (roomName == "Up Right") { roomName = "City_Up_Right"; }
 
-                    if (roomName == "Down Left") { roomName = ""; }
-                    if (roomName == "Down Right") { roomName = ""; }
+                    if (roomName == "Down Left") { roomName = "City_Down_Left"; }
+                    if (roomName == "Down Right") { roomName = "City_Down_Right"; }
 
                     //three ways
-                    if (roomName == "Up Down Left") { roomName = ""; }
-                    if (roomName == "Up Down Right") { roomName = ""; }
+                    if (roomName == "Up Down Left") { roomName = "City_Up_Down_Left"; }
+                    if (roomName == "Up Down Right") { roomName = "City_Up_Down_Right"; }
 
-                    if (roomName == "Down Left Right") { roomName = ""; }
-                    if (roomName == "Up Left Right") { roomName = ""; }
+                    if (roomName == "Down Left Right") { roomName = "City_Down_Left_Right"; }
+                    if (roomName == "Up Left Right") { roomName = "City_Up_Left_Right"; }
 
                     //four ways
-                    if (roomName == "Up Down Left Right") { roomName = ""; }
+                    if (roomName == "Up Down Left Right") { roomName = "City_Up_Down_Left_Right"; }
 
                     //boss rooms
-                    if (roomName == "Up Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Down Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Left Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Right Boss") { roomName = ""; bossScene = roomName; }
+                    if (roomName == "Up Boss") { roomName = "City_Boss_Up"; bossScene = roomName; }
+                    if (roomName == "Down Boss") { roomName = "City_Boss_Down"; bossScene = roomName; }
+                    if (roomName == "Left Boss") { roomName = "City_Boss_Left"; bossScene = roomName; }
+                    if (roomName == "Right Boss") { roomName = "City_Boss_Right"; bossScene = roomName; }
 
                     //treasure rooms
-                    if (roomName == "Up Treasure") { roomName = ""; }
-                    if (roomName == "Down Treasure") { roomName = ""; }
-                    if (roomName == "Left Treasure") { roomName = ""; }
-                    if (roomName == "Right Treasure") { roomName = ""; }
-
-                    //alt rooms
+                    if (roomName == "Up Treasure") { roomName = "City_Treasure_Up"; }
+                    if (roomName == "Down Treasure") { roomName = "City_Treasure_Down"; }
+                    if (roomName == "Left Treasure") { roomName = "City_Treasure_Left"; }
+                    if (roomName == "Right Treasure") { roomName = "City_Treasure_Right"; }
 
                     mapNameList[i] = roomName;
                 }
@@ -251,45 +252,45 @@ public class LevelManager : MonoBehaviour
             case AreaType.Swamp:
                 for (int i = 0; i < mapNameList.Count; i++)
                 {
+                    bool altChance = Random.value < 0.5f;
+
                     //one ways
-                    if (roomName == "Up") { roomName = ""; }
-                    if (roomName == "Down") { roomName = ""; }
-                    if (roomName == "Left") { roomName = ""; }
-                    if (roomName == "Right") { roomName = ""; }
+                    if (roomName == "Up") { roomName = "Swamp_Up"; }
+                    if (roomName == "Down") { roomName = "Swamp_Down"; }
+                    if (roomName == "Left") { roomName = "Swamp_Left"; }
+                    if (roomName == "Right") { roomName = "Swamp_Right"; }
 
                     //two ways
-                    if (roomName == "Up Down") { roomName = ""; }
-                    if (roomName == "Left Right") { roomName = ""; }
+                    if (roomName == "Up Down") { roomName = "Swamp_Up_Down"; }
+                    if (roomName == "Left Right") { roomName = "Swamp_Left_Right"; }
 
-                    if (roomName == "Up Left") { roomName = ""; }
-                    if (roomName == "Up Right") { roomName = ""; }
+                    if (roomName == "Up Left") { roomName = "Swamp_Up_Left"; }
+                    if (roomName == "Up Right") { roomName = "Swamp_Up_Right"; }
 
-                    if (roomName == "Down Left") { roomName = ""; }
-                    if (roomName == "Down Right") { roomName = ""; }
+                    if (roomName == "Down Left") { roomName = "Swamp_Down_Left"; }
+                    if (roomName == "Down Right") { roomName = "Swamp_Down_Right"; }
 
                     //three ways
-                    if (roomName == "Up Down Left") { roomName = ""; }
-                    if (roomName == "Up Down Right") { roomName = ""; }
+                    if (roomName == "Up Down Left") { roomName = "Swamp_Up_Down_Left"; }
+                    if (roomName == "Up Down Right") { roomName = "Swamp_Up_Down_Right"; }
 
-                    if (roomName == "Down Left Right") { roomName = ""; }
-                    if (roomName == "Up Left Right") { roomName = ""; }
+                    if (roomName == "Down Left Right") { roomName = "Swamp_Down_Left_Right"; }
+                    if (roomName == "Up Left Right") { roomName = "Swamp_Up_Left_Right"; }
 
                     //four ways
-                    if (roomName == "Up Down Left Right") { roomName = ""; }
+                    if (roomName == "Up Down Left Right") { roomName = "Swamp_Up_Down_Left_Right"; }
 
                     //boss rooms
-                    if (roomName == "Up Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Down Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Left Boss") { roomName = ""; bossScene = roomName; }
-                    if (roomName == "Right Boss") { roomName = ""; bossScene = roomName; }
+                    if (roomName == "Up Boss") { roomName = "Swamp_Boss_Up"; bossScene = roomName; }
+                    if (roomName == "Down Boss") { roomName = "Swamp_Boss_Down"; bossScene = roomName; }
+                    if (roomName == "Left Boss") { roomName = "Swamp_Boss_Left"; bossScene = roomName; }
+                    if (roomName == "Right Boss") { roomName = "Swamp_Boss_Right"; bossScene = roomName; }
 
                     //treasure rooms
-                    if (roomName == "Up Treasure") { roomName = ""; }
-                    if (roomName == "Down Treasure") { roomName = ""; }
-                    if (roomName == "Left Treasure") { roomName = ""; }
-                    if (roomName == "Right Treasure") { roomName = ""; }
-
-                    //alt rooms
+                    if (roomName == "Up Treasure") { roomName = "Swamp_Treasure_Up"; }
+                    if (roomName == "Down Treasure") { roomName = "Swamp_Treasure_Down"; }
+                    if (roomName == "Left Treasure") { roomName = "Swamp_Treasure_Left"; }
+                    if (roomName == "Right Treasure") { roomName = "Swamp_Treasure_Right"; }
 
                     mapNameList[i] = roomName;
                 }
