@@ -34,11 +34,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Charge Dodge Settings")]
     public bool chargeDodge = false;
     public bool chargeDodgeStart = false;
-    public float chargedodgeDuration = 0.5f;
+    public float chargeDodgeDuration = 0.5f;
     public bool isCharging = false;
     public Collider2D hit;
     ContactFilter2D contactFilter;
-    LayerMask mask;
+    public LayerMask mask;
     Vector3 offsetPos;
     public GameObject offset;
     bool isSwamp;
@@ -130,14 +130,15 @@ public class PlayerMovement : MonoBehaviour
 
         //the controller for xbox rt is an axis, not a button
         //dodgekeypress = Input.GetButton("Dodge");
-        if (Input.GetButtonDown("Dodge")) 
-        dodgekeypress = true;
-        if (Input.GetButtonUp("Dodge"))
+        if (Input.GetButtonDown("Dodge"))
+        {
+            dodgekeypress = true;   
+        }
+        else if (Input.GetButtonUp("Dodge"))
         {
             dodgeclick = true;
             dodgekeypress = false;
         }
-
 
         //SET CURSOR
         if (SetCursor.Instance != null)
@@ -194,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
 
         //raycast stuff
         if (isSwamp) { mask = LayerMask.GetMask("SwampWall"); } //if swamp, wall layer is swamp wall
-        if (!isSwamp) { mask = LayerMask.GetMask("Wall"); } //if not, normal wall
+        if (!isSwamp) { mask = LayerMask.GetMask("SwampWall"); } //if not, normal wall
         contactFilter.layerMask = mask;
         offsetPos = offset.transform.position;
 
@@ -276,9 +277,10 @@ public class PlayerMovement : MonoBehaviour
         //charge dodge movement
         if (chargeDodgeStart)
         {
+            if(dodgeTimer < chargeDodgeDuration)
             dodgeTimer += Time.fixedDeltaTime;
 
-            if (hit != null)
+            if (hit != null || dodgeTimer > chargeDodgeDuration)
             {
                 chargeDodgeStart = false; //stop charge dodge if hit wall
                 Debug.Log("Hit wall.");
@@ -287,7 +289,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if (hit == null)
             {
-                myPlayer.position = myPlayer.position + aimDir * dodgeTimer;
+                myPlayer.position = myPlayer.position + direction * dodgeTimer;
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isDodging", true);
                 anim.SetBool("ischarging", false);
@@ -326,7 +328,7 @@ public class PlayerMovement : MonoBehaviour
 
                 //StartDodge(aimDir); // Dodge towards Mouse Click
             }
-            if ((dodgeclick) && chargeDodge)
+            if ((dodgeclick) && chargeDodge && !isDodging)
             {
                 StartChargeRoll(direction); //Charge Roll towards Keyboard Movement
 
