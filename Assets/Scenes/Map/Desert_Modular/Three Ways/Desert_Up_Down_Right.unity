@@ -336,7 +336,6 @@ MonoBehaviour:
   enemies: []
   enemyCount: 0
   roomIndex: 0
-  roomsCompleted: 0
   enemiesDefeated: 0
 --- !u!1 &201372271
 GameObject:
@@ -126307,6 +126306,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1040887680}
     m_Modifications:
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
+      propertyPath: up
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: isEntry
       value: 1
       objectReference: {fileID: 0}
@@ -127723,6 +127726,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1040887680}
     m_Modifications:
+    - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
+      propertyPath: down
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: isEntry
       value: 0
@@ -129453,6 +129460,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1040887680}
     m_Modifications:
+    - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
+      propertyPath: right
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: isEntry
       value: 0

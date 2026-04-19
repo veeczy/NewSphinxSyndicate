@@ -11,24 +11,13 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
 
     public enum AreaType { Desert, City, Swamp }
+    private GameObject LevelGenerator;
 
     [Header("Current Area (set by wanted board)")]
     public AreaType currentArea = AreaType.Desert; //defaults to desert
 
-    // MASTER arrays (edit in Inspector, never modified)
-    [Header("Random Rooms MASTER (build indexes)")] 
-    public string[] desertRoomMaster;
-    public string[] cityRoomMaster;
-    public string[] swampRoomMaster;
-
     [Header("Boss Rooms")]
     public string bossScene;
-
-    [Header("Random Rooms (when you start Run)")]
-    // RUNTIME POOLS (auto-built, these get modified) 
-    public List<string> desertRoomPool = new List<string>();
-    public List<string> cityRoomPool = new List<string>();
-    public List<string> swampRoomPool = new List<string>();
 
     [Header("Map Progress")]
     public string currentRoom; //records which room youre in by name
@@ -83,7 +72,7 @@ public class LevelManager : MonoBehaviour
         {
             enemiesDefeated = roomsCleared[currentRoomIndex]; //enemies defeated is whatever the state of the bool says currently
         }
-
+        
         //CHECK PLAYER PREFS FOR SAVE DATA
         desertBossClear = PlayerPrefs.GetInt("desertBoss");
         cityBossClear = PlayerPrefs.GetInt("cityBoss");
@@ -133,7 +122,9 @@ public class LevelManager : MonoBehaviour
     
     public void StartRunInCurrentArea() // Call this when leaving the biome start zone
     {
-        
+        Debug.Log("Start Run in Current Area");
+        ResetRun();
+        LoadRoom();
     }
 
     public void EnemiesDefeated() //called when all enemies are defeated, updates state of room to be cleared
@@ -152,14 +143,14 @@ public class LevelManager : MonoBehaviour
 
     public void RebuildRoomPool()
     {
-        
+        Debug.Log("Rebuild Room Pool");
         switch (currentArea)
         {
             case AreaType.Desert:
                 for (int i = 0; i < mapNameList.Count; i++)
                 {
                     bool altChance = Random.value < 0.5f;
-
+                    roomName = mapDirectionList[i];
                     //one ways
                     if (roomName == "Up") { if (!altChance) { roomName = "Desert_Up"; } if (altChance) { roomName = "Desert_Up_Alt"; } }
                     if (roomName == "Down") { roomName = "Desert_Down"; }
@@ -199,6 +190,7 @@ public class LevelManager : MonoBehaviour
                     if (roomName == "Right Treasure") { roomName = "Desert_Treasure_Right"; }
 
                     mapNameList[i] = roomName;
+                    Debug.Log("Room filled in Level Manager");
                 }
                 break;
             
@@ -206,7 +198,7 @@ public class LevelManager : MonoBehaviour
                 for (int i = 0; i < mapNameList.Count; i++)
                 {
                     bool altChance = Random.value < 0.5f;
-
+                    roomName = mapDirectionList[i];
                     //one ways
                     if (roomName == "Up") { roomName = "City_Up"; }
                     if (roomName == "Down") { roomName = "City_Down"; }
@@ -253,7 +245,7 @@ public class LevelManager : MonoBehaviour
                 for (int i = 0; i < mapNameList.Count; i++)
                 {
                     bool altChance = Random.value < 0.5f;
-
+                    roomName = mapDirectionList[i];
                     //one ways
                     if (roomName == "Up") { roomName = "Swamp_Up"; }
                     if (roomName == "Down") { roomName = "Swamp_Down"; }
@@ -304,6 +296,7 @@ public class LevelManager : MonoBehaviour
 
     public void ResetRun()
     {
+        Debug.Log("Data Reset");
         //reset current room pool
         RebuildRoomPool();
 

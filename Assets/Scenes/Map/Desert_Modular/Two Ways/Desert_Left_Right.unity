@@ -302,7 +302,6 @@ MonoBehaviour:
   enemies: []
   enemyCount: 0
   roomIndex: 0
-  roomsCompleted: 0
   enemiesDefeated: 0
 --- !u!4 &68985789
 Transform:
@@ -881,7 +880,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 190953391}
-  - component: {fileID: 190953390}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -889,22 +887,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &190953390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190953389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35ea5839876db149a78ec3a625f6164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  onTrigger: 1
-  isSecretDoor: 0
-  isEntry: 0
-  sceneName: 
 --- !u!4 &190953391
 Transform:
   m_ObjectHideFlags: 0
@@ -197221,8 +197203,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   onTrigger: 1
   isSecretDoor: 0
-  isEntry: 1
+  up: 0
+  down: 0
+  left: 1
+  right: 0
   sceneName: 
+  x: 0
+  y: 0
+  playerCoords: {x: 0, y: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -200644,8 +200632,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   onTrigger: 1
   isSecretDoor: 0
-  isEntry: 0
+  up: 0
+  down: 0
+  left: 0
+  right: 1
   sceneName: 
+  x: 0
+  y: 0
+  playerCoords: {x: 0, y: 0}
 --- !u!1 &2112177920
 GameObject:
   m_ObjectHideFlags: 0

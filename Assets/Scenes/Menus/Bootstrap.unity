@@ -481,6 +481,8 @@ MonoBehaviour:
   jackpot: 500
   gamma: 0
   debugSceneChange: 
+  X: 0
+  Y: 0
 --- !u!4 &1196307844
 Transform:
   m_ObjectHideFlags: 0
@@ -575,104 +577,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   currentArea: 0
-  desertRoomMaster:
-  - Desert_Down_Left
-  - Desert_Down_Left_Right
-  - Desert_Down_Right
-  - Desert_Left_Right
-  - Desert_Up_Alt
-  - Desert_Up_Down
-  - Desert_Up_Down_Alt
-  - Desert_Up_Down_Left
-  - Desert_Up_Down_Left_Right
-  - Desert_Up_Down_Left_Right_Alt
-  - Desert_Up_Down_Right
-  - Desert_Up_Down_Right_Alt
-  - Desert_Up_Left
-  - Desert_Up_Left_Alt
-  - Desert_Up_Left_Right
-  - Desert_Up_Right
-  cityRoomMaster:
-  - City_Down_Left
-  - City_Down_Left_Right
-  - City_Down_Right
-  - City_Left_Right
-  - City_Down_Right_Alt
-  - City_Up_Down
-  - City_Up_Down_Left_Alt
-  - City_Up_Down_Left
-  - City_Up_Down_Left_Right
-  - City_Up_Down_Right_Alt
-  - City_Up_Down_Right
-  - City_Up_Left_Alt
-  - City_Up_Left
-  - City_Up_Left_Right_Alt
-  - City_Up_Left_Right
-  - City_Up_Right
-  swampRoomMaster:
-  - Swamp_Down_Left
-  - Swamp_Down_Left_Right
-  - Swamp_Down_Right
-  - Swamp_Left_Right
-  - Swamp_Down_Right_Alt
-  - Swamp_Up_Down
-  - Swamp_Left_Right_Alt
-  - Swamp_Up_Down_Left
-  - Swamp_Up_Down_Left_Right
-  - Swamp_Up_Down_Left_Right_Alt
-  - Swamp_Up_Down_Right
-  - Swamp_Up_Down_Right_Alt
-  - Swamp_Up_Left
-  - Swamp_Up_Right_Alt
-  - Swamp_Up_Left_Right
-  - Swamp_Up_Right
-  remainingdesertRoom: []
-  remainingcityRoom: []
-  remainingswampRoom: []
-  desertSecretRooms:
-  - Desert_Treasure_Down
-  - Desert_Treasure_Left
-  - Desert_Treasure_Right
-  - Desert_Treasure_Up
-  citySecretRooms:
-  - City_Treasure_Down
-  - City_Treasure_Left
-  - City_Treasure_Right
-  - City_Treasure_Up
-  swampSecretRooms:
-  - Swamp_Treasure_Down
-  - Swamp_Treasure_Left
-  - Swamp_Treasure_Right
-  - Swamp_Treasure_Up
-  desertbossRooms:
-  - Desert_Boss_Up
-  - Desert_Boss_Down
-  - Desert_Boss_Left
-  - Desert_Boss_Right
-  desertBossRoom: 
-  citybossRooms:
-  - City_Boss_Up
-  - City_Boss_Down
-  - City_Boss_Left
-  - City_Boss_Right
-  cityBossRoom: 
-  swampbossRooms:
-  - Swamp_Boss_Up
-  - Swamp_Boss_Down
-  - Swamp_Boss_Left
-  - Swamp_Boss_Right
-  swampBossRoom: 
   bossScene: 
-  desertRoomPool: []
-  cityRoomPool: []
-  swampRoomPool: []
-  randomRoomIndex: 0
-  randomRoomValue: 
-  maxRoomsBeforeBoss: 5
-  roomsCompleted: 0
   currentRoom: 
   currentRoomIndex: 0
-  firstRoom: 0
+  mapDirectionList:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  mapNameList:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  mapCoordsList:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  x: 0
+  y: 0
+  playerCoords: {x: 0, y: 0}
   enemiesDefeated: 0
   roomsCleared: 
   resetSceneName: Bootstrap

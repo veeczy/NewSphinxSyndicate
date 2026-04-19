@@ -49,8 +49,11 @@ public class LevelGeneration : MonoBehaviour
         testnameIndex = roomCoordsList.IndexOf(testcoords);
         testname = roomNameList[testnameIndex];
 
-        //LevelManager.instance.mapCoordsList = roomCoordsList;
-        //LevelManager.instance.mapNameList = roomNameList;
+        if(LevelManager.instance != null)
+        {
+            UpdateLevelManager();
+            LevelManager.instance.StartRunInCurrentArea();
+        }
     }
     void CreateRooms()
     {
@@ -211,7 +214,7 @@ public class LevelGeneration : MonoBehaviour
         foreach (RoomType room in rooms) // loop for every coordinate
         {
             if (room == null) { continue; } //if there isnt a room in that position on the map, skip to next slot
-            
+
             Vector2 drawPos = room.gridPos; // gather coordinate
 
             // multiply to size of map sprite ratio
@@ -230,9 +233,6 @@ public class LevelGeneration : MonoBehaviour
             mapper.down = room.doorBottom;
             mapper.right = room.doorRight;
             mapper.left = room.doorLeft;
-
-            
-
         }
 
         if(roomNameList.Count == takenPositions.Count) { isMapLoaded = true; }
@@ -279,20 +279,12 @@ public class LevelGeneration : MonoBehaviour
 
     }
 
-    void DrawLive(RoomType room)
+    void UpdateLevelManager()
     {
-        Vector2 drawPos = room.gridPos; // gather coordinate
-
-        // multiply to size of map sprite ratio
-        drawPos.x *= 1;
-        drawPos.y *= 1;
-
-        // create map obj and draw based on info in Map Sprite Selector script
-        MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
-        mapper.type = room.type;
-        mapper.up = room.doorTop;
-        mapper.down = room.doorBottom;
-        mapper.right = room.doorRight;
-        mapper.left = room.doorLeft;
+        for (int i = 0; i < roomNameList.Count; i++)
+        {
+            LevelManager.instance.mapDirectionList[i] = roomNameList[i];
+            LevelManager.instance.mapCoordsList[i] = roomCoordsList[i];
+        }
     }
 }
