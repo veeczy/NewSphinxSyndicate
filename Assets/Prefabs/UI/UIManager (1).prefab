@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9036624114286174314}
   - component: {fileID: 1124194349868709185}
+  - component: {fileID: 8283459715218222439}
   m_Layer: 0
   m_Name: UIManager (1)
   m_TagString: Untagged
@@ -54,3 +55,16 @@ MonoBehaviour:
   halfHeart: {fileID: 7294242647285451956, guid: 7d4a7a4109edd6941a133edb96b21cbd, type: 3}
   quarterHeart: {fileID: -4983048486054741218, guid: 7d132c160860e8146bee1d54d7269c09, type: 3}
   emptyHeart: {fileID: 1945434853207596477, guid: e359f6db12192ab48ab88b3bc30c34e0, type: 3}
+--- !u!114 &8283459715218222439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913225928956996752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec387f6c5eecf046b33f3d2a4b00116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCounterUI
+  enemyText: {fileID: 0}
