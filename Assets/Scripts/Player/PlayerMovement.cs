@@ -231,7 +231,6 @@ public class PlayerMovement : MonoBehaviour
         {
             // Movement
             direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
             // checks if in water
             if (!inWater)
             {
@@ -291,7 +290,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (hit == null)
             {
-                myPlayer.position = myPlayer.position + direction * dodgeTimer;
+                if(direction == Vector2.zero)
+            {
+                if (rightLeft) {direction = Vector2.left;} // facing left
+                if (!rightLeft) {direction = Vector2.right;} // facing right
+            }
+                //myPlayer.position = myPlayer.position + direction * dodgeTimer;
                 myPlayer.MovePosition(Vector2.MoveTowards(myPlayer.position, myPlayer.position + direction * dodgeTimer, speed * Time.deltaTime));
                 //anim.SetBool("isWalking", false);
                 anim.SetBool("isDodging", true);
@@ -383,6 +387,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartChargeRoll(Vector2 dir)
     {
+        if(dir == Vector2.zero)
+        {
+            if (rightLeft) {direction = Vector2.left;} // facing left
+            if (!rightLeft) {direction = Vector2.right;} // facing right
+        }
         chargeTimer = 0; // reset timer of holding button
         dodgeTimer = 0f;
         chargeDodgeStart = true; //turn on charge dodge start
