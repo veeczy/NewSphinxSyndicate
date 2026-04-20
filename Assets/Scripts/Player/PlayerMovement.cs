@@ -82,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 stickAxis;
     public float angle;
     public Vector2 aimDir;
+    private bool rightLeft;
 
     void Start()
     {
@@ -310,6 +311,8 @@ public class PlayerMovement : MonoBehaviour
 
             offset.transform.position = Vector3.MoveTowards(transform.position + weaponEnd, transform.position + weaponStart, Time.deltaTime);
             weaponObject.GetComponent<SpriteRenderer>().flipY = true;
+
+            rightLeft = true;
         }
         else
         {
@@ -318,6 +321,8 @@ public class PlayerMovement : MonoBehaviour
 
             offset.transform.position = Vector3.MoveTowards(transform.position + weaponStart, transform.position + weaponEnd, Time.deltaTime);
             weaponObject.GetComponent<SpriteRenderer>().flipY = false;
+
+            rightLeft = false;
         }
 
         // Dodge input
@@ -365,7 +370,12 @@ public class PlayerMovement : MonoBehaviour
         //* END MOUSE AIM DODGE STUFF *//
 
         dodgeDistance = 3f;
-        dodgeEnd = dodgeStart + dir * dodgeDistance;
+        if (dir == Vector2.zero) //if not moving
+        {
+            if (rightLeft) { dodgeEnd = dodgeStart + Vector2.left * dodgeDistance; } // facing left
+            if (!rightLeft) { dodgeEnd = dodgeStart + Vector2.right * dodgeDistance; } // facing right
+        }
+        else { dodgeEnd = dodgeStart + dir * dodgeDistance; } //if moving dodge toward where you are moving towards
 
         dodgeclick = false;
         //Debug.Log("Dodged.");
