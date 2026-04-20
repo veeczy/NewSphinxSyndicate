@@ -109,7 +109,8 @@ public class PauseManager : MonoBehaviour
             currentScene.name != "HowToPlay" &&
             currentScene.name != "MainMenu")
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            //new now works with escape adn Start button
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause"))
             {
                 if (isPaused)
                     Resume();

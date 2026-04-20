@@ -4,13 +4,14 @@ using UnityEngine.SceneManagement;
 public class OpenWantedBoard : MonoBehaviour
 {
     public string wantedBoardSceneName = "Wanted Board";
-    public KeyCode interactKey = KeyCode.E;
+    //public KeyCode interactKey = KeyCode.E;
 
     private bool playerInRange = false;
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(interactKey))
+        // new e and A button work now
+        if (playerInRange && Input.GetButtonDown("Interact"))
         {
             // save where we came from
             PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
