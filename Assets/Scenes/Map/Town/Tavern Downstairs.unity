@@ -677,8 +677,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 161.07005, y: 65.59999}
-  m_SizeDelta: {x: 70.3359, y: 70.3365}
+  m_AnchoredPosition: {x: 169.90514, y: 70.129196}
+  m_SizeDelta: {x: 60.4654, y: 79.7044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &112498981
 MonoBehaviour:
@@ -3481,7 +3481,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 9.508941
+      m_AnimationSpeed: 1.5328739
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 6, z: 0}
@@ -3490,7 +3490,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 1.1647455
+      m_AnimationSpeed: 3.435522
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 6, z: 0}
@@ -3499,7 +3499,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 5.5662026
+      m_AnimationSpeed: 1.3189716
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: 6, z: 0}
@@ -3508,7 +3508,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 11.42003
+      m_AnimationSpeed: 6.439487
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 6, z: 0}
@@ -3517,7 +3517,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 4.5609636
+      m_AnimationSpeed: 10.233935
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: 6, z: 0}
@@ -3526,7 +3526,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 11.549787
+      m_AnimationSpeed: 3.9239671
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -4812,8 +4812,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 44.900047, y: 62.36107}
-  m_SizeDelta: {x: 75.3333, y: 75.3333}
+  m_AnchoredPosition: {x: 49.664696, y: 69.81401}
+  m_SizeDelta: {x: 59.9873, y: 79.074}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &364018049
 MonoBehaviour:
@@ -100892,8 +100892,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 104.10012, y: 63.14705}
-  m_SizeDelta: {x: 70.3817, y: 70.3817}
+  m_AnchoredPosition: {x: 109.66547, y: 69.831985}
+  m_SizeDelta: {x: 60.0145, y: 79.1099}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272069099
 MonoBehaviour:
@@ -104258,10 +104258,10 @@ MonoBehaviour:
   button8: {fileID: 0}
   buttonDeal: {fileID: 0}
   creditsPanel: {fileID: 0}
-  creditsNumber1: {fileID: 0}
-  creditsNumber2: {fileID: 0}
-  creditsNumber3: {fileID: 0}
-  creditsNumber4: {fileID: 0}
+  creditsNumber1: {fileID: 2037353300}
+  creditsNumber2: {fileID: 112498979}
+  creditsNumber3: {fileID: 1272069097}
+  creditsNumber4: {fileID: 364018047}
   betAmountPanel: {fileID: 0}
   betAmountText: {fileID: 0}
   BetChips: {fileID: 0}
@@ -105312,8 +105312,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 218, y: 65.6}
-  m_SizeDelta: {x: 68.856, y: 68.856}
+  m_AnchoredPosition: {x: 230.2, y: 69.9}
+  m_SizeDelta: {x: 60.1176, y: 79.2459}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2037353302
 MonoBehaviour:
