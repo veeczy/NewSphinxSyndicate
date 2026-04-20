@@ -6,7 +6,16 @@ public class WeaponUI : MonoBehaviour
     public WeaponSwitch weaponSwitch;
     public Image weaponImage;
 
-    public Sprite[] weaponIcons; 
+    public Sprite[] weaponIcons;
+
+    public GameObject player;
+
+    private void Start()
+    {
+        if(weaponImage == null) { GameObject placeholder = GameObject.Find("WeaponSourceImage"); weaponImage = placeholder.GetComponent<Image>(); }
+        if(player == null) { player = GameObject.Find("Player"); player = GameObject.Find("Player (1)"); player = GameObject.Find("Player (2)"); }
+        if (weaponSwitch == null) { weaponSwitch = player.GetComponent<WeaponSwitch>(); }
+    }
 
     void Update()
     {
