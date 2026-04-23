@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class MenuCursor : MonoBehaviour
@@ -8,10 +9,11 @@ public class MenuCursor : MonoBehaviour
     public RectTransform cursorRect;
     public Canvas canvas;
     public float cursorSpeed = 1000f;
-    public bool usingController = true;
     public string horizontalAxis = "Horizontal";
     public string verticalAxis = "Vertical";
     public string submitButton = "Submit";
+
+    public bool usingController = true;
 
     private GraphicRaycaster raycaster;
     private EventSystem eventSystem;
@@ -33,24 +35,48 @@ public class MenuCursor : MonoBehaviour
 
     void Update()
     {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        bool isMenuScene =
+            sceneName == "MainMenu" ||
+            sceneName == "Settings" ||
+            sceneName == "HowToPlay";
+
+        bool isPauseMenuOpen =
+            PauseManager.Instance != null &&
+            PauseManager.Instance.isPaused;
+
+        bool canUseMenuCursor = isMenuScene || isPauseMenuOpen;
+
+        if (!canUseMenuCursor)
+        {
+            cursorRect.gameObject.SetActive(false);
+            return;
+        }
+
         float moveX = Input.GetAxisRaw(horizontalAxis);
         float moveY = Input.GetAxisRaw(verticalAxis);
 
-        // switch to controller if stick moves
-        if (Mathf.Abs(moveX) > 0.2f || Mathf.Abs(moveY) > 0.2f)
+        if (isPauseMenuOpen)
         {
             usingController = true;
+            cursorRect.gameObject.SetActive(true);
+            MoveCursor();
+
+            if (Input.GetButtonDown(submitButton))
+                ClickUI();
+
+            return;
         }
 
-        // switch to mouse if mouse moves or clicks
+        if (Mathf.Abs(moveX) > 0.2f || Mathf.Abs(moveY) > 0.2f)
+            usingController = true;
+
         if (Mathf.Abs(Input.GetAxis("Mouse X")) > 0.01f ||
             Mathf.Abs(Input.GetAxis("Mouse Y")) > 0.01f ||
             Input.GetMouseButtonDown(0))
-        {
             usingController = false;
-        }
 
-        // show only when controller is active
         cursorRect.gameObject.SetActive(usingController);
 
         if (!usingController)
@@ -59,9 +85,7 @@ public class MenuCursor : MonoBehaviour
         MoveCursor();
 
         if (Input.GetButtonDown(submitButton))
-        {
             ClickUI();
-        }
     }
 
     void MoveCursor()
@@ -76,20 +100,6 @@ public class MenuCursor : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, 0f, Screen.width);
         pos.y = Mathf.Clamp(pos.y, 0f, Screen.height);
         cursorRect.position = pos;
-    }
-
-    void HoverUI()
-    {
-        PointerEventData pointerData = new PointerEventData(eventSystem);
-        pointerData.position = cursorRect.position;
-
-        List<RaycastResult> results = new List<RaycastResult>();
-        raycaster.Raycast(pointerData, results);
-
-        if (results.Count > 0)
-        {
-            eventSystem.SetSelectedGameObject(results[0].gameObject);
-        }
     }
 
     void ClickUI()
@@ -111,13 +121,10 @@ public class MenuCursor : MonoBehaviour
 
                 if (btn != null)
                 {
-                    Debug.Log("Clicked: " + btn.name);
                     btn.onClick.Invoke();
                     return;
                 }
             }
         }
-
-        Debug.Log("No button found under cursor");
     }
 }
