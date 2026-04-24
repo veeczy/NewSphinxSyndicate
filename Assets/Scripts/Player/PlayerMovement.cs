@@ -207,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
         if (dodgekeypress)
         {
             chargeTimer += Time.fixedDeltaTime;
-            if (chargeTimer > .3)
+            if (chargeTimer > 0.1f)
             {
                 isCharging = true;
                 anim.SetBool("ischarging", isCharging);
