@@ -13,10 +13,11 @@ public class MenuCursor : MonoBehaviour
     public string verticalAxis = "Vertical";
     public string submitButton = "Submit";
 
-    public bool usingController = true;
+    public bool usingController = false;
 
     private GraphicRaycaster raycaster;
     private EventSystem eventSystem;
+    private Vector3 lastMousePosition;
 
     void Start()
     {
@@ -29,8 +30,10 @@ public class MenuCursor : MonoBehaviour
         raycaster = canvas.GetComponent<GraphicRaycaster>();
         eventSystem = EventSystem.current;
 
-        Vector2 startPos = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        cursorRect.position = startPos;
+        cursorRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        lastMousePosition = Input.mousePosition;
+
+        SetCursorVisible(false);
     }
 
     void Update()
@@ -46,38 +49,33 @@ public class MenuCursor : MonoBehaviour
             PauseManager.Instance != null &&
             PauseManager.Instance.isPaused;
 
-        bool canUseMenuCursor = isMenuScene || isPauseMenuOpen;
-
-        if (!canUseMenuCursor)
+        if (!isMenuScene && !isPauseMenuOpen)
         {
-            cursorRect.gameObject.SetActive(false);
+            SetCursorVisible(false);
             return;
         }
 
         float moveX = Input.GetAxisRaw(horizontalAxis);
         float moveY = Input.GetAxisRaw(verticalAxis);
 
-        if (isPauseMenuOpen)
-        {
-            usingController = true;
-            cursorRect.gameObject.SetActive(true);
-            MoveCursor();
+        bool controllerInput =
+            Mathf.Abs(moveX) > 0.4f ||
+            Mathf.Abs(moveY) > 0.4f ||
+            Input.GetButtonDown(submitButton);
 
-            if (Input.GetButtonDown(submitButton))
-                ClickUI();
+        bool mouseInput =
+            Input.mousePosition != lastMousePosition ||
+            Input.GetMouseButtonDown(0);
 
-            return;
-        }
-
-        if (Mathf.Abs(moveX) > 0.2f || Mathf.Abs(moveY) > 0.2f)
-            usingController = true;
-
-        if (Mathf.Abs(Input.GetAxis("Mouse X")) > 0.01f ||
-            Mathf.Abs(Input.GetAxis("Mouse Y")) > 0.01f ||
-            Input.GetMouseButtonDown(0))
+        if (mouseInput)
             usingController = false;
 
-        cursorRect.gameObject.SetActive(usingController);
+        if (controllerInput)
+            usingController = true;
+
+        lastMousePosition = Input.mousePosition;
+
+        SetCursorVisible(usingController);
 
         if (!usingController)
             return;
@@ -110,21 +108,28 @@ public class MenuCursor : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         raycaster.Raycast(pointerData, results);
 
-        if (results.Count > 0)
+        foreach (RaycastResult result in results)
         {
-            for (int i = 0; i < results.Count; i++)
+            Button btn = result.gameObject.GetComponent<Button>();
+
+            if (btn == null)
+                btn = result.gameObject.GetComponentInParent<Button>();
+
+            if (btn != null)
             {
-                Button btn = results[i].gameObject.GetComponent<Button>();
-
-                if (btn == null)
-                    btn = results[i].gameObject.GetComponentInParent<Button>();
-
-                if (btn != null)
-                {
-                    btn.onClick.Invoke();
-                    return;
-                }
+                btn.onClick.Invoke();
+                return;
             }
+        }
+    }
+
+    void SetCursorVisible(bool visible)
+    {
+        Graphic[] graphics = cursorRect.GetComponentsInChildren<Graphic>(true);
+
+        foreach (Graphic graphic in graphics)
+        {
+            graphic.enabled = visible;
         }
     }
 }
