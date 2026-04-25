@@ -17,6 +17,9 @@ public class MenuCursor : MonoBehaviour
 
     public bool usingController = false;
 
+    // ADD THIS
+    public GameObject blackjackScreen;
+
     private GraphicRaycaster raycaster;
     private EventSystem eventSystem;
     private Vector3 lastMousePosition;
@@ -57,7 +60,13 @@ public class MenuCursor : MonoBehaviour
             PauseManager.Instance != null &&
             PauseManager.Instance.isPaused;
 
-        if (!isMenuScene && !isPauseMenuOpen)
+        // ADD THIS
+        bool isBlackjackOpen =
+            blackjackScreen != null &&
+            blackjackScreen.activeInHierarchy;
+
+        // UPDATED LINE
+        if (!isMenuScene && !isPauseMenuOpen && !isBlackjackOpen)
         {
             SetCursorVisible(false);
             return;
