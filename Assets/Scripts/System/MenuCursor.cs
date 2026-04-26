@@ -65,6 +65,13 @@ public class MenuCursor : MonoBehaviour
             blackjackScreen != null &&
             blackjackScreen.activeInHierarchy;
 
+        Debug.Log("BJ ref = " + blackjackScreen + " | open = " + isBlackjackOpen + " | usingController = " + usingController);
+
+        if (isBlackjackOpen)
+        {
+            usingController = true;
+        }
+
         // UPDATED LINE
         if (!isMenuScene && !isPauseMenuOpen && !isBlackjackOpen)
         {
@@ -79,6 +86,7 @@ public class MenuCursor : MonoBehaviour
             Mathf.Abs(moveX) > 0.4f ||
             Mathf.Abs(moveY) > 0.4f ||
             Input.GetButtonDown(submitButton);
+
 
         bool mouseInput =
             Input.mousePosition != lastMousePosition ||
