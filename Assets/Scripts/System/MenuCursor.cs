@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class MenuCursor : MonoBehaviour
 {
+    // cursor setup
     public RectTransform cursorRect;
     public Canvas canvas;
     public float cursorSpeed = 1000f;
@@ -13,33 +14,42 @@ public class MenuCursor : MonoBehaviour
     public string verticalAxis = "Vertical";
     public string submitButton = "Submit";
 
+    // slider control speed
     public float sliderSpeed = 0.5f;
 
+    // tracks if controller is being used
     public bool usingController = false;
 
-    // ADD THIS
+    // ui screens for minigames
     public GameObject blackjackScreen;
+    public GameObject fishingScreen;
+    public GameObject slotScreen;
 
+    // ui systems
     private GraphicRaycaster raycaster;
     private EventSystem eventSystem;
     private Vector3 lastMousePosition;
 
+    // active slider reference
     private Slider activeSlider;
 
     void Start()
     {
+        // get canvas if not set
         if (canvas == null)
             canvas = GetComponentInParent<Canvas>();
 
+        // get cursor rect if not set
         if (cursorRect == null)
             cursorRect = GetComponent<RectTransform>();
 
+        
         raycaster = canvas.GetComponent<GraphicRaycaster>();
         eventSystem = EventSystem.current;
 
+        
         cursorRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        lastMousePosition = Input.mousePosition;
-
+        
         SetCursorVisible(false);
     }
 
@@ -47,6 +57,7 @@ public class MenuCursor : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
 
+        // check if current scene is a menu
         bool isMenuScene =
             sceneName == "MainMenu" ||
             sceneName == "Settings" ||
@@ -56,29 +67,32 @@ public class MenuCursor : MonoBehaviour
             sceneName == "WinScene" ||
             sceneName == "VictoryScene";
 
+        // check pause menu
         bool isPauseMenuOpen =
             PauseManager.Instance != null &&
             PauseManager.Instance.isPaused;
 
-        // ADD THIS
+        // check minigame screens
         bool isBlackjackOpen =
             blackjackScreen != null &&
             blackjackScreen.activeInHierarchy;
 
-        Debug.Log("BJ ref = " + blackjackScreen + " | open = " + isBlackjackOpen + " | usingController = " + usingController);
+        bool isFishingOpen =
+            fishingScreen != null &&
+            fishingScreen.activeInHierarchy;
 
-        if (isBlackjackOpen)
-        {
-            usingController = true;
-        }
+        bool isSlotOpen =
+            slotScreen != null &&
+            slotScreen.activeInHierarchy;
 
-        // UPDATED LINE
-        if (!isMenuScene && !isPauseMenuOpen && !isBlackjackOpen)
+        // hide cursor if not in any ui state
+        if (!isMenuScene && !isPauseMenuOpen && !isBlackjackOpen && !isFishingOpen && !isSlotOpen)
         {
             SetCursorVisible(false);
             return;
         }
 
+        // get controller input
         float moveX = Input.GetAxisRaw(horizontalAxis);
         float moveY = Input.GetAxisRaw(verticalAxis);
 
@@ -87,29 +101,35 @@ public class MenuCursor : MonoBehaviour
             Mathf.Abs(moveY) > 0.4f ||
             Input.GetButtonDown(submitButton);
 
-
+        // detect mouse input
         bool mouseInput =
             Input.mousePosition != lastMousePosition ||
             Input.GetMouseButtonDown(0);
 
+        // mouse turns off controller cursor
         if (mouseInput)
             usingController = false;
 
+        // controller turns it on
         if (controllerInput)
         {
             usingController = true;
 
+            
             if (eventSystem != null)
                 eventSystem.SetSelectedGameObject(null);
         }
 
         lastMousePosition = Input.mousePosition;
 
+        
         SetCursorVisible(usingController);
 
+        // stop if not using controller
         if (!usingController)
             return;
 
+        
         MoveCursor();
         HandleSlider();
 
@@ -119,12 +139,14 @@ public class MenuCursor : MonoBehaviour
 
     void MoveCursor()
     {
+        // move cursor based on input
         float moveX = Input.GetAxisRaw(horizontalAxis);
         float moveY = Input.GetAxisRaw(verticalAxis);
 
         Vector3 move = new Vector3(moveX, moveY, 0f) * cursorSpeed * Time.unscaledDeltaTime;
         cursorRect.position += move;
 
+        // clamp cursor to screen
         Vector3 pos = cursorRect.position;
         pos.x = Mathf.Clamp(pos.x, 0f, Screen.width);
         pos.y = Mathf.Clamp(pos.y, 0f, Screen.height);
@@ -133,6 +155,7 @@ public class MenuCursor : MonoBehaviour
 
     void HandleSlider()
     {
+        // allow controller to adjust sliders
         if (Input.GetButton(submitButton))
         {
             if (activeSlider == null)
@@ -172,6 +195,7 @@ public class MenuCursor : MonoBehaviour
 
     void ClickUI()
     {
+        // simulate button click with cursor
         PointerEventData pointerData = new PointerEventData(eventSystem);
         pointerData.position = cursorRect.position;
 
@@ -187,7 +211,7 @@ public class MenuCursor : MonoBehaviour
 
             if (btn != null)
             {
-                Debug.Log("MenuCursor clicked: " + btn.name);
+                Debug.Log("menu cursor clicked: " + btn.name);
                 btn.onClick.Invoke();
                 return;
             }
@@ -196,6 +220,7 @@ public class MenuCursor : MonoBehaviour
 
     void SetCursorVisible(bool visible)
     {
+        
         Graphic[] graphics = cursorRect.GetComponentsInChildren<Graphic>(true);
 
         foreach (Graphic graphic in graphics)
