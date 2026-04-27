@@ -152436,7 +152436,7 @@ Tilemap:
       - {fileID: 21300000, guid: e73e02443cc9e47468fe9ccc0431f117, type: 3}
       - {fileID: 21300000, guid: 7f44d68177f31b04ba6414b5f4532630, type: 3}
       - {fileID: 21300000, guid: d8bb9e59aafd6b841985b112b953bab9, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -10, y: -17, z: 0}
@@ -157204,6 +157204,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1931390553}
     m_Modifications:
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
+      propertyPath: up
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: isEntry
       value: 1
       objectReference: {fileID: 0}
@@ -159194,7 +159198,6 @@ MonoBehaviour:
   enemies: []
   enemyCount: 0
   roomIndex: 0
-  roomsCompleted: 0
   enemiesDefeated: 0
 --- !u!4 &1117436826
 Transform:
@@ -161190,6 +161193,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1931390553}
     m_Modifications:
+    - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
+      propertyPath: right
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: isEntry
       value: 0

@@ -22,6 +22,10 @@ public class PlayerPrefsManager : MonoBehaviour
     public float gamma;
     public string debugSceneChange; //fill this is you want to debug a specific scene
 
+    [Header("Map Data")]
+    public int X;
+    public int Y;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,6 +42,10 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.SetInt("credits", credits);
         PlayerPrefs.SetInt("jackpot", jackpot);
         PlayerPrefs.SetFloat("gamma", 0.5f);
+
+        //MAP DATA
+        PlayerPrefs.SetInt("X", 0);
+        PlayerPrefs.SetInt("Y", 0);
 
         //SETTINGS DATA
         if (debugSceneChange == "") { debugSceneChange = "MainMenu"; }
@@ -60,6 +68,10 @@ public class PlayerPrefsManager : MonoBehaviour
         //MINIGAMES DATA
         credits = PlayerPrefs.GetInt("credits");
         jackpot = PlayerPrefs.GetInt("jackpot");
+
+        //MAP DATA
+        PlayerPrefs.GetInt("X");
+        PlayerPrefs.GetInt("Y");
 
         //SETTINGS DATA
         gamma = PlayerPrefs.GetFloat("gamma");

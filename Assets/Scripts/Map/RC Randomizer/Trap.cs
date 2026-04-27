@@ -9,7 +9,6 @@ public class Trap : MonoBehaviour
     public int enemyCount;
 
     public int roomIndex;
-    public int roomsCompleted;
     public bool enemiesDefeated;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,7 +16,6 @@ public class Trap : MonoBehaviour
     {
         //retrieve variables from level manager
         roomIndex = LevelManager.instance.currentRoomIndex; 
-        roomsCompleted = LevelManager.instance.roomsCompleted;
         enemiesDefeated = LevelManager.instance.enemiesDefeated;
 
         if(enemiesDefeated) //if the enemies are previously defeated, disarm traps
@@ -35,7 +33,6 @@ public class Trap : MonoBehaviour
 
         if (enemyCount <= 0 && armed)
         {
-            LevelManager.instance.RoomCounter(); //increase counter for rooms cleared
             LevelManager.instance.EnemiesDefeated(); //update the state of enemies being defeated for the room
             armed = false;
         }
@@ -46,7 +43,7 @@ public class Trap : MonoBehaviour
 
     public void ConditionMet() //for if you want to leave room after a different condition is met, seperate from killing enemies, you can call this
     {
-        LevelManager.instance.RoomCounter();
+        //
     }
 }
 

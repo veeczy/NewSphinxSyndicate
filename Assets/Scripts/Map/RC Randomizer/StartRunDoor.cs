@@ -16,7 +16,7 @@ public class StartRunDoor : MonoBehaviour
         }
 
         // starts random rooms for the currently selected biome
-        LevelManager.instance.StartRunInCurrentArea();
+        LevelManager.instance.LoadSceneByTrigger("RandomizerLoad");
     }
 }
 

@@ -118625,6 +118625,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 489282997}
     m_Modifications:
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
+      propertyPath: left
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: isEntry
       value: 1
       objectReference: {fileID: 0}
@@ -120437,6 +120441,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 489282997}
     m_Modifications:
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
+      propertyPath: up
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: isEntry
       value: 0
       objectReference: {fileID: 0}
@@ -121656,7 +121664,6 @@ MonoBehaviour:
   enemies: []
   enemyCount: 0
   roomIndex: 0
-  roomsCompleted: 0
   enemiesDefeated: 0
 --- !u!1001 &1946695370
 PrefabInstance:
