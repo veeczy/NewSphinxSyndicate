@@ -83,8 +83,8 @@ public class LevelManager : MonoBehaviour
         playerCoords = new Vector2(x, y);
 
         //update coords
-        currentRoomIndex = mapCoordsList.IndexOf(playerCoords); //get index of destination coords
-        currentRoom = mapNameList[currentRoomIndex]; //use index to get scene name for it
+        //currentRoomIndex = mapCoordsList.IndexOf(playerCoords); //get index of destination coords
+        //currentRoom = mapNameList[currentRoomIndex]; //use index to get scene name for it
     }
 
     public void LoadSceneByTrigger(string sceneName)

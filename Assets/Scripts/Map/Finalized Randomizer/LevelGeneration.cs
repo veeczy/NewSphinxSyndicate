@@ -52,7 +52,7 @@ public class LevelGeneration : MonoBehaviour
         if(LevelManager.instance != null)
         {
             UpdateLevelManager();
-            LevelManager.instance.StartRunInCurrentArea();
+            //LevelManager.instance.StartRunInCurrentArea();
         }
     }
     void CreateRooms()
@@ -286,5 +286,7 @@ public class LevelGeneration : MonoBehaviour
             LevelManager.instance.mapDirectionList[i] = roomNameList[i];
             LevelManager.instance.mapCoordsList[i] = roomCoordsList[i];
         }
+
+        LevelManager.instance.StartRunInCurrentArea();
     }
 }

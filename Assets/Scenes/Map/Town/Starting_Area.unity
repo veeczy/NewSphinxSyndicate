@@ -75804,7 +75804,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileSpriteIndex: 16
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -106561,26 +106561,26 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 1128
     m_Data: {fileID: 1123740284, guid: b3693045e37dfbb43b659ff26accb802, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -437863, guid: 1a31fb64db0c48f4493369f6d652d60e, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 10285
     m_Data:
@@ -107883,7 +107883,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   onTrigger: 1
   isSecretDoor: 0
+  up: 0
+  down: 0
+  left: 0
+  right: 0
   sceneName: 
+  x: 0
+  y: 0
+  playerCoords: {x: 0, y: 0}
 --- !u!4 &650080929
 Transform:
   m_ObjectHideFlags: 0
@@ -108860,11 +108867,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 142954195939458352, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: sceneName
-      value: Tavern Downstairs
+      value: Tavern_Exterior
       objectReference: {fileID: 0}
     - target: {fileID: 1526451713850021255, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: m_Name
-      value: SceneChange_Tavern
+      value: SceneChange_Desert Exterior
       objectReference: {fileID: 0}
     - target: {fileID: 1945008186465506937, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: m_Color.a
@@ -110179,7 +110186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1526451713850021255, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: m_Name
-      value: Barrier (Scene Trigger) (1)
+      value: Start Run Door
       objectReference: {fileID: 0}
     - target: {fileID: 1945008186465506937, guid: 1bb4cd5e7f0705b4b9f6cf666e7acf60, type: 3}
       propertyPath: m_Color.b
