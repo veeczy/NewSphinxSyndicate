@@ -81,6 +81,10 @@ public class LevelManager : MonoBehaviour
         x = PlayerPrefs.GetInt("X");
         y = PlayerPrefs.GetInt("Y");
         playerCoords = new Vector2(x, y);
+
+        //update coords
+        currentRoomIndex = mapCoordsList.IndexOf(playerCoords); //get index of destination coords
+        currentRoom = mapNameList[currentRoomIndex]; //use index to get scene name for it
     }
 
     public void LoadSceneByTrigger(string sceneName)
@@ -134,12 +138,22 @@ public class LevelManager : MonoBehaviour
 
     public void LoadRoom() //loads scene for whichever room youre moving to
     {
+        x = PlayerPrefs.GetInt("X");
+        y = PlayerPrefs.GetInt("Y");
+        playerCoords = new Vector2(x, y);
+
         //using coords from player coords, go to scene with said coords found in mapCoordsList
         currentRoomIndex = mapCoordsList.IndexOf(playerCoords); //get index of destination coords
         currentRoom = mapNameList[currentRoomIndex]; //use index to get scene name for it
 
+        Debug.Log("Player Coords are at: (" + x + ", " + y + ")");
+        Debug.Log("The room index is currently: " + currentRoomIndex);
+        Debug.Log("The Scene name we are moving to should be: " + currentRoom);
+
         //FadeManager.Instance.FadeAndLoadScene(currentRoom); // go to scene using scene name
         SceneManager.LoadScene(currentRoom);
+
+       
     }
 
     public void RebuildRoomPool()

@@ -39,9 +39,6 @@ public class Door : MonoBehaviour
         else
         {
             MoveRooms(); // update coordinates
-
-            // use coordinates to move in map
-            LevelManager.instance.LoadRoom();
         }
     }
 
@@ -62,6 +59,10 @@ public class Door : MonoBehaviour
         //save new coordinates
         PlayerPrefs.SetInt("X", (int)newCoords.x);
         PlayerPrefs.SetInt("Y", (int)newCoords.y);
+
+
+        // use coordinates to move in map
+        LevelManager.instance.LoadRoom();
     }
 }
 
