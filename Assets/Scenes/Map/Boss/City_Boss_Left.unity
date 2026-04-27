@@ -27535,6 +27535,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3900545955798202827, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
+      propertyPath: left
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900545955798202827, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: isEntry
       value: 0
       objectReference: {fileID: 0}
@@ -28300,7 +28304,6 @@ MonoBehaviour:
   enemies: []
   enemyCount: 0
   roomIndex: 0
-  roomsCompleted: 0
   enemiesDefeated: 0
 --- !u!4 &1679687617
 Transform:

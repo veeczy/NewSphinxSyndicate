@@ -128655,6 +128655,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3900545955798202827, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
+      propertyPath: left
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900545955798202827, guid: 01ed997a4ebd6c24195437e0640c5f06, type: 3}
       propertyPath: isEntry
       value: 0
       objectReference: {fileID: 0}
@@ -128752,7 +128756,6 @@ MonoBehaviour:
   enemies: []
   enemyCount: 0
   roomIndex: 0
-  roomsCompleted: 0
   enemiesDefeated: 0
 --- !u!4 &682470075
 Transform:
@@ -131695,7 +131698,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1954047389}
-  - component: {fileID: 1954047390}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -131719,21 +131721,6 @@ Transform:
   - {fileID: 502599896}
   m_Father: {fileID: 1610529361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1954047390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954047388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35ea5839876db149a78ec3a625f6164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  onTrigger: 1
-  isSecretDoor: 0
-  sceneName: 
 --- !u!1 &1963607704
 GameObject:
   m_ObjectHideFlags: 0
