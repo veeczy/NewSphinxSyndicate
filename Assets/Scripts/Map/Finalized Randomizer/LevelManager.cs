@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 
@@ -45,6 +46,34 @@ public class LevelManager : MonoBehaviour
     public int cityBossClear;
     public int swampBossClear;
     public bool AllClear;
+
+    [Header("Minimap Data")]
+    public bool minimap;
+    public Sprite temporarySprite;
+    public Sprite[] MapSprites;
+    public GameObject[] minimapGrid;
+
+    //basic rooms [type 1]
+    public Sprite spriteUp, spriteDown, spriteRight, spriteLeft, spriteUpDown; // one ways
+    public Sprite spriteLeftRight, spriteUpRight, spriteUpLeft, spriteDownRight, spriteDownLeft; // two ways
+    public Sprite spriteUpDownLeft, spriteUpLeftRight, spriteUpDownRight, spriteDownLeftRight; // three ways
+    public Sprite spriteUpDownLeftRight; // four ways
+
+    //special rooms
+    public Sprite spriteUpTreasure, spriteDownTreasure, spriteRightTreasure, spriteLeftTreasure; // treasure rooms (basic one ways) [type 3]
+    public Sprite spriteUpBoss, spriteDownBoss, spriteRightBoss, spriteLeftBoss; // boss rooms [type 2]
+    public Sprite spriteClosedRoom;
+
+    //individual grid pieces 
+    public GameObject Ax1, Ax2, Ax3, Ax4, Ax5, Ax6, Ax7, Ax8;
+    public GameObject Bx1, Bx2, Bx3, Bx4, Bx5, Bx6, Bx7, Bx8;
+    public GameObject Cx1, Cx2, Cx3, Cx4, Cx5, Cx6, Cx7, Cx8;
+    public GameObject Dx1, Dx2, Dx3, Dx4, Dx5, Dx6, Dx7, Dx8;
+    public GameObject Ex1, Ex2, Ex3, Ex4, Ex5, Ex6, Ex7, Ex8;
+    public GameObject Fx1, Fx2, Fx3, Fx4, Fx5, Fx6, Fx7, Fx8;
+    public GameObject Gx1, Gx2, Gx3, Gx4, Gx5, Gx6, Gx7, Gx8;
+    public GameObject Hx1, Hx2, Hx3, Hx4, Hx5, Hx6, Hx7, Hx8;
+
 
     private void Awake()
     {
@@ -344,5 +373,173 @@ public class LevelManager : MonoBehaviour
             Time.timeScale = 1f;
             SceneManager.LoadScene("VictoryScene");
         }
+    }
+
+    private GameObject FindInactiveObjectByName(string name)
+    {
+        GameObject[] objects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        foreach (GameObject obj in objects)
+        {
+            if (obj.name == name && obj.scene.isLoaded)
+                return obj;
+        }
+
+        return null;
+    }
+
+    public void InitializeGameObjects()
+    {
+        if (Ax1 == null) { Ax1 = FindInactiveObjectByName("Ax1"); }
+        if (Ax2 == null) { Ax2 = FindInactiveObjectByName("Ax2"); }
+        if (Ax3 == null) { Ax3 = FindInactiveObjectByName("Ax3"); }
+        if (Ax4 == null) { Ax4 = FindInactiveObjectByName("Ax4"); }
+        if (Ax5 == null) { Ax5 = FindInactiveObjectByName("Ax5"); }
+        if (Ax6 == null) { Ax6 = FindInactiveObjectByName("Ax6"); }
+        if (Ax7 == null) { Ax7 = FindInactiveObjectByName("Ax7"); }
+        if (Ax8 == null) { Ax8 = FindInactiveObjectByName("Ax8"); }
+
+        if (Bx1 == null) { Bx1 = FindInactiveObjectByName("Bx1"); }
+        if (Bx2 == null) { Bx2 = FindInactiveObjectByName("Bx2"); }
+        if (Bx3 == null) { Bx3 = FindInactiveObjectByName("Bx3"); }
+        if (Bx4 == null) { Bx4 = FindInactiveObjectByName("Bx4"); }
+        if (Bx5 == null) { Bx5 = FindInactiveObjectByName("Bx5"); }
+        if (Bx6 == null) { Bx6 = FindInactiveObjectByName("Bx6"); }
+        if (Bx7 == null) { Bx7 = FindInactiveObjectByName("Bx7"); }
+        if (Bx8 == null) { Bx8 = FindInactiveObjectByName("Bx8"); }
+
+
+
+    }
+
+    public void InitializeMinimap()
+    {
+        minimapGrid[0] = Ax1; //(-4,-4)
+        minimapGrid[1] = Ax2; //(-4,-3)
+        minimapGrid[2] = Ax3; //(-4,-2)
+        minimapGrid[3] = Ax4; //(-4,-1)
+        minimapGrid[4] = Ax5; //(-4,0)
+        minimapGrid[5] = Ax6; //(-4,1)
+        minimapGrid[6] = Ax7; //(-4,2)
+        minimapGrid[7] = Ax8; //(-4,3)
+
+        minimapGrid[8] = Bx1; //(-3,-4)
+        minimapGrid[9] = Bx2; //(-3,-3)
+        minimapGrid[10] = Bx3; //(-3,-2)
+        minimapGrid[11] = Bx4; //(-3,-1)
+        minimapGrid[12] = Bx5; //(-3,0)
+        minimapGrid[13] = Bx6; //(-3,1)
+        minimapGrid[14] = Bx7; //(-3,2)
+        minimapGrid[15] = Bx8; //(-3,3)
+
+        minimapGrid[16] = Cx1; //(-2,-4)
+        minimapGrid[17] = Cx2; //(-2,-3)
+        minimapGrid[18] = Cx3; //(-2,-2)
+        minimapGrid[19] = Cx4; //(-2,-1)
+        minimapGrid[20] = Cx5; //(-2,0)
+        minimapGrid[21] = Cx6; //(-2,1)
+        minimapGrid[22] = Cx7; //(-2,2)
+        minimapGrid[23] = Cx8; //(-2,3)
+
+        minimapGrid[24] = Dx1; //(-1,-4)
+        minimapGrid[25] = Dx2; //(-1,-3)
+        minimapGrid[26] = Dx3; //(-1,-2)
+        minimapGrid[27] = Dx4; //(-1,-1)
+        minimapGrid[28] = Dx5; //(-1,0)
+        minimapGrid[29] = Dx6; //(-1,1)
+        minimapGrid[30] = Dx7; //(-1,2)
+        minimapGrid[31] = Dx8; //(-1,3)
+
+        minimapGrid[32] = Ex1; // (0,-4)
+        minimapGrid[33] = Ex2; // (0,-3)
+        minimapGrid[34] = Ex3; // (0,-2)
+        minimapGrid[35] = Ex4; // (0,-1)
+        minimapGrid[36] = Ex5; // (0,0)
+        minimapGrid[37] = Ex6; // (0,1)
+        minimapGrid[38] = Ex7; // (0,2)
+        minimapGrid[39] = Ex8; // (0,3)
+
+        minimapGrid[40] = Fx1; // (1,-4)
+        minimapGrid[41] = Fx2; // (1,-3)
+        minimapGrid[42] = Fx3; // (1,-2)
+        minimapGrid[43] = Fx4; // (1,-1)
+        minimapGrid[44] = Fx5; // (1,0)
+        minimapGrid[45] = Fx6; // (1,1)
+        minimapGrid[46] = Fx7; // (1,2)
+        minimapGrid[47] = Fx8; // (1,3)
+
+        minimapGrid[48] = Gx1; // (2,-4)
+        minimapGrid[49] = Gx2; // (2,-3)
+        minimapGrid[50] = Gx3; // (2,-2)
+        minimapGrid[51] = Gx4; // (2,-1)
+        minimapGrid[52] = Gx5; // (2,0)
+        minimapGrid[53] = Gx6; // (2,1)
+        minimapGrid[54] = Gx7; // (2,2)
+        minimapGrid[55] = Gx8; // (2,3)
+
+        minimapGrid[56] = Hx1; // (3,-4)
+        minimapGrid[57] = Hx2; // (3,-3)
+        minimapGrid[58] = Hx3; // (3,-2)
+        minimapGrid[59] = Hx4; // (3,-1)
+        minimapGrid[60] = Hx5; // (3,0)
+        minimapGrid[61] = Hx6; // (3,1)
+        minimapGrid[62] = Hx7; // (3,2)
+        minimapGrid[63] = Hx8; // (3,3)
+    }
+
+    public void InitializeSprites()
+    {
+        // one ways
+        spriteUp = MapSprites[0];
+        spriteDown = MapSprites[1];
+        spriteLeft = MapSprites[2];
+        spriteRight = MapSprites[3];
+
+        // two ways
+        spriteUpDown = MapSprites[4];
+        spriteLeftRight = MapSprites[5];
+
+        spriteUpRight = MapSprites[6];
+        spriteUpLeft = MapSprites[7];
+
+        spriteDownRight = MapSprites[8];
+        spriteDownLeft = MapSprites[9];
+
+        // three ways
+        spriteUpDownLeft = MapSprites[10];
+        spriteUpDownRight = MapSprites[11];
+
+        spriteDownLeftRight = MapSprites[12];
+        spriteUpLeftRight = MapSprites[13];
+
+        // four ways
+        spriteUpDownLeftRight = MapSprites[14];
+
+        // treasure rooms
+        spriteUpTreasure = MapSprites[15];
+        spriteDownTreasure = MapSprites[16];
+        spriteLeftTreasure = MapSprites[17];
+        spriteRightTreasure = MapSprites[18];
+
+        // boss rooms
+        spriteUpBoss = MapSprites[19];
+        spriteDownBoss = MapSprites[20];
+        spriteLeftBoss = MapSprites[21];
+        spriteRightBoss = MapSprites[22];
+    }
+
+    public void LoadMapSprites()
+    {
+        // for each coord, check if on mapCoordsList,
+
+        // if so, set name as MapCoordsName
+
+        // then grab sprite using said name and update gameobject
+
+    }
+
+    public void NameToSprite()
+    {
+        //take name and change it to sprite
     }
 }

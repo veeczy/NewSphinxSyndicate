@@ -39,16 +39,6 @@ public class MapSpriteSelector : MonoBehaviour
     public Color normalColor, enterColor;
     SpriteRenderer rend;
 
-    //[Header("Minimap Data")]
-    //public GameObject ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8; // 1st row
-    //public GameObject bx1, bx2, bx3, bx4, bx5, bx6, bx7, bx8; // 2nd row
-    //public GameObject cx1, cx2, cx3, cx4, cx5, cx6, cx7, cx8; // 3rd row
-    //public GameObject dx1, dx2, dx3, dx4, dx5, dx6, dx7, dx8; // 4th row
-    //public GameObject ex1, ex2, ex3, ex4, ex5, ex6, ex7, ex8; // 5th row
-    //public GameObject fx1, fx2, fx3, fx4, fx5, fx6, fx7, fx8; // 6th row
-    //public GameObject gx1, gx2, gx3, gx4, gx5, gx6, gx7, gx8; // 7th row
-    //public GameObject hx1, hx2, hx3, hx4, hx5, hx6, hx7, hx8; // 8th row
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
