@@ -165,6 +165,20 @@ public class Fishing : MonoBehaviour
     public Vector2 reelPos;
     public float controllerTurnSpeed;
 
+    // new CTRL f and type "new" to find all the new controller code
+    [Header("Controller Fishing")]
+    public string controllerClickButton = "Submit";
+    public string controllerReelX = "Joystick Aim X";
+    public string controllerReelY = "Joystick Aim Y";
+    public float controllerReelDistance = 5f;
+    public float controllerDeadzone = 0.4f;
+    public float controllerReelAngle = 90f;
+    public float controllerReelRotateSpeed = 8f;
+
+    // new variable to prevent player from immediately reopening the mini game
+    public float reopenDelay = 0.3f;
+    private float canOpenAgainTime = 0f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -182,7 +196,8 @@ public class Fishing : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel")) { CloseGame(); }
 
-        if (playerNear && Input.GetButtonDown("Interact"))
+        // new code to open mini game, checks if player is near and presses interact button and also checks if enough time has passed since last closing to prevent immediate reopening with controller
+        if (playerNear && Input.GetButtonDown("Interact") && Time.time >= canOpenAgainTime)
         {
             isTalking = true;
         }
@@ -200,10 +215,13 @@ public class Fishing : MonoBehaviour
 
         if (gameActive && !minigameScreenActive && !catchScreenActive)
         {
-            if(Input.GetButton("Shoot") && fishSpawned) { hooked = true; } //if press when fish is spawned, you hook fish
+            if ((Input.GetButton("Shoot") || Input.GetButtonDown(controllerClickButton)) && fishSpawned)
+            {
+                hooked = true;
+            } //if press when fish is spawned, you hook fish
 
             //spawning for fish
-            if(!fishSpawned && !ongoingTimer) { StartTimer(spawnTimerDuration, spawnremainingDuration); }
+            if (!fishSpawned && !ongoingTimer) { StartTimer(spawnTimerDuration, spawnremainingDuration); }
             if(fishSpawned && !splashScreenActive && !fishHasSpawned) { SpawnFish(); }
 
             if(hooked && !splashScreenActive) { splashScreenActive = true; SplashScreen(); }
@@ -211,8 +229,24 @@ public class Fishing : MonoBehaviour
 
         if (minigameScreenActive)
         {
+
             //REELING
             reelPos = Camera.main.ScreenToWorldPoint(reel.transform.position); // get the reel position from the camera (its UI so it is converted to world space)
+
+            // new use right thumb stick
+            float reelInput = Input.GetAxisRaw(controllerReelX);
+
+            if (Mathf.Abs(reelInput) > controllerDeadzone)
+            {
+                controllerReelAngle -= reelInput * controllerReelRotateSpeed;
+
+                if (controllerReelAngle > 360f) controllerReelAngle -= 360f;
+                if (controllerReelAngle < 0f) controllerReelAngle += 360f;
+
+                float rad = controllerReelAngle * Mathf.Deg2Rad;
+                aimPos = (Vector2)reelPos + new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)) * controllerReelDistance;
+            }
+
             aimDir = (Vector2)aimPos - (Vector2)reelPos; // recalculate the aim dir using the reel position
             angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg; // recalculate angle using the reel position
             reel.transform.rotation = Quaternion.Lerp(reel.transform.rotation, Quaternion.Euler(0, 0, angle), controllerTurnSpeed * Time.deltaTime); //this should rotate the reel
@@ -833,6 +867,8 @@ public class Fishing : MonoBehaviour
         HideUI(fishScreenBG); //hide UI related
 
         ResetGame(); //reset game data
+
+        canOpenAgainTime = Time.time + reopenDelay; // new stop player from opening for a short while cause of controller.
 
         gameActive = false;
         playAgain = false;
