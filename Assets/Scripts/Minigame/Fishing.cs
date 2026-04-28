@@ -165,6 +165,7 @@ public class Fishing : MonoBehaviour
     public Vector2 reelPos;
     public float controllerTurnSpeed;
 
+    // new CTRL f and type "new" to find all the new controller code
     [Header("Controller Fishing")]
     public string controllerClickButton = "Submit";
     public string controllerReelX = "Joystick Aim X";
@@ -173,6 +174,10 @@ public class Fishing : MonoBehaviour
     public float controllerDeadzone = 0.4f;
     public float controllerReelAngle = 90f;
     public float controllerReelRotateSpeed = 8f;
+
+    // new variable to prevent player from immediately reopening the mini game
+    public float reopenDelay = 0.3f;
+    private float canOpenAgainTime = 0f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -191,7 +196,8 @@ public class Fishing : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel")) { CloseGame(); }
 
-        if (playerNear && Input.GetButtonDown("Interact"))
+        // new code to open mini game, checks if player is near and presses interact button and also checks if enough time has passed since last closing to prevent immediate reopening with controller
+        if (playerNear && Input.GetButtonDown("Interact") && Time.time >= canOpenAgainTime)
         {
             isTalking = true;
         }
@@ -234,7 +240,6 @@ public class Fishing : MonoBehaviour
             {
                 controllerReelAngle -= reelInput * controllerReelRotateSpeed;
 
-                // wrap angle so it doesn't grow forever
                 if (controllerReelAngle > 360f) controllerReelAngle -= 360f;
                 if (controllerReelAngle < 0f) controllerReelAngle += 360f;
 
@@ -862,6 +867,8 @@ public class Fishing : MonoBehaviour
         HideUI(fishScreenBG); //hide UI related
 
         ResetGame(); //reset game data
+
+        canOpenAgainTime = Time.time + reopenDelay; // new stop player from opening for a short while cause of controller.
 
         gameActive = false;
         playAgain = false;
