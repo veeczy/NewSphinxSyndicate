@@ -3,7 +3,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 
 
@@ -23,7 +24,7 @@ public class LevelManager : MonoBehaviour
     [Header("Map Progress")]
     public string currentRoom; //records which room youre in by name
     public int currentRoomIndex; //records which room youre in by index
-    bool runStarted; //records if ongoing run in progress
+    public bool runStarted; //records if ongoing run in progress
 
     public List<string> mapDirectionList; // from Level Generation, records which doors are open in a scene so that..
     public List<string> mapNameList; // map name list can correct this to the scene names related to said door openings
@@ -48,10 +49,16 @@ public class LevelManager : MonoBehaviour
     public bool AllClear;
 
     [Header("Minimap Data")]
-    public bool minimap;
+    public bool minimap = false;
+    bool initialize = false;
     public Sprite temporarySprite;
     public Sprite[] MapSprites;
     public GameObject[] minimapGrid;
+    public Vector2[] minimapCoords;
+    Image rend;
+
+    public Color filledColor;
+    public Color normalColor;
 
     //basic rooms [type 1]
     public Sprite spriteUp, spriteDown, spriteRight, spriteLeft, spriteUpDown; // one ways
@@ -93,6 +100,10 @@ public class LevelManager : MonoBehaviour
         desertBossClear = PlayerPrefs.GetInt("desertBoss");
         cityBossClear = PlayerPrefs.GetInt("cityBoss");
         swampBossClear = PlayerPrefs.GetInt("swampBoss");
+
+        initialize = false;
+
+        
     }
 
     private void Update()
@@ -114,6 +125,24 @@ public class LevelManager : MonoBehaviour
         //update coords
         //currentRoomIndex = mapCoordsList.IndexOf(playerCoords); //get index of destination coords
         //currentRoom = mapNameList[currentRoomIndex]; //use index to get scene name for it
+
+        if (runStarted && !minimap) // if in a scene after the run has started and the minimap is not rendered
+        {
+            InitializeGameObjects(); // grab ui game objects
+            Debug.Log("Initialize Game Objects");
+
+            InitializeSprites(); // grab ui sprites
+            Debug.Log("Initialize UI Sprites");
+
+            InitializeMinimap(); // load coordinates and gameobjects into array
+            Debug.Log("Initialize Minimap");
+
+            LoadMapSprites(); // update gameobjects to sprites and render
+            Debug.Log("Minimap Rendered");
+
+            minimap = true; // set minimap to true because minimap is now set up in scene
+            Debug.Log("Minimap Done");
+        }
     }
 
     public void LoadSceneByTrigger(string sceneName)
@@ -157,6 +186,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Start Run in Current Area");
         ResetRun();
+        runStarted = true;
         LoadRoom();
     }
 
@@ -347,6 +377,7 @@ public class LevelManager : MonoBehaviour
         //reset enemy clear progress
         roomsCleared = new bool[mapCoordsList.Count];
         for (int i = 0; i < roomsCleared.Length; i++) { roomsCleared[i] = false; }
+        runStarted = false;
 
         //reset player coords
         PlayerPrefs.SetInt("X", 0);
@@ -390,30 +421,83 @@ public class LevelManager : MonoBehaviour
 
     public void InitializeGameObjects()
     {
-        if (Ax1 == null) { Ax1 = FindInactiveObjectByName("Ax1"); }
-        if (Ax2 == null) { Ax2 = FindInactiveObjectByName("Ax2"); }
-        if (Ax3 == null) { Ax3 = FindInactiveObjectByName("Ax3"); }
-        if (Ax4 == null) { Ax4 = FindInactiveObjectByName("Ax4"); }
-        if (Ax5 == null) { Ax5 = FindInactiveObjectByName("Ax5"); }
-        if (Ax6 == null) { Ax6 = FindInactiveObjectByName("Ax6"); }
-        if (Ax7 == null) { Ax7 = FindInactiveObjectByName("Ax7"); }
-        if (Ax8 == null) { Ax8 = FindInactiveObjectByName("Ax8"); }
+        Ax1 = FindInactiveObjectByName("Ax1");
+        Ax2 = FindInactiveObjectByName("Ax2"); 
+        Ax3 = FindInactiveObjectByName("Ax3"); 
+        Ax4 = FindInactiveObjectByName("Ax4");
+        Ax5 = FindInactiveObjectByName("Ax5");
+        Ax6 = FindInactiveObjectByName("Ax6");
+        Ax7 = FindInactiveObjectByName("Ax7");
+        Ax8 = FindInactiveObjectByName("Ax8");
 
-        if (Bx1 == null) { Bx1 = FindInactiveObjectByName("Bx1"); }
-        if (Bx2 == null) { Bx2 = FindInactiveObjectByName("Bx2"); }
-        if (Bx3 == null) { Bx3 = FindInactiveObjectByName("Bx3"); }
-        if (Bx4 == null) { Bx4 = FindInactiveObjectByName("Bx4"); }
-        if (Bx5 == null) { Bx5 = FindInactiveObjectByName("Bx5"); }
-        if (Bx6 == null) { Bx6 = FindInactiveObjectByName("Bx6"); }
-        if (Bx7 == null) { Bx7 = FindInactiveObjectByName("Bx7"); }
-        if (Bx8 == null) { Bx8 = FindInactiveObjectByName("Bx8"); }
+        Bx1 = FindInactiveObjectByName("Bx1");
+        Bx2 = FindInactiveObjectByName("Bx2");
+        Bx3 = FindInactiveObjectByName("Bx3");
+        Bx4 = FindInactiveObjectByName("Bx4");
+        Bx5 = FindInactiveObjectByName("Bx5");
+        Bx6 = FindInactiveObjectByName("Bx6");
+        Bx7 = FindInactiveObjectByName("Bx7");
+        Bx8 = FindInactiveObjectByName("Bx8");
 
+        Cx1 = FindInactiveObjectByName("Cx1");
+        Cx2 = FindInactiveObjectByName("Cx2");
+        Cx3 = FindInactiveObjectByName("Cx3");
+        Cx4 = FindInactiveObjectByName("Cx4");
+        Cx5 = FindInactiveObjectByName("Cx5");
+        Cx6 = FindInactiveObjectByName("Cx6");
+        Cx7 = FindInactiveObjectByName("Cx7");
+        Cx8 = FindInactiveObjectByName("Cx8");
 
+        Dx1 = FindInactiveObjectByName("Dx1");
+        Dx2 = FindInactiveObjectByName("Dx2");
+        Dx3 = FindInactiveObjectByName("Dx3");
+        Dx4 = FindInactiveObjectByName("Dx4");
+        Dx5 = FindInactiveObjectByName("Dx5");
+        Dx6 = FindInactiveObjectByName("Dx6");
+        Dx7 = FindInactiveObjectByName("Dx7");
+        Dx8 = FindInactiveObjectByName("Dx8");
+
+        Ex1 = FindInactiveObjectByName("Ex1");
+        Ex2 = FindInactiveObjectByName("Ex2");
+        Ex3 = FindInactiveObjectByName("Ex3");
+        Ex4 = FindInactiveObjectByName("Ex4");
+        Ex5 = FindInactiveObjectByName("Ex5");
+        Ex6 = FindInactiveObjectByName("Ex6");
+        Ex7 = FindInactiveObjectByName("Ex7");
+        Ex8 = FindInactiveObjectByName("Ex8");
+
+        Fx1 = FindInactiveObjectByName("Fx1");
+        Fx2 = FindInactiveObjectByName("Fx2");
+        Fx3 = FindInactiveObjectByName("Fx3");
+        Fx4 = FindInactiveObjectByName("Fx4");
+        Fx5 = FindInactiveObjectByName("Fx5");
+        Fx6 = FindInactiveObjectByName("Fx6");
+        Fx7 = FindInactiveObjectByName("Fx7");
+        Fx8 = FindInactiveObjectByName("Fx8");
+
+        Gx1 = FindInactiveObjectByName("Gx1");
+        Gx2 = FindInactiveObjectByName("Gx2");
+        Gx3 = FindInactiveObjectByName("Gx3");
+        Gx4 = FindInactiveObjectByName("Gx4");
+        Gx5 = FindInactiveObjectByName("Gx5");
+        Gx6 = FindInactiveObjectByName("Gx6");
+        Gx7 = FindInactiveObjectByName("Gx7");
+        Gx8 = FindInactiveObjectByName("Gx8");
+
+        Hx1 = FindInactiveObjectByName("Hx1");
+        Hx2 = FindInactiveObjectByName("Hx2");
+        Hx3 = FindInactiveObjectByName("Hx3");
+        Hx4 = FindInactiveObjectByName("Hx4");
+        Hx5 = FindInactiveObjectByName("Hx5");
+        Hx6 = FindInactiveObjectByName("Hx6");
+        Hx7 = FindInactiveObjectByName("Hx7");
+        Hx8 = FindInactiveObjectByName("Hx8");
 
     }
 
     public void InitializeMinimap()
     {
+        //game objects
         minimapGrid[0] = Ax1; //(-4,-4)
         minimapGrid[1] = Ax2; //(-4,-3)
         minimapGrid[2] = Ax3; //(-4,-2)
@@ -485,6 +569,79 @@ public class LevelManager : MonoBehaviour
         minimapGrid[61] = Hx6; // (3,1)
         minimapGrid[62] = Hx7; // (3,2)
         minimapGrid[63] = Hx8; // (3,3)
+
+        //coords 
+        minimapCoords[0] = new Vector2(-4, -4); //AX1
+        minimapCoords[1] = new Vector2(-4, -3); //AX2
+        minimapCoords[2] = new Vector2(-4, -2); //AX3
+        minimapCoords[3] = new Vector2(-4, -1); //AX4
+        minimapCoords[4] = new Vector2(-4, 0); //AX5
+        minimapCoords[5] = new Vector2(-4, 1); //AX6
+        minimapCoords[6] = new Vector2(-4, 2); //AX7
+        minimapCoords[7] = new Vector2(-4, 3); //AX8
+
+        minimapCoords[8] = new Vector2(-3, -4);
+        minimapCoords[9] = new Vector2(-3, -3);
+        minimapCoords[10] = new Vector2(-3, -2);
+        minimapCoords[11] = new Vector2(-3, -1);
+        minimapCoords[12] = new Vector2(-3, 0);
+        minimapCoords[13] = new Vector2(-3, 1);
+        minimapCoords[14] = new Vector2(-3, 2);
+        minimapCoords[15] = new Vector2(-3, 3);
+
+        minimapCoords[16] = new Vector2(-2, -4);
+        minimapCoords[17] = new Vector2(-2, -3);
+        minimapCoords[18] = new Vector2(-2, -2);
+        minimapCoords[19] = new Vector2(-2, -1);
+        minimapCoords[20] = new Vector2(-2, 0);
+        minimapCoords[21] = new Vector2(-2, 1);
+        minimapCoords[22] = new Vector2(-2, 2);
+        minimapCoords[23] = new Vector2(-2, 3);
+
+        minimapCoords[24] = new Vector2(-1, -4);
+        minimapCoords[25] = new Vector2(-1, -3);
+        minimapCoords[26] = new Vector2(-1, -2);
+        minimapCoords[27] = new Vector2(-1, -1);
+        minimapCoords[28] = new Vector2(-1, 0);
+        minimapCoords[29] = new Vector2(-1, 1);
+        minimapCoords[30] = new Vector2(-1, 2);
+        minimapCoords[31] = new Vector2(-1, 3);
+
+        minimapCoords[32] = new Vector2(0, -4);
+        minimapCoords[33] = new Vector2(0, -3);
+        minimapCoords[34] = new Vector2(0, -2);
+        minimapCoords[35] = new Vector2(0, -1);
+        minimapCoords[36] = new Vector2(0, 0);
+        minimapCoords[37] = new Vector2(0, 1);
+        minimapCoords[38] = new Vector2(0, 2);
+        minimapCoords[39] = new Vector2(0, 3);
+
+        minimapCoords[40] = new Vector2(1, -4);
+        minimapCoords[41] = new Vector2(1, -3);
+        minimapCoords[42] = new Vector2(1, -2);
+        minimapCoords[43] = new Vector2(1, -1);
+        minimapCoords[44] = new Vector2(1, 0);
+        minimapCoords[45] = new Vector2(1, 1);
+        minimapCoords[46] = new Vector2(1, 2);
+        minimapCoords[47] = new Vector2(1, 3);
+
+        minimapCoords[48] = new Vector2(2, -4);
+        minimapCoords[49] = new Vector2(2, -3);
+        minimapCoords[50] = new Vector2(2, -2);
+        minimapCoords[51] = new Vector2(2, -1);
+        minimapCoords[52] = new Vector2(2, 0);
+        minimapCoords[53] = new Vector2(2, 1);
+        minimapCoords[54] = new Vector2(2, 2);
+        minimapCoords[55] = new Vector2(2, 3);
+
+        minimapCoords[56] = new Vector2(3, -4);
+        minimapCoords[57] = new Vector2(3, -3);
+        minimapCoords[58] = new Vector2(3, -2);
+        minimapCoords[59] = new Vector2(3, -1);
+        minimapCoords[60] = new Vector2(3, 0);
+        minimapCoords[61] = new Vector2(3, 1);
+        minimapCoords[62] = new Vector2(3, 2);
+        minimapCoords[63] = new Vector2(3, 3);
     }
 
     public void InitializeSprites()
@@ -530,16 +687,87 @@ public class LevelManager : MonoBehaviour
 
     public void LoadMapSprites()
     {
-        // for each coord, check if on mapCoordsList,
+        int index; //index of room
+        bool coordsContained = false; // bool if the coords are contained
+        Vector2 coordsCheck; //placeholder coords
+        GameObject placeholder;
+        // for each coord, check if on mapCoordsList
+        // if so take direction from mapDirectionList
+        // ...then grab sprite using said name and update gameobject
 
-        // if so, set name as MapCoordsName
+        for(int i = 0; i < minimapCoords.Length; i++)
+        {
+            coordsCheck = minimapCoords[i];
+            coordsContained = mapCoordsList.Contains(coordsCheck);
+            if (coordsContained)
+            {
+                Debug.Log("GameObject " + minimapGrid[i]);
+                index = mapCoordsList.IndexOf(coordsCheck);
 
-        // then grab sprite using said name and update gameobject
+                placeholder = minimapGrid[i];
+                rend = placeholder.GetComponent<Image>(); //grab image 
 
+                rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+                if (coordsCheck == playerCoords) { rend.color = filledColor; }
+                else { rend.color = normalColor; }
+
+                Debug.Log("The room at coords: " + coordsCheck + " is supposed to be marked as " + mapDirectionList[index] + " which relates to the coords at " + mapCoordsList[index]);
+                minimapGrid[i].SetActive(true);
+            }
+            coordsContained = false;
+        }
+
+        //now entire minimap should be loaded
     }
 
-    public void NameToSprite()
+    public Sprite NameToSprite(string roomName)
     {
-        //take name and change it to sprite
+        //take name and change it to sprite...
+
+        //one ways
+        if(roomName == "Up") { temporarySprite = spriteUp; }
+        if (roomName == "Up Treasure") { temporarySprite = spriteUpTreasure; }
+        if (roomName == "Up Boss") { temporarySprite = spriteUpBoss; }
+
+        if (roomName == "Down") { temporarySprite = spriteDown; }
+        if (roomName == "Down Treasure") { temporarySprite = spriteDownTreasure; }
+        if (roomName == "Down Boss") { temporarySprite = spriteDownBoss; }
+
+        if (roomName == "Left") { temporarySprite = spriteLeft; }
+        if (roomName == "Left Treasure") { temporarySprite = spriteLeftTreasure; }
+        if (roomName == "Left Boss") { temporarySprite = spriteLeftBoss; }
+
+        if (roomName == "Right") { temporarySprite = spriteRight; }
+        if (roomName == "Right Treasure") { temporarySprite = spriteRightTreasure; }
+        if (roomName == "Right Boss") { temporarySprite = spriteRightBoss; }
+
+
+        //two ways
+        if (roomName == "Up Down") { temporarySprite = spriteUpDown; }
+        if (roomName == "Left Right") { temporarySprite = spriteLeftRight; }
+
+        if (roomName == "Up Right") { temporarySprite = spriteUpRight; }
+        if (roomName == "Up Left") { temporarySprite = spriteUpLeft; }
+
+        if (roomName == "Down Right") { temporarySprite = spriteDownRight; }
+        if (roomName == "Down Left") { temporarySprite = spriteDownLeft; }
+
+
+        //three ways
+        if (roomName == "Up Down Right") { temporarySprite = spriteUpDownRight; }
+        if (roomName == "Up Down Left") { temporarySprite = spriteUpDownLeft; }
+
+        if (roomName == "Up Left Right") { temporarySprite = spriteUpLeftRight; }
+        if (roomName == "Down Left Right") { temporarySprite = spriteDownLeftRight; }
+
+
+        //four ways
+        if (roomName == "Up Down Left Right") { temporarySprite = spriteUpDownLeftRight; }
+
+        //else
+        if (roomName == "") { temporarySprite = spriteClosedRoom; }
+        Debug.Log("Sprite is " + roomName + " and renders " + temporarySprite);
+        return temporarySprite;
     }
 }

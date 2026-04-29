@@ -580,6 +580,7 @@ MonoBehaviour:
   bossScene: 
   currentRoom: 
   currentRoomIndex: 0
+  runStarted: 0
   mapDirectionList:
   - 
   - 
@@ -623,6 +624,252 @@ MonoBehaviour:
   cityBossClear: 0
   swampBossClear: 0
   AllClear: 0
+  minimap: 0
+  temporarySprite: {fileID: 0}
+  MapSprites:
+  - {fileID: 64979771, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: 1041860180, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: -89520391, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: -7378340344756101023, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: 339954644, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: 1008939654, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: -1833592588, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: 510025465, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: -1550000264, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: 141604874, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: 982276153, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: -1253700005, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: 725718692, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: -1048190910, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: -564371071, guid: 1fbce43f1afa5474db440da0e9b315d8, type: 3}
+  - {fileID: 21300000, guid: 4cc72e822d2b5eb47989a2a0753faf16, type: 3}
+  - {fileID: 21300000, guid: 39adf28f4a0e63f4099b12f324afc644, type: 3}
+  - {fileID: 21300000, guid: 970f30dac65cfd7468d0f5ccc678053b, type: 3}
+  - {fileID: 21300000, guid: 34fbf1f4e84eef24b8da63cec04babcf, type: 3}
+  - {fileID: 21300000, guid: 088391dfe9a086848a2ec85355fd2b00, type: 3}
+  - {fileID: 21300000, guid: 1c568529e6a3ef2458a43c1dcdedd10d, type: 3}
+  - {fileID: 21300000, guid: 22c55205757d1a54586e5366c59d8882, type: 3}
+  - {fileID: 21300000, guid: 1ba063d2ba9a2014e857ece68f9af4c6, type: 3}
+  minimapGrid:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  minimapCoords:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  filledColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.6862745}
+  normalColor: {r: 1, g: 1, b: 1, a: 0.6862745}
+  spriteUp: {fileID: 0}
+  spriteDown: {fileID: 0}
+  spriteRight: {fileID: 0}
+  spriteLeft: {fileID: 0}
+  spriteUpDown: {fileID: 0}
+  spriteLeftRight: {fileID: 0}
+  spriteUpRight: {fileID: 0}
+  spriteUpLeft: {fileID: 0}
+  spriteDownRight: {fileID: 0}
+  spriteDownLeft: {fileID: 0}
+  spriteUpDownLeft: {fileID: 0}
+  spriteUpLeftRight: {fileID: 0}
+  spriteUpDownRight: {fileID: 0}
+  spriteDownLeftRight: {fileID: 0}
+  spriteUpDownLeftRight: {fileID: 0}
+  spriteUpTreasure: {fileID: 0}
+  spriteDownTreasure: {fileID: 0}
+  spriteRightTreasure: {fileID: 0}
+  spriteLeftTreasure: {fileID: 0}
+  spriteUpBoss: {fileID: 0}
+  spriteDownBoss: {fileID: 0}
+  spriteRightBoss: {fileID: 0}
+  spriteLeftBoss: {fileID: 0}
+  spriteClosedRoom: {fileID: 0}
+  Ax1: {fileID: 0}
+  Ax2: {fileID: 0}
+  Ax3: {fileID: 0}
+  Ax4: {fileID: 0}
+  Ax5: {fileID: 0}
+  Ax6: {fileID: 0}
+  Ax7: {fileID: 0}
+  Ax8: {fileID: 0}
+  Bx1: {fileID: 0}
+  Bx2: {fileID: 0}
+  Bx3: {fileID: 0}
+  Bx4: {fileID: 0}
+  Bx5: {fileID: 0}
+  Bx6: {fileID: 0}
+  Bx7: {fileID: 0}
+  Bx8: {fileID: 0}
+  Cx1: {fileID: 0}
+  Cx2: {fileID: 0}
+  Cx3: {fileID: 0}
+  Cx4: {fileID: 0}
+  Cx5: {fileID: 0}
+  Cx6: {fileID: 0}
+  Cx7: {fileID: 0}
+  Cx8: {fileID: 0}
+  Dx1: {fileID: 0}
+  Dx2: {fileID: 0}
+  Dx3: {fileID: 0}
+  Dx4: {fileID: 0}
+  Dx5: {fileID: 0}
+  Dx6: {fileID: 0}
+  Dx7: {fileID: 0}
+  Dx8: {fileID: 0}
+  Ex1: {fileID: 0}
+  Ex2: {fileID: 0}
+  Ex3: {fileID: 0}
+  Ex4: {fileID: 0}
+  Ex5: {fileID: 0}
+  Ex6: {fileID: 0}
+  Ex7: {fileID: 0}
+  Ex8: {fileID: 0}
+  Fx1: {fileID: 0}
+  Fx2: {fileID: 0}
+  Fx3: {fileID: 0}
+  Fx4: {fileID: 0}
+  Fx5: {fileID: 0}
+  Fx6: {fileID: 0}
+  Fx7: {fileID: 0}
+  Fx8: {fileID: 0}
+  Gx1: {fileID: 0}
+  Gx2: {fileID: 0}
+  Gx3: {fileID: 0}
+  Gx4: {fileID: 0}
+  Gx5: {fileID: 0}
+  Gx6: {fileID: 0}
+  Gx7: {fileID: 0}
+  Gx8: {fileID: 0}
+  Hx1: {fileID: 0}
+  Hx2: {fileID: 0}
+  Hx3: {fileID: 0}
+  Hx4: {fileID: 0}
+  Hx5: {fileID: 0}
+  Hx6: {fileID: 0}
+  Hx7: {fileID: 0}
+  Hx8: {fileID: 0}
 --- !u!4 &1323280336
 Transform:
   m_ObjectHideFlags: 0
