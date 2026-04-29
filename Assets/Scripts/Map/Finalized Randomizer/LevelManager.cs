@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 //using UnityEngine.UIElements;
 using UnityEngine.UI;
-
-
+using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
@@ -137,6 +137,7 @@ public class LevelManager : MonoBehaviour
             InitializeMinimap(); // load coordinates and gameobjects into array
             Debug.Log("Initialize Minimap");
 
+            //ManualLoadMapSprites();
             LoadMapSprites(); // update gameobjects to sprites and render
             Debug.Log("Minimap Rendered");
 
@@ -571,77 +572,77 @@ public class LevelManager : MonoBehaviour
         minimapGrid[63] = Hx8; // (3,3)
 
         //coords 
-        minimapCoords[0] = new Vector2(-4, -4); //AX1
-        minimapCoords[1] = new Vector2(-4, -3); //AX2
-        minimapCoords[2] = new Vector2(-4, -2); //AX3
-        minimapCoords[3] = new Vector2(-4, -1); //AX4
-        minimapCoords[4] = new Vector2(-4, 0); //AX5
-        minimapCoords[5] = new Vector2(-4, 1); //AX6
-        minimapCoords[6] = new Vector2(-4, 2); //AX7
-        minimapCoords[7] = new Vector2(-4, 3); //AX8
+        minimapCoords[0] = new Vector2(-4, 4); //AX1
+        minimapCoords[1] = new Vector2(-3, 4); //AX2
+        minimapCoords[2] = new Vector2(-2, 4); //AX3
+        minimapCoords[3] = new Vector2(-1, 4); //AX4
+        minimapCoords[4] = new Vector2(0, 4); //AX5
+        minimapCoords[5] = new Vector2(1, 4); //AX6
+        minimapCoords[6] = new Vector2(2, 4); //AX7
+        minimapCoords[7] = new Vector2(3, 4); //AX8
 
-        minimapCoords[8] = new Vector2(-3, -4);
-        minimapCoords[9] = new Vector2(-3, -3);
-        minimapCoords[10] = new Vector2(-3, -2);
-        minimapCoords[11] = new Vector2(-3, -1);
-        minimapCoords[12] = new Vector2(-3, 0);
-        minimapCoords[13] = new Vector2(-3, 1);
-        minimapCoords[14] = new Vector2(-3, 2);
-        minimapCoords[15] = new Vector2(-3, 3);
+        minimapCoords[8] = new Vector2(-4, 3);
+        minimapCoords[9] = new Vector2(-3, 3);
+        minimapCoords[10] = new Vector2(-2, 3);
+        minimapCoords[11] = new Vector2(-1, 3);
+        minimapCoords[12] = new Vector2(0, 3);
+        minimapCoords[13] = new Vector2(1, 3);
+        minimapCoords[14] = new Vector2(2, 3);
+        minimapCoords[15] = new Vector2(3, 3);
 
-        minimapCoords[16] = new Vector2(-2, -4);
-        minimapCoords[17] = new Vector2(-2, -3);
-        minimapCoords[18] = new Vector2(-2, -2);
-        minimapCoords[19] = new Vector2(-2, -1);
-        minimapCoords[20] = new Vector2(-2, 0);
-        minimapCoords[21] = new Vector2(-2, 1);
-        minimapCoords[22] = new Vector2(-2, 2);
-        minimapCoords[23] = new Vector2(-2, 3);
+        minimapCoords[16] = new Vector2(-4, 2);
+        minimapCoords[17] = new Vector2(-3, 2);
+        minimapCoords[18] = new Vector2(-2, 2);
+        minimapCoords[19] = new Vector2(-1, 2);
+        minimapCoords[20] = new Vector2(0, 2);
+        minimapCoords[21] = new Vector2(1, 2);
+        minimapCoords[22] = new Vector2(2, 2);
+        minimapCoords[23] = new Vector2(3, 2);
 
-        minimapCoords[24] = new Vector2(-1, -4);
-        minimapCoords[25] = new Vector2(-1, -3);
-        minimapCoords[26] = new Vector2(-1, -2);
-        minimapCoords[27] = new Vector2(-1, -1);
-        minimapCoords[28] = new Vector2(-1, 0);
-        minimapCoords[29] = new Vector2(-1, 1);
-        minimapCoords[30] = new Vector2(-1, 2);
-        minimapCoords[31] = new Vector2(-1, 3);
+        minimapCoords[24] = new Vector2(-4, 1);
+        minimapCoords[25] = new Vector2(-3, 1);
+        minimapCoords[26] = new Vector2(-2, 1);
+        minimapCoords[27] = new Vector2(-1, 1);
+        minimapCoords[28] = new Vector2(0, 1);
+        minimapCoords[29] = new Vector2(1, 1);
+        minimapCoords[30] = new Vector2(2, 1);
+        minimapCoords[31] = new Vector2(3, 1);
 
-        minimapCoords[32] = new Vector2(0, -4);
-        minimapCoords[33] = new Vector2(0, -3);
-        minimapCoords[34] = new Vector2(0, -2);
-        minimapCoords[35] = new Vector2(0, -1);
+        minimapCoords[32] = new Vector2(-4, 0);
+        minimapCoords[33] = new Vector2(-3, 0);
+        minimapCoords[34] = new Vector2(-2, 0);
+        minimapCoords[35] = new Vector2(-1, 0);
         minimapCoords[36] = new Vector2(0, 0);
-        minimapCoords[37] = new Vector2(0, 1);
-        minimapCoords[38] = new Vector2(0, 2);
-        minimapCoords[39] = new Vector2(0, 3);
+        minimapCoords[37] = new Vector2(1, 0);
+        minimapCoords[38] = new Vector2(2, 0);
+        minimapCoords[39] = new Vector2(3, 0);
 
-        minimapCoords[40] = new Vector2(1, -4);
-        minimapCoords[41] = new Vector2(1, -3);
-        minimapCoords[42] = new Vector2(1, -2);
-        minimapCoords[43] = new Vector2(1, -1);
-        minimapCoords[44] = new Vector2(1, 0);
-        minimapCoords[45] = new Vector2(1, 1);
-        minimapCoords[46] = new Vector2(1, 2);
-        minimapCoords[47] = new Vector2(1, 3);
+        minimapCoords[40] = new Vector2(-4, -1);
+        minimapCoords[41] = new Vector2(-3, -1);
+        minimapCoords[42] = new Vector2(-2, -1);
+        minimapCoords[43] = new Vector2(-1, -1);
+        minimapCoords[44] = new Vector2(0, -1);
+        minimapCoords[45] = new Vector2(1, -1);
+        minimapCoords[46] = new Vector2(2, -1);
+        minimapCoords[47] = new Vector2(3, -1);
 
-        minimapCoords[48] = new Vector2(2, -4);
-        minimapCoords[49] = new Vector2(2, -3);
-        minimapCoords[50] = new Vector2(2, -2);
-        minimapCoords[51] = new Vector2(2, -1);
-        minimapCoords[52] = new Vector2(2, 0);
-        minimapCoords[53] = new Vector2(2, 1);
-        minimapCoords[54] = new Vector2(2, 2);
-        minimapCoords[55] = new Vector2(2, 3);
+        minimapCoords[48] = new Vector2(-4, -2);
+        minimapCoords[49] = new Vector2(-3, -2);
+        minimapCoords[50] = new Vector2(-2, -2);
+        minimapCoords[51] = new Vector2(-1, -2);
+        minimapCoords[52] = new Vector2(0, -2);
+        minimapCoords[53] = new Vector2(1, -2);
+        minimapCoords[54] = new Vector2(2, -2);
+        minimapCoords[55] = new Vector2(2, -3);
 
-        minimapCoords[56] = new Vector2(3, -4);
-        minimapCoords[57] = new Vector2(3, -3);
-        minimapCoords[58] = new Vector2(3, -2);
-        minimapCoords[59] = new Vector2(3, -1);
-        minimapCoords[60] = new Vector2(3, 0);
-        minimapCoords[61] = new Vector2(3, 1);
-        minimapCoords[62] = new Vector2(3, 2);
-        minimapCoords[63] = new Vector2(3, 3);
+        minimapCoords[56] = new Vector2(-4, -3);
+        minimapCoords[57] = new Vector2(-3, -3);
+        minimapCoords[58] = new Vector2(-2, -3);
+        minimapCoords[59] = new Vector2(-1, -3);
+        minimapCoords[60] = new Vector2(0, -3);
+        minimapCoords[61] = new Vector2(1, -3);
+        minimapCoords[62] = new Vector2(2, -3);
+        minimapCoords[63] = new Vector2(3, -3);
     }
 
     public void InitializeSprites()
@@ -770,4 +771,1110 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Sprite is " + roomName + " and renders " + temporarySprite);
         return temporarySprite;
     }
+
+    public void ManualLoadMapSprites()
+    {
+
+        int index; //index of room
+        bool coordsContained = false; // bool if the coords are contained
+        Vector2 coordsCheck; //placeholder coords
+        GameObject placeholder;
+
+        //A ROW
+        coordsCheck = minimapCoords[0];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[0]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ax1;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ax1.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[1];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[1]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ax2;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ax2.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[2];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[2]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ax3;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ax3.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[3];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[3]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ax4;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ax4.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[4];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[4]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ax5;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ax5.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[5];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[5]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ax6;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ax6.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[6];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[6]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ax7;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ax7.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[7];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[7]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ax8;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ax8.SetActive(true);
+        }
+
+        //B ROW
+        coordsCheck = minimapCoords[8];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[8]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Bx1;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Bx1.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[9];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[9]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Bx2;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Bx2.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[10];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[10]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Bx3;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Bx3.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[11];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[11]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Bx4;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Bx4.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[12];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[12]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Bx5;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Bx5.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[13];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[13]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Bx6;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Bx6.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[14];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[14]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Bx7;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Bx7.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[15];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[15]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Bx8;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Bx8.SetActive(true);
+        }
+
+        //C ROW
+        coordsCheck = minimapCoords[16];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[16]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Cx1;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Cx1.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[17];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[17]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Cx2;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Cx2.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[18];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[18]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Cx3;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Cx3.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[19];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[19]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Cx4;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Cx4.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[20];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[20]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Cx5;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Cx5.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[21];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[22]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Cx6;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Cx6.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[22];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[22]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Cx7;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Cx7.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[23];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[23]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Cx8;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Cx8.SetActive(true);
+        }
+
+        //D ROW
+        coordsCheck = minimapCoords[24];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[24]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Dx1;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Dx1.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[25];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[25]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Dx2;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Dx2.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[26];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[26]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Dx3;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Dx3.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[27];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[27]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Dx4;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Dx4.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[28];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[28]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Dx5;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Dx5.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[29];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[29]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Dx6;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Dx6.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[30];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[30]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Dx7;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Dx7.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[31];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[31]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Dx8;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Dx8.SetActive(true);
+        }
+
+        //E ROW
+        coordsCheck = minimapCoords[32];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[32]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ex1;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ex1.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[33];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[33]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ex2;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ex2.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[34];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[34]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ex3;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ex3.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[35];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[35]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ex4;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ex4.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[36];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[36]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ex5;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ex5.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[37];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[37]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ex6;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ex6.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[38];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[38]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ex7;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ex7.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[39];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[39]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Ex8;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Ex8.SetActive(true);
+        }
+
+        //F ROW
+        coordsCheck = minimapCoords[40];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[40]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Fx1;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Fx1.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[41];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[41]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Fx2;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Fx2.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[42];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[42]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Fx3;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Fx3.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[43];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[43]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Fx4;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Fx4.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[44];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[44]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Fx5;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Fx5.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[45];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[45]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Fx6;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Fx6.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[46];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[46]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Fx7;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Fx7.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[47];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[47]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Fx8;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Fx8.SetActive(true);
+        }
+
+        //G ROW
+        coordsCheck = minimapCoords[48];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[48]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Gx1;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Gx1.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[49];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[49]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Gx2;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Gx2.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[50];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[50]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Gx3;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Gx3.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[51];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[51]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Gx4;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Gx4.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[52];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[52]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Gx5;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Gx5.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[53];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[53]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Gx6;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Gx6.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[54];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[54]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Gx7;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Gx7.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[55];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[55]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Gx8;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Gx8.SetActive(true);
+        }
+
+        //H ROW
+        coordsCheck = minimapCoords[56];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[56]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Hx1;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Hx1.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[57];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[57]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Hx2;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Hx2.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[58];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[58]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Hx3;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Hx3.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[59];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[59]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Hx4;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Hx4.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[60];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[60]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Hx5;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Hx5.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[61];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[61]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Hx6;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Hx6.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[62];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[62]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Hx7;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Hx7.SetActive(true);
+        }
+
+        coordsCheck = minimapCoords[63];
+        coordsContained = mapCoordsList.Contains(coordsCheck);
+        if (coordsContained && (coordsCheck == minimapCoords[63]))
+        {
+            index = mapCoordsList.IndexOf(coordsCheck);
+
+            placeholder = Hx8;
+            rend = placeholder.GetComponent<Image>(); //grab image 
+
+            rend.sprite = NameToSprite(mapDirectionList[index]); // update sprite
+
+            if (coordsCheck == playerCoords) { rend.color = filledColor; }
+            else { rend.color = normalColor; }
+
+            Hx8.SetActive(true);
+        }
+    }
+
 }
