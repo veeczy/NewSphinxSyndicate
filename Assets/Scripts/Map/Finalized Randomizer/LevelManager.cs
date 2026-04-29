@@ -125,7 +125,7 @@ public class LevelManager : MonoBehaviour
         //update coords
         //currentRoomIndex = mapCoordsList.IndexOf(playerCoords); //get index of destination coords
         //currentRoom = mapNameList[currentRoomIndex]; //use index to get scene name for it
-
+        if (enemiesDefeated == false) { minimap = false; }
         if (runStarted && !minimap) // if in a scene after the run has started and the minimap is not rendered
         {
             InitializeGameObjects(); // grab ui game objects
