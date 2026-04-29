@@ -345,7 +345,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   onTrigger: 1
   isSecretDoor: 0
+  up: 0
+  down: 0
+  left: 0
+  right: 0
   sceneName: 
+  x: 0
+  y: 0
+  playerCoords: {x: 0, y: 0}
 --- !u!4 &119907409
 Transform:
   m_ObjectHideFlags: 0
@@ -76491,7 +76498,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 4.3190403
+      m_AnimationSpeed: 10.727687
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: 6, z: 0}
@@ -76500,7 +76507,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 7.021679
+      m_AnimationSpeed: 2.62038
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 6, z: 0}
@@ -76509,7 +76516,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 1.5736632
+      m_AnimationSpeed: 10.427618
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 6, y: 6, z: 0}
@@ -76518,7 +76525,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -1136639897, guid: 4f75a840316103247a911a668712c7f5, type: 3}
       - {fileID: 1439841013, guid: 4f75a840316103247a911a668712c7f5, type: 3}
-      m_AnimationSpeed: 6.0743494
+      m_AnimationSpeed: 6.396957
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -76673,7 +76680,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559790484}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
