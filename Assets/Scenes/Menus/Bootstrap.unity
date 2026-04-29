@@ -1232,18 +1232,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
   musicLibrary: {fileID: 2051641261}
   musicSource: {fileID: 2051641262}
-  mainMenuTrack: MainMenu
-  winTrackName: WinMusic
-  gameOverTrackName: GameOver
-  desertTownTrack: TavernMusic
-  desertRoomTrack: DesertRoomMusic
-  desertBossTrack: DesertBossFightMusic
-  cityTownTrack: GasStationMusic
-  cityRoomTrack: CityRoomMusic
-  cityBossTrack: CityBossFightMusic
-  swampTownTrack: SwampShopMusic
-  swampRoomTrack: SwampRoomMusic
-  swampBossTrack: SwampBossFightMusic
+  mainMenuTrack: MainMenu 1
+  winTrackName: WinMusic 1
+  gameOverTrackName: GameOver 1
+  desertTownTrack: TavernMusic 1
+  desertRoomTrack: DesertRoomMusic 1
+  desertBossTrack: DesertBossFightMusic 1
+  cityTownTrack: GasStationMusic 1
+  cityRoomTrack: CityRoomMusic 1
+  cityBossTrack: CityBossFightMusic 1
+  swampTownTrack: SwampShopMusic 1
+  swampRoomTrack: SwampRoomMusic 1
+  swampBossTrack: SwampBossFightMusic 1
 --- !u!4 &2051641260
 Transform:
   m_ObjectHideFlags: 0
@@ -1272,30 +1272,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicLibrary
   tracks:
-  - trackName: MainMenu
-    clip: {fileID: 8300000, guid: e389b8aeb8e14aa45a88731d65cec657, type: 3}
+  - trackName: MainMenu 1
+    clip: {fileID: 8300000, guid: ac0bf361ccbbefa43b0082cad6b32083, type: 3}
   - trackName: WinMusic
     clip: {fileID: 8300000, guid: 64d634de628ad16469460be12a6b058a, type: 3}
   - trackName: GameOver
     clip: {fileID: 8300000, guid: cd3ece6f71f96fd47b82b0b63d19b774, type: 3}
-  - trackName: TavernMusic
-    clip: {fileID: 8300000, guid: 88d3da91d923019489bd3146b2bfa839, type: 3}
-  - trackName: DesertRoomMusic
-    clip: {fileID: 8300000, guid: 062fa6878658ebe44a8f78e6eed8a421, type: 3}
-  - trackName: DesertBossFightMusic
-    clip: {fileID: 8300000, guid: 780fbab342d2e1b4dab8699bdcea5891, type: 3}
-  - trackName: GasStationMusic
-    clip: {fileID: 8300000, guid: 2b361398d87fb5d46af681c7d53a0555, type: 3}
-  - trackName: CityRoomMusic
-    clip: {fileID: 8300000, guid: 213dd6134422618498dc80e088784f8f, type: 3}
-  - trackName: CityBossFightMusic
-    clip: {fileID: 8300000, guid: c71c05369c50e8b4eb62ab768e9f7289, type: 3}
-  - trackName: SwampShopMusic
-    clip: {fileID: 8300000, guid: 8fa359452e4deee4dafebca90c09f341, type: 3}
-  - trackName: SwampRoomMusic
-    clip: {fileID: 8300000, guid: 9f3c4e601bdb35645a0920100d6fd17a, type: 3}
-  - trackName: SwampBossFightMusic
-    clip: {fileID: 8300000, guid: 72dbfe820c255ea40be51f165ca16033, type: 3}
+  - trackName: TavernMusic 1
+    clip: {fileID: 8300000, guid: c077c7c9854aa31468427a426ceece36, type: 3}
+  - trackName: DesertRoomMusic 1
+    clip: {fileID: 8300000, guid: f272d3f360455d4499d8bc463f0a2296, type: 3}
+  - trackName: DesertBossFightMusic 1
+    clip: {fileID: 8300000, guid: 32cb22f7e3f1e5c449b5ca77dcf95a8c, type: 3}
+  - trackName: GasStationMusic 1
+    clip: {fileID: 8300000, guid: a1096ed2031cc5b4390b6054f70d6a62, type: 3}
+  - trackName: CityRoomMusic 1
+    clip: {fileID: 8300000, guid: c2bb52bae4395294190dd7757630023b, type: 3}
+  - trackName: CityBossFightMusic 1
+    clip: {fileID: 8300000, guid: d45b69a9b9070ce488a870002d280a78, type: 3}
+  - trackName: SwampShopMusic 1
+    clip: {fileID: 8300000, guid: 4b2badbbc9ff7664a97a5702e93f8e32, type: 3}
+  - trackName: SwampRoomMusic 1
+    clip: {fileID: 8300000, guid: 492953e518c463742af5bd5ec9307594, type: 3}
+  - trackName: SwampBossFightMusic 1
+    clip: {fileID: 8300000, guid: 8b99f4e4785f3d24c98120b619fecca9, type: 3}
 --- !u!82 &2051641262
 AudioSource:
   m_ObjectHideFlags: 0
