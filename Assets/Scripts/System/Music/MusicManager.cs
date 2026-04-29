@@ -10,24 +10,24 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
 
     [Header("Menu Tracks")]  //streamlines everything to just typing the name of tracks rather than dragging.
-    public string mainMenuTrack = "MainMenu";
+    public string mainMenuTrack = "MainMenu 1";
     public string winTrackName = "WinMusic";
     public string gameOverTrackName = "GameOver";
 
     [Header("Desert Tracks")]
-    public string desertTownTrack = "TavernMusic";
-    public string desertRoomTrack = "DesertRoomMusic";
-    public string desertBossTrack = "DesertBossMusic";
+    public string desertTownTrack = "TavernMusic 1";
+    public string desertRoomTrack = "DesertRoomMusic 1";
+    public string desertBossTrack = "DesertBossMusic 1";
 
     [Header("City Tracks")]
-    public string cityTownTrack = "GasStationMusic";
-    public string cityRoomTrack = "CityRoomMusic";
-    public string cityBossTrack = "CityBossMusic";
+    public string cityTownTrack = "GasStationMusic 1";
+    public string cityRoomTrack = "CityRoomMusic 1";
+    public string cityBossTrack = "CityBossMusic 1";
 
     [Header("Swamp Tracks")]
-    public string swampTownTrack = "SwampShopMusic";
-    public string swampRoomTrack = "SwampRoomMusic";
-    public string swampBossTrack = "SwampBossMusic";
+    public string swampTownTrack = "SwampShopMusic 1";
+    public string swampRoomTrack = "SwampRoomMusic 1";
+    public string swampBossTrack = "SwampBossMusic 1";
 
     private void Awake()
     {
