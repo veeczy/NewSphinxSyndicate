@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4986104571781411994}
   - component: {fileID: 4559919645514552070}
   - component: {fileID: 5171061881955335844}
-  - component: {fileID: -6261557110370247132}
+  - component: {fileID: 6180418872717015441}
   m_Layer: 11
   m_Name: EnemyProjectile (Donut)
   m_TagString: Bullet
@@ -156,7 +156,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &-6261557110370247132
+--- !u!114 &6180418872717015441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,8 +165,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3217030190005306906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c2666ddae1ea148905d3544d593973, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b1e27fe747d48e4e9d0477441153b48, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::PigProjectile
   lifeTime: 5
   damage: 1
+  grabPrefab: {fileID: 7640956242470392756, guid: 5cfd1205689e84744a8d04cacad0b397, type: 3}

@@ -22,6 +22,15 @@ public class BulletId : MonoBehaviour
     {
         if (col.gameObject != sender && !simpleMode && !(col.CompareTag("CameraBoundary")))
         {
+            // ADDED: damage grab object
+            GrabEffect grab = col.GetComponent<GrabEffect>();
+            if (grab != null)
+            {
+                grab.TakeDamage(dmg);
+                Destroy(gameObject);
+                return;
+            }
+
             for (int i = 0; i < surfaceTags.Length; i++)
             {
                 if (col.gameObject.CompareTag(surfaceTags[i]))
@@ -29,16 +38,14 @@ public class BulletId : MonoBehaviour
                     Debug.DrawRay(transform.position, transform.forward, Color.white);
                     if (impactPrefabs != null)
                         Instantiate(impactPrefabs[i], transform.position, transform.rotation);
-
                 }
+
                 if (impactDestroy)
                 {
                     Debug.Log(col.gameObject);
                     Destroy(gameObject);
                 }
-                    
             }
-
         }
     }
     IEnumerator destroy()

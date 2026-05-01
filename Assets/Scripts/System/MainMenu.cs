@@ -5,7 +5,6 @@ public class MainMenu : MonoBehaviour
 {
     public string sceneToLoad;
 
-
     public void PlayGame()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
@@ -17,6 +16,25 @@ public class MainMenu : MonoBehaviour
             Debug.LogError("No scene name set in MainMenu script!");
         }
     }
+
+    // NEW GAME FUNCTION
+    public void NewGame()
+    {
+        // Set starting health explicitly
+        PlayerPrefs.SetInt("PlayerHealth", 100);
+
+        PlayerPrefs.Save();
+
+        if (!string.IsNullOrEmpty(sceneToLoad))
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
+        else
+        {
+            Debug.LogError("No scene name set in MainMenu script!");
+        }
+    }
+
     public void Settings()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
@@ -28,6 +46,7 @@ public class MainMenu : MonoBehaviour
             Debug.LogError("No scene name set in MainMenu script!");
         }
     }
+
     public void HowToPlay()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
@@ -39,6 +58,7 @@ public class MainMenu : MonoBehaviour
             Debug.LogError("No scene name set in MainMenu script!");
         }
     }
+
     public void QuitGame()
     {
         Debug.Log("Game is quitting...");

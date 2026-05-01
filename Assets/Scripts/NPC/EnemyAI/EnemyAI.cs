@@ -122,6 +122,10 @@ public class EnemyAI : MonoBehaviour
         BulletId bullet = col.GetComponent<BulletId>();
         if (bullet != null)
         {
+            RaccoonAI raccoon = GetComponent<RaccoonAI>();
+            if (raccoon != null && raccoon.isImmune)
+                return;
+
             hasAggro = true; // aggro when hit
             health -= bullet.dmg;
 

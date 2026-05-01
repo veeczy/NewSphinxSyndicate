@@ -102,12 +102,12 @@ GameObject:
   - component: {fileID: 1509537701854185176}
   - component: {fileID: 3795684558473676927}
   - component: {fileID: 6347719469311942181}
-  - component: {fileID: 1514114460322337915}
   - component: {fileID: 4157078310049170391}
   - component: {fileID: 3008822271711730405}
+  - component: {fileID: 3315751464647340783}
   m_Layer: 3
   m_Name: Enemy (Racoon)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,29 +259,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1514114460322337915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675664716332739808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acdb098cb7cafc647832766c5ceab395, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HornedToadAI
-  moveSpeed: 3
-  damage: 1
-  health: 3
-  maxHealth: 3
-  healthBar: {fileID: 6184938079033686611}
-  aggroRange: 15
-  hurtSound: {fileID: 8300000, guid: a245e125945804845a66d5698a49f0ab, type: 3}
-  hurtVolume: 0.2
-  attackRange: 2
-  attackCooldown: 1.5
-  flipFacing: 0
 --- !u!82 &4157078310049170391
 AudioSource:
   m_ObjectHideFlags: 0
@@ -401,6 +378,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3315751464647340783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675664716332739808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9925c3656acdf0347aef6cafaf024bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RaccoonAI
+  moveSpeed: 3
+  damage: 1
+  health: 3
+  maxHealth: 3
+  healthBar: {fileID: 6184938079033686611}
+  aggroRange: 15
+  hurtSound: {fileID: 8300000, guid: a245e125945804845a66d5698a49f0ab, type: 3}
+  hurtVolume: 1
+  attackRange: 2
+  attackCooldown: 1.5
+  flipFacing: 0
+  dodgeDistance: 1.5
+  dodgeTime: 0.2
+  bulletDetectRange: 2
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerBulletTag: Bullet
+  isImmune: 0
 --- !u!1 &1721169018869371850
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9036624114286174314}
   - component: {fileID: 1124194349868709185}
+  - component: {fileID: 8283459715218222439}
+  - component: {fileID: 3344308891550654960}
+  - component: {fileID: 2323191056737488098}
   m_Layer: 0
   m_Name: UIManager (1)
   m_TagString: Untagged
@@ -54,3 +57,57 @@ MonoBehaviour:
   halfHeart: {fileID: 7294242647285451956, guid: 7d4a7a4109edd6941a133edb96b21cbd, type: 3}
   quarterHeart: {fileID: -4983048486054741218, guid: 7d132c160860e8146bee1d54d7269c09, type: 3}
   emptyHeart: {fileID: 1945434853207596477, guid: e359f6db12192ab48ab88b3bc30c34e0, type: 3}
+--- !u!114 &8283459715218222439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913225928956996752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec387f6c5eecf046b33f3d2a4b00116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCounterUI
+  enemyText: {fileID: 0}
+  enemyShadow: {fileID: 0}
+--- !u!114 &3344308891550654960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913225928956996752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581f0243323087042aedf38eda72c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponUI
+  weaponSwitch: {fileID: 0}
+  weaponImage: {fileID: 0}
+  weaponIcons:
+  - {fileID: 4726518394171148836, guid: 1eea548fc09c899428bf657403c8d4a7, type: 3}
+  - {fileID: -6074842687553318334, guid: 6eb4d623d41d7ba43b1c566a699a4a1b, type: 3}
+  - {fileID: 1977787208937102330, guid: 669d24249cf1fac46931512bdf507603, type: 3}
+--- !u!114 &2323191056737488098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913225928956996752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafd790627cf9c041928e45e1566290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DodgeUIText
+  dodgeText: {fileID: 0}
+  dodgeTextShadow: {fileID: 0}
+  dodgeCooldown: 0.6
+  buttonHeld: 0
+  keyboardUI: {fileID: 0}
+  keyboardAnimator: {fileID: 0}
+  controllerUI: {fileID: 0}
+  controllerAnimator: {fileID: 0}
+  player: {fileID: 0}
+  controller: 0
